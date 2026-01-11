@@ -1,0 +1,43 @@
+{{>layout/header}}
+    <!-- 타로 선택 화면 -->
+    <section class="view view--active">
+        <div class="view__header">
+            <button class="btn-back" onclick="location.href='/pages/tarot-types'">← 돌아가기</button>
+            <h2 class="view__title" id="tarotTypeTitle">타로 보기</h2>
+            <p class="view__subtitle" id="tarotTypeCost" style="text-align: center; color: #b8b5c8; font-size: 14px; margin-top: 8px;"></p>
+        </div>
+
+        <div class="tarot">
+            <p class="tarot__instruction" id="tarotInstruction">마음에 드는 카드를 선택하세요</p>
+
+            <div class="form__group" id="tarotQuestionGroup" style="display: none; max-width: 400px; margin: 0 auto 32px;">
+                <label class="form__label">질문 <span class="required">*</span></label>
+                <textarea class="form__input" id="tarotQuestion" rows="4" placeholder="궁금한 내용을 자유롭게 작성해주세요" style="resize: vertical; min-height: 100px;"></textarea>
+            </div>
+            
+            <div class="tarot__cards" id="tarotCards">
+                <!-- 카드는 JS에서 동적으로 생성됩니다 -->
+            </div>
+
+            <button id="tarotSubmit" class="btn btn--primary btn--large" disabled onclick="submitTarot()">
+                결과 보기 (20 포인트)
+            </button>
+        </div>
+    </section>
+
+    <!-- 공통 모달 -->
+    <div id="commonModal" class="modal">
+        <div class="modal__overlay" onclick="modalCancel()"></div>
+        <div class="modal__content">
+            <div class="modal__icon">💬</div>
+            <h3 class="modal__title">알림</h3>
+            <p class="modal__message">메시지</p>
+            <div class="modal__buttons">
+                <button class="btn btn--secondary modal__btn-cancel" onclick="modalCancel()">취소</button>
+                <button class="btn btn--primary modal__btn-confirm" onclick="modalConfirm()">확인</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/tarot.js"></script>
+{{>layout/footer}}

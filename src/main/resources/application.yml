@@ -1,0 +1,74 @@
+#database
+spring:
+  application:
+    name: unvail
+
+  profiles:
+    active: ${PROFILE:local}
+
+  security:
+    oauth2:
+      client:
+        registration:
+          kakao:
+            client-id: 3869924742be96fcd0743d5d1d173e04 # REST API key
+            client-secret: K23G0ItPzWe34MkXKy65Naoci9YN6Tjn # Admin key
+            authorization-grant-type: authorization_code
+            redirect-uri: http://localhost:8080/login/oauth2/code/kakao
+            client-authentication-method: client_secret_post
+            scope:
+              - profile_nickname
+              - account_email
+        provider:
+          kakao:
+            authorization-uri: https://kauth.kakao.com/oauth/authorize
+            token-uri: https://kauth.kakao.com/oauth/token
+            user-info-uri: https://kapi.kakao.com/v2/user/me
+            user-name-attribute: id
+
+  web:
+    locale: ko_KR
+    resources:
+      static-locations:
+        - classpath:/static/
+
+  devtools:
+    livereload:
+      enabled: true
+    restart:
+      enabled: true
+      additional-exclude: static/**, templates/**
+
+  ##mustache
+  mustache:
+    suffix: .html
+    prefix: classpath:/templates/views/
+    servlet:
+      cache: false
+      expose-request-attributes: true
+
+  datasource:
+    url: jdbc:postgresql://aws-1-ap-southeast-1.pooler.supabase.com:5432/postgres
+    username: ENC(XeWSlxFzamfNUJ404tmQgUnUEskIhuJcv4PKQW2QkdNNENiOG0MJ9Q==)
+    password: ENC(KM3coe59bvtiNLN6qw7Lf6fDGyVfBXeKPLw0x4tVaWg=)
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 4
+
+  #openai
+  ai:
+    openai.api-key: asdasd
+    vertex.ai.gemini.project-id: aa
+    vertex.ai.gemini.location: aa
+
+mybatis:
+  config-location: classpath:config/mybatis-config.xml
+  mapper-locations: classpath:mybatis/mapper/**/*.xml
+
+logging:
+  level:
+    root: info
+    com.zaxxer.hikari.pool.HikariPool: debug
+    com:
+      unvail: debug
+    org.springframework.security: DEBUG

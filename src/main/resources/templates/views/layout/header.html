@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#1e1b29">
+  <title>Unveil - AI 사주·타로</title>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script>
+    window.currentInfo = {
+      isLoggedIn: {{isLoggedIn}}
+    }
+
+    console.log(window.currentInfo);
+  </script>
+  <script src="/js/utils.js"></script>
+  <script src="/js/modal.js"></script>
+  <script src="/js/main.js"></script>
+</head>
+<body>
+  <!-- 헤더 (포인트 표시) -->
+  <header class="header">
+    <div class="header__container">
+      <h1 class="header__logo">Unveil</h1>
+      <div class="header__right">
+        <div class="header__point">
+          <span class="point-icon">✦</span>
+          <span id="pointDisplay">100</span>
+        </div>
+        <button class="header__login" id="loginBtn" onclick="goToPage('/pages/login')" style="display: none;">로그인</button>
+        <div class="header__user" id="userInfo" style="display: none;">
+          <span class="header__user-email" id="userEmail"></span>
+        </div>
+      </div>
+    </div>
+  </header>
+<!-- header end -->

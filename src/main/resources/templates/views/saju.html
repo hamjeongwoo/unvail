@@ -1,0 +1,68 @@
+{{>layout/header}}
+<body>
+
+
+    <!-- 사주 입력 화면 -->
+    <section class="view view--active">
+        <div class="view__header">
+            <button class="btn-back" onclick="location.href='/pages/saju-types'">← 돌아가기</button>
+            <h2 class="view__title" id="sajuTypeTitle">사주 보기</h2>
+            <p class="view__subtitle" id="sajuTypeCost" style="text-align: center; color: #b8b5c8; font-size: 14px; margin-top: 8px;"></p>
+        </div>
+
+        <form id="sajuForm" class="form">
+            <div class="form__group">
+                <label class="form__label">이름 <span class="required">*</span></label>
+                <input type="text" class="form__input" id="sajuName" required placeholder="이름을 입력하세요">
+            </div>
+
+            <div class="form__group">
+                <label class="form__label">생년월일 <span class="required">*</span></label>
+                <input type="date" class="form__input" id="sajuBirthDate" required>
+            </div>
+
+            <div class="form__group">
+                <label class="form__label">출생 시간 (선택)</label>
+                <input type="time" class="form__input" id="sajuBirthTime">
+            </div>
+
+            <div class="form__group">
+                <label class="form__label">성별 (선택)</label>
+                <div class="form__radio-group">
+                    <label class="radio-label">
+                        <input type="radio" name="gender" value="male">
+                        <span>남성</span>
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="gender" value="female">
+                        <span>여성</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="form__group" id="questionGroup" style="display: none;">
+                <label class="form__label">질문 <span class="required">*</span></label>
+                <textarea class="form__input" id="sajuQuestion" rows="4" placeholder="궁금한 내용을 자유롭게 작성해주세요" style="resize: vertical; min-height: 100px;"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn--primary btn--large" id="sajuSubmitBtn">
+                사주 보기 (30 포인트)
+            </button>
+        </form>
+    </section>
+
+    <!-- 공통 모달 -->
+    <div id="commonModal" class="modal">
+        <div class="modal__overlay" onclick="modalCancel()"></div>
+        <div class="modal__content">
+            <div class="modal__icon">💬</div>
+            <h3 class="modal__title">알림</h3>
+            <p class="modal__message">메시지</p>
+            <div class="modal__buttons">
+                <button class="btn btn--secondary modal__btn-cancel" onclick="modalCancel()">취소</button>
+                <button class="btn btn--primary modal__btn-confirm" onclick="modalConfirm()">확인</button>
+            </div>
+        </div>
+    </div>
+    <script src="/js/saju.js"></script>
+{{>layout/footer}}

@@ -1,0 +1,100 @@
+{{>layout/header}}
+    <!-- 타로 종류 선택 화면 -->
+    <section class="view view--active" id="mainTypeView">
+        <div class="view__header">
+            <button class="btn-back" onclick="goBack('/main')">← 돌아가기</button>
+            <h2 class="view__title">타로 종류 선택</h2>
+        </div>
+
+        <div class="type-selection">
+            <p class="type-selection__desc">원하시는 타로 리딩 방식을 선택해주세요</p>
+
+            <div class="menu">
+                <button class="menu__card" onclick="selectTarotType('one-card', 10)">
+                    <div class="menu__card-icon">🃏</div>
+                    <h3 class="menu__card-title">원카드 타로</h3>
+                    <p class="menu__card-desc">하나의 카드로 간단하게</p>
+                    <div class="menu__card-cost">10 포인트</div>
+                </button>
+
+                <button class="menu__card" onclick="selectTarotType('three-card', 20)">
+                    <div class="menu__card-icon">🎴</div>
+                    <h3 class="menu__card-title">쓰리카드 타로</h3>
+                    <p class="menu__card-desc">과거-현재-미래를 조망</p>
+                    <div class="menu__card-cost">20 포인트</div>
+                </button>
+
+                <button class="menu__card" onclick="selectTarotType('celtic-cross', 30)">
+                    <div class="menu__card-icon">✨</div>
+                    <h3 class="menu__card-title">켈틱 크로스</h3>
+                    <p class="menu__card-desc">10장 고정 스프레드</p>
+                    <div class="menu__card-cost">30 포인트</div>
+                </button>
+
+                <button class="menu__card" onclick="showQuestionTypes()">
+                    <div class="menu__card-icon">💭</div>
+                    <h3 class="menu__card-title">질문 기반 점사</h3>
+                    <p class="menu__card-desc">질문 유형별 맞춤 리딩</p>
+                    <div class="menu__card-cost">10~35 포인트</div>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 질문 기반 점사 세부 선택 화면 -->
+    <section class="view" id="questionTypeView" style="display: none;">
+        <div class="view__header">
+            <button class="btn-back" onclick="showMainTypes()">← 돌아가기</button>
+            <h2 class="view__title">질문 유형 선택</h2>
+        </div>
+
+        <div class="type-selection">
+            <p class="type-selection__desc">질문 유형에 맞는 리딩을 선택해주세요</p>
+
+            <div class="menu">
+                <button class="menu__card" onclick="selectTarotType('question-yesno', 10)">
+                    <div class="menu__card-icon">❓</div>
+                    <h3 class="menu__card-title">Yes/No 질문</h3>
+                    <p class="menu__card-desc">3장 펼침 → 1장 선택</p>
+                    <div class="menu__card-cost">10 포인트</div>
+                </button>
+
+                <button class="menu__card" onclick="selectTarotType('question-love', 20)">
+                    <div class="menu__card-icon">💕</div>
+                    <h3 class="menu__card-title">연애·인간관계</h3>
+                    <p class="menu__card-desc">7장 펼침 → 3장 선택</p>
+                    <div class="menu__card-cost">20 포인트</div>
+                </button>
+
+                <button class="menu__card" onclick="selectTarotType('question-career', 30)">
+                    <div class="menu__card-icon">💼</div>
+                    <h3 class="menu__card-title">재물·직업·이직</h3>
+                    <p class="menu__card-desc">10장 펼침 → 3장 선택</p>
+                    <div class="menu__card-cost">30 포인트</div>
+                </button>
+
+                <button class="menu__card" onclick="selectTarotType('question-future', 35)">
+                    <div class="menu__card-icon">🔮</div>
+                    <h3 class="menu__card-title">흐름·운세 질문</h3>
+                    <p class="menu__card-desc">12장 펼침 → 3장 선택</p>
+                    <div class="menu__card-cost">35 포인트</div>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 공통 모달 -->
+    <div id="commonModal" class="modal">
+        <div class="modal__overlay" onclick="modalCancel()"></div>
+        <div class="modal__content">
+            <div class="modal__icon">💬</div>
+            <h3 class="modal__title">알림</h3>
+            <p class="modal__message">메시지</p>
+            <div class="modal__buttons">
+                <button class="btn btn--secondary modal__btn-cancel" onclick="modalCancel()">취소</button>
+                <button class="btn btn--primary modal__btn-confirm" onclick="modalConfirm()">확인</button>
+            </div>
+        </div>
+    </div>
+    <script src="/js/tarot-types.js"></script>
+{{>layout/footer}}

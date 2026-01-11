@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#1e1b29">
+    <title>결과 - Unveil</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- 헤더 (포인트 표시) -->
+    <header class="header">
+        <div class="header__container">
+            <h1 class="header__logo">Unveil</h1>
+            <div class="header__right">
+                <div class="header__point">
+                    <span class="point-icon">✦</span>
+                    <span id="pointDisplay">100</span>
+                </div>
+                <button class="header__login" id="loginBtn" onclick="goToLogin()" style="display: none;">로그인</button>
+                <div class="header__user" id="userInfo" style="display: none;">
+                    <span class="header__user-email" id="userEmail"></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 결과 화면 -->
+    <section class="view view--active" id="resultView">
+        <div class="view__header">
+            <button class="btn-back" onclick="goToMain()">← 처음으로</button>
+            <h2 class="view__title" id="resultTitle">결과</h2>
+        </div>
+
+        <div class="result">
+            <div class="result__card">
+                <div id="resultContent" class="result__content">
+                    <p>결과를 불러오는 중...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 공통 모달 -->
+    <div id="commonModal" class="modal">
+        <div class="modal__overlay" onclick="modalCancel()"></div>
+        <div class="modal__content">
+            <div class="modal__icon">💬</div>
+            <h3 class="modal__title">알림</h3>
+            <p class="modal__message">메시지</p>
+            <div class="modal__buttons">
+                <button class="btn btn--secondary modal__btn-cancel" onclick="modalCancel()">취소</button>
+                <button class="btn btn--primary modal__btn-confirm" onclick="modalConfirm()">확인</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/mockData.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/modal.js"></script>
+    <script src="js/loading.js"></script>
+    <script src="js/result.js"></script>
+</body>
+</html>

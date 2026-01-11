@@ -1,0 +1,28 @@
+#database
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          kakao:
+            client-id: 3869924742be96fcd0743d5d1d173e04 # REST API key
+            client-secret: K23G0ItPzWe34MkXKy65Naoci9YN6Tjn # Admin key
+            authorization-grant-type: authorization_code
+            redirect-uri: http://localhost:8080/login/oauth2/code/kakao
+            client-authentication-method: client_secret_post
+            scope:
+              - profile_nickname
+              - account_email
+        provider:
+          kakao:
+            authorization-uri: https://kauth.kakao.com/oauth/authorize
+            token-uri: https://kauth.kakao.com/oauth/token
+            user-info-uri: https://kapi.kakao.com/v2/user/me
+            user-name-attribute: id
+logging:
+  level:
+    root: info
+    com.zaxxer.hikari.pool.HikariPool: debug
+    com:
+      unvail: debug
+    org.springframework.security: DEBUG
