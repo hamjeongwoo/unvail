@@ -59,7 +59,7 @@ jobs:
           port: ${{ secrets.SSH_PORT_1 }}
           rm: true
           source: '/home/runner/work/unvail/unvail'
-          target: '/home/app/dukheeApp/build'
+          target: '/home/app/unvailApp/build'
           strip_components: 2
 
       ## 내스크립트 실행
