@@ -26,11 +26,12 @@ logging:
     com:
       unvail: debug
     org.springframework.security: error
-  server:
-    port: 443
-    ssl:
-      enabled: true
-      key-store: file:/home/app/unveilApp/cert/keystore.p12
-      key-store-type: PKCS12
-      key-store-password: gkawjddn!1
-      key-alias: unveil
+
+server:
+  port: 443
+  ssl:
+    enabled: true
+    key-store: file:/home/app/unveilApp/cert/keystore.p12
+    key-store-type: PKCS12
+    key-store-password: gkawjddn!1
+    key-alias: unveil
