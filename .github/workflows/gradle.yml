@@ -72,6 +72,6 @@ jobs:
           port: ${{ secrets.SSH_PORT_1 }}
           script_stop: true
           script: | 
-            cd /home/app/unvailApp
+            cd /home/app/unveilApp
             sh ./stop.sh
             sh ./start.sh
