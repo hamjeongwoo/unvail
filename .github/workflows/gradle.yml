@@ -10,8 +10,8 @@ name: Java CI with Gradle
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+#  pull_request:
+#    branches: [ "main" ]
 
 permissions:
   id-token: write
@@ -59,7 +59,7 @@ jobs:
           port: ${{ secrets.SSH_PORT_1 }}
           rm: true
           source: '/home/runner/work/unvail/unvail'
-          target: '/home/app/unvailApp/build'
+          target: '/home/app/unveilApp/build'
           strip_components: 2
 
       ## 내스크립트 실행
