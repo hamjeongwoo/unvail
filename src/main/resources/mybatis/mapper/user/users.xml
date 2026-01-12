@@ -35,7 +35,7 @@
         from public.users u
         left join user_point p
             on u.email = p.email
-        where email = #{value}
+        where u.email = #{value}
     </select>
 
     <select id="selectUserCurPointByEmail" parameterType="String" resultType="Integer">

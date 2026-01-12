@@ -5,10 +5,10 @@ spring:
       client:
         registration:
           kakao:
-            client-id: 3869924742be96fcd0743d5d1d173e04 # REST API key
-            client-secret: K23G0ItPzWe34MkXKy65Naoci9YN6Tjn # Admin key
+            client-id: 83890ddebb2f33cd5e086b43acc83284 # REST API key
+            client-secret: jmplAYj5k8XWqSbMEjbGSkLs0qW9o6OM # Admin key
             authorization-grant-type: authorization_code
-            redirect-uri: http://localhost:8080/login/oauth2/code/kakao
+            redirect-uri: https://www.un-veil.co.kr/login/oauth2/code/kakao
             client-authentication-method: client_secret_post
             scope:
               - profile_nickname
