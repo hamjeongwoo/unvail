@@ -1,5 +1,6 @@
 package com.unvail.app.config;
 
+import com.unvail.app.comm.error.CustomAccessDeniedHandler;
 import com.unvail.app.oauth.CustomAuthExceptionHandler;
 import com.unvail.app.oauth.CustomOAuth2SuccessHandler;
 import com.unvail.app.oauth.service.CustomOAuth2UserService;
@@ -18,11 +19,12 @@ public class SecurityConfig {
     private final CustomOAuth2UserService customOAuth2UserService;
     private final CustomOAuth2SuccessHandler customOAuth2SuccessHandler;
     private final CustomAuthExceptionHandler customAuthExceptionHandler;
+    private final CustomAccessDeniedHandler customAccessDeniedHandler;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(authorize -> authorize
-                .requestMatchers("/css/**", "/js/**").permitAll()
+                .requestMatchers("/css/**", "/js/**", "/favicon.ico", "/.well-known/appspecific/com.chrome.devtools.json").permitAll()
                 .requestMatchers("/", "/main", "/pages/**").permitAll()
                 .requestMatchers("/login/**", "/oauth2/**").permitAll()
                 .anyRequest().authenticated());
@@ -30,7 +32,12 @@ public class SecurityConfig {
                 .successHandler(customOAuth2SuccessHandler)
                 .failureHandler(customAuthExceptionHandler)
                 .userInfoEndpoint(endpointConfig -> endpointConfig
-                        .userService(customOAuth2UserService)));
+                .userService(customOAuth2UserService))
+            )
+            .exceptionHandling(ex ->
+                ex.accessDeniedHandler(customAccessDeniedHandler)
+            );
+
 
         return http.build();
     }

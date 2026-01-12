@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.unvail.app.users.UsersMapper">
+
+    <insert id="upsertUserInfo" parameterType="com.unvail.app.users.UnveilUser">
+        insert
+            into public.users(email, oauth_type, auth_id, name, create_at, create_by, recent_login)
+        values
+            (
+             #{email}
+            ,#{oauthType}
+            ,#{authId}
+            ,#{name}
+            ,#{sessionId}
+            ,now()
+            ,now()
+            )
+        ON CONFLICT (email) DO
+        UPDATE
+        SET recent_login = now(), update_by = now(), update_at = #{sessionId}
+    </insert>
+
+    <select id="selectUsersByEmail" parameterType="String" resultType="com.unvail.app.users.UnveilUser">
+        select
+            u.email
+             ,u.oauth_type
+             ,u.auth_id
+             ,u.name
+             ,u.create_at
+             ,u.create_by
+             ,u.update_at
+             ,u.update_by
+             ,u.recent_login
+             ,coalesce(p.cur_point, 0) as cur_point
+        from public.users u
+        left join user_point p
+            on u.email = p.email
+        where email = #{value}
+    </select>
+
+    <select id="selectUserCurPointByEmail" parameterType="String" resultType="Integer">
+        select
+            cur_point
+        from user_point
+        where email = #{value}
+    </select>
+</mapper>

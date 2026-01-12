@@ -26,3 +26,5 @@ logging:
     com:
       unvail: debug
     org.springframework.security: DEBUG
+server:
+  port: 8080

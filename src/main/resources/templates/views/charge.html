@@ -1,0 +1,92 @@
+{{>layout/header}}
+    <!-- 충전 화면 -->
+    <main class="charge">
+        <!-- 현재 포인트 -->
+        <section class="charge-balance">
+            <div class="charge-balance__label">현재 보유 포인트</div>
+            <div class="charge-balance__amount">
+                <span class="point-icon">✦</span>
+                <span id="currentPoint">100</span>
+            </div>
+        </section>
+
+        <!-- 충전 금액 선택 -->
+        <section class="charge-packages">
+            <h2 class="charge-packages__title">충전 금액 선택</h2>
+            <div class="package-list">
+                <button class="package-item package-item--selected" data-points="1000" onclick="selectPackage(1000)">
+                    <div class="package-item__points">
+                        <span class="point-icon">✦</span>
+                        <span class="points-amount">1,000</span>
+                    </div>
+                    <div class="package-item__price">₩1,000</div>
+                    <div class="package-item__check">✓</div>
+                </button>
+
+                <button class="package-item package-item--popular" data-points="2000" onclick="selectPackage(2000)">
+                    <div class="package-item__badge">인기</div>
+                    <div class="package-item__points">
+                        <span class="point-icon">✦</span>
+                        <span class="points-amount">2,000</span>
+                    </div>
+                    <div class="package-item__price">₩2,000</div>
+                    <div class="package-item__bonus">+10% 보너스(₩2,200)</div>
+                    <div class="package-item__check">✓</div>
+                </button>
+
+                <button class="package-item" data-points="3000" onclick="selectPackage(3000)">
+                    <div class="package-item__points">
+                        <span class="point-icon">✦</span>
+                        <span class="points-amount">3,000</span>
+                    </div>
+                    <div class="package-item__price">₩3,000</div>
+                    <div class="package-item__bonus">+15% 보너스(₩3,450)</div>
+                    <div class="package-item__check">✓</div>
+                </button>
+
+                <button class="package-item" data-points="5000" onclick="selectPackage(5000)">
+                    <div class="package-item__points">
+                        <span class="point-icon">✦</span>
+                        <span class="points-amount">5,000</span>
+                    </div>
+                    <div class="package-item__price">₩5,000</div>
+                    <div class="package-item__bonus">+20% 보너스(₩6,000)</div>
+                    <div class="package-item__check">✓</div>
+                </button>
+            </div>
+        </section>
+
+        <!-- 결제 수단 선택 -->
+        <section class="charge-payment">
+            <h2 class="charge-payment__title">결제 수단 선택</h2>
+            <div class="payment-list">
+                <button class="payment-item" data-method="kakao" onclick="selectPayment('kakao')">
+                    <div class="payment-item__icon">💬</div>
+                    <div class="payment-item__name">카카오페이</div>
+                    <div class="payment-item__check">✓</div>
+                </button>
+
+                <button class="payment-item" data-method="naver" onclick="selectPayment('naver')">
+                    <div class="payment-item__icon">🟢</div>
+                    <div class="payment-item__name">네이버페이</div>
+                    <div class="payment-item__check">✓</div>
+                </button>
+
+                <button class="payment-item" data-method="toss" onclick="selectPayment('toss')">
+                    <div class="payment-item__icon">💙</div>
+                    <div class="payment-item__name">토스페이</div>
+                    <div class="payment-item__check">✓</div>
+                </button>
+            </div>
+        </section>
+
+        <!-- 충전 버튼 -->
+        <div class="charge-actions">
+            <button class="btn btn--primary btn--large" id="chargeBtn" onclick="processCharge()" disabled>
+                충전하기
+            </button>
+        </div>
+    </main>
+    <!-- 스크립트 -->
+    <script src="/js/charge.js"></script>
+{{>layout/header}}

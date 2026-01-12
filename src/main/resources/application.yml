@@ -49,17 +49,20 @@ spring:
 
   datasource:
     url: jdbc:postgresql://aws-1-ap-southeast-1.pooler.supabase.com:5432/postgres
-    username: ENC(XeWSlxFzamfNUJ404tmQgUnUEskIhuJcv4PKQW2QkdNNENiOG0MJ9Q==)
-    password: ENC(KM3coe59bvtiNLN6qw7Lf6fDGyVfBXeKPLw0x4tVaWg=)
+    username: postgres.aekmugwewfkvepikdjib
+    password: VpYTsQvFUtSFD73g
     driver-class-name: org.postgresql.Driver
     hikari:
       maximum-pool-size: 4
+      connection-test-query: select 1
+    #username: postgres.aekmugwewfkvepikdjib
+    #password: VpYTsQvFUtSFD73g
 
   #openai
   ai:
-    openai.api-key: asdasd
-    vertex.ai.gemini.project-id: aa
-    vertex.ai.gemini.location: aa
+    openai.api-key: ${OPENAPI_API_KEY}
+    vertex.ai.gemini.project-id: ${GEMINI_PROJECT_ID}
+    vertex.ai.gemini.location: ${GEMINI_LOCATION}
 
 mybatis:
   config-location: classpath:config/mybatis-config.xml
@@ -72,3 +75,7 @@ logging:
     com:
       unvail: debug
     org.springframework.security: DEBUG
+
+Jasypt:
+  encryptor:
+    bean: jasyptStringEncryptor

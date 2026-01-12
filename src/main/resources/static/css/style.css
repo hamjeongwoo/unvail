@@ -649,6 +649,57 @@ input {
     margin-bottom: 32px;
 }
 
+/* 모드 선택 버튼 */
+.tarot__mode-selector {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin: 16px auto 20px;
+    max-width: 280px;
+}
+
+.mode-btn {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(111, 92, 255, 0.2);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.mode-btn:hover {
+    background: rgba(111, 92, 255, 0.1);
+    border-color: rgba(111, 92, 255, 0.4);
+    transform: translateY(-2px);
+}
+
+.mode-btn--active {
+    background: rgba(111, 92, 255, 0.2);
+    border-color: #6f5cff;
+}
+
+.mode-btn__icon {
+    font-size: 20px;
+}
+
+.mode-btn__label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #e8e6f0;
+    margin-top: 2px;
+}
+
+.mode-btn__desc {
+    font-size: 10px;
+    color: #9d95b8;
+    font-weight: 400;
+}
+
 .tarot__cards {
     display: flex;
     flex-wrap: wrap;
@@ -787,6 +838,119 @@ input {
 
 .tarot__card.disabled:hover {
     transform: none;
+}
+
+/* 카드 확대 오버레이 (신중모드) */
+.card-zoom-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    transition: background 0.3s ease;
+}
+
+.card-zoom-overlay.active {
+    background: rgba(0, 0, 0, 0.85);
+}
+
+.card-zoom-overlay.fade-out {
+    background: rgba(0, 0, 0, 0);
+}
+
+.card-zoom {
+    width: 200px;
+    height: 340px;
+    border-radius: 16px;
+    border: 3px solid rgba(245, 211, 108, 0.8);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 12px;
+    gap: 12px;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: scale(0.5) rotateY(90deg);
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.card-zoom.active {
+    opacity: 1;
+    transform: scale(1) rotateY(0deg);
+}
+
+.card-zoom-overlay.fade-out .card-zoom {
+    opacity: 0;
+    transform: scale(0.8) translateY(20px);
+}
+
+.card-zoom::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+            radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.15) 0%, transparent 50%),
+            radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.2) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.card-zoom::after {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    border-radius: 12px;
+    pointer-events: none;
+}
+
+.card-zoom .tarot__card-number {
+    font-size: 24px;
+    font-weight: 700;
+    color: #ffffff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    z-index: 1;
+}
+
+.card-zoom .tarot__card-emoji {
+    width: 100%;
+    height: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 8px;
+    z-index: 1;
+}
+
+.card-zoom .tarot__card-emoji img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.card-zoom .tarot__card-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: #ffffff;
+    text-align: center;
+    line-height: 1.3;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    z-index: 1;
 }
 
 /* ==================== Result ==================== */
@@ -1059,4 +1223,296 @@ input {
         max-width: 430px;
         width: 100%;
     }
+}
+
+/* ==================== 충전 페이지 ==================== */
+.charge {
+    max-width: 430px;
+    margin: 0 auto;
+    padding: 20px;
+    padding-bottom: 40px;
+    min-height: calc(100vh - 60px);
+}
+
+/* 현재 잔액 */
+.charge-balance {
+    background: linear-gradient(135deg, rgba(111, 92, 255, 0.15) 0%, rgba(155, 136, 255, 0.1) 100%);
+    border: 1px solid rgba(111, 92, 255, 0.3);
+    border-radius: 16px;
+    padding: 24px;
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.charge-balance__label {
+    font-size: 14px;
+    color: #9d95b8;
+    margin-bottom: 8px;
+}
+
+.charge-balance__amount {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 32px;
+    font-weight: 700;
+    color: #f5d36c;
+}
+
+.charge-balance__amount .point-icon {
+    font-size: 28px;
+}
+
+/* 충전 패키지 섹션 */
+.charge-packages {
+    margin-bottom: 32px;
+}
+
+.charge-packages__title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #e8e6f0;
+    margin-bottom: 16px;
+}
+
+.package-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.package-item {
+    position: relative;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(111, 92, 255, 0.2);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.package-item:hover {
+    background: rgba(111, 92, 255, 0.1);
+    border-color: rgba(111, 92, 255, 0.4);
+    transform: translateY(-2px);
+}
+
+.package-item--selected {
+    background: rgba(111, 92, 255, 0.2);
+    border-color: #6f5cff;
+}
+
+.package-item--popular {
+    border-color: #f5d36c;
+}
+
+.package-item--popular::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    right: -1px;
+    bottom: -1px;
+    background: linear-gradient(135deg, #f5d36c, #6f5cff);
+    border-radius: 12px;
+    z-index: -1;
+    opacity: 0.3;
+}
+
+.package-item__badge {
+    position: absolute;
+    top: -10px;
+    right: 16px;
+    background: linear-gradient(135deg, #f5d36c, #ffb347);
+    color: #1e1b29;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 12px;
+}
+
+.package-item__points {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #e8e6f0;
+}
+
+.package-item__points .point-icon {
+    color: #f5d36c;
+    font-size: 18px;
+}
+
+.package-item__price {
+    font-size: 16px;
+    font-weight: 500;
+    color: #9d95b8;
+}
+
+.package-item__bonus {
+    position: absolute;
+    bottom: 8px;
+    left: 20px;
+    font-size: 12px;
+    color: #f5d36c;
+    font-weight: 600;
+}
+
+.package-item__check {
+    position: absolute;
+    top: 50%;
+    right: 90px;
+    transform: translateY(-50%);
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 2px solid rgba(111, 92, 255, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: transparent;
+    transition: all 0.3s ease;
+}
+
+.package-item--selected .package-item__check {
+    background: #6f5cff;
+    border-color: #6f5cff;
+    color: white;
+}
+
+/* 결제 수단 섹션 */
+.charge-payment {
+    margin-bottom: 32px;
+}
+
+.charge-payment__title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #e8e6f0;
+    margin-bottom: 16px;
+}
+
+.payment-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.payment-item {
+    position: relative;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(111, 92, 255, 0.2);
+    border-radius: 12px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.payment-item:hover {
+    background: rgba(111, 92, 255, 0.1);
+    border-color: rgba(111, 92, 255, 0.4);
+    transform: translateY(-2px);
+}
+
+.payment-item--selected {
+    background: rgba(111, 92, 255, 0.2);
+    border-color: #6f5cff;
+}
+
+.payment-item__icon {
+    font-size: 24px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.payment-item__name {
+    flex: 1;
+    font-size: 16px;
+    font-weight: 500;
+    color: #e8e6f0;
+}
+
+.payment-item__check {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 2px solid rgba(111, 92, 255, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: transparent;
+    transition: all 0.3s ease;
+}
+
+.payment-item--selected .payment-item__check {
+    background: #6f5cff;
+    border-color: #6f5cff;
+    color: white;
+}
+
+/* 충전 액션 버튼 */
+.charge-actions {
+    margin-top: 32px;
+}
+
+.charge-actions .btn--large {
+    width: 100%;
+}
+
+/* 헤더 뒤로가기 버튼 */
+.header__back {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #e8e6f0;
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 50%;
+}
+
+.header__back:hover {
+    background: rgba(111, 92, 255, 0.2);
+}
+
+.header__title {
+    flex: 1;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    color: #e8e6f0;
+}
+
+/* 성공 모달 */
+.modal__content--success {
+    text-align: center;
+}
+
+.modal__icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 20px;
+    background: linear-gradient(135deg, #6f5cff 0%, #9b88ff 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    color: white;
 }

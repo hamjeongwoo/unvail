@@ -1,12 +1,14 @@
 package com.unvail.app.oauth;
 
-import com.unvail.app.user.UnveilUser;
+import com.unvail.app.users.UnveilUser;
+import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 
 import java.util.Collection;
 import java.util.Map;
 
+@Getter
 public class CustomOAuth2User extends DefaultOAuth2User {
 
     private final UnveilUser unveilUser;
@@ -22,9 +24,5 @@ public class CustomOAuth2User extends DefaultOAuth2User {
     public CustomOAuth2User(Collection<? extends GrantedAuthority> authorities, Map<String, Object> attributes, String nameAttributeKey, UnveilUser unveilUser) {
         super(authorities, attributes, nameAttributeKey);
         this.unveilUser = unveilUser;
-    }
-
-    public UnveilUser getUnveilUser() {
-        return this.unveilUser;
     }
 }

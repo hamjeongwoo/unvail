@@ -10,11 +10,13 @@
   <script>
     window.currentInfo = {
       isLoggedIn: {{isLoggedIn}}
+      , name: '{{name}}'
+      , curPoint: {{curPoint}}
     }
-
-    console.log(window.currentInfo);
   </script>
+  <script src="/js/comm/jquery-3.7.1.min.js"></script>
   <script src="/js/utils.js"></script>
+  <script src="/js/loading.js"></script>
   <script src="/js/modal.js"></script>
   <script src="/js/main.js"></script>
 </head>
@@ -26,11 +28,11 @@
       <div class="header__right">
         <div class="header__point">
           <span class="point-icon">✦</span>
-          <span id="pointDisplay">100</span>
+          <span id="curPoint">0</span>
         </div>
-        <button class="header__login" id="loginBtn" onclick="goToPage('/pages/login')" style="display: none;">로그인</button>
+        <button class="header__login" id="loginBtn" onclick="goToPage('/pages/login')" style="display: none;" style="display: none">로그인</button>
         <div class="header__user" id="userInfo" style="display: none;">
-          <span class="header__user-email" id="userEmail"></span>
+          <span class="header__user-email" id="userName"></span>
         </div>
       </div>
     </div>

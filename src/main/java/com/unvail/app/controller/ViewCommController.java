@@ -1,18 +1,11 @@
 package com.unvail.app.controller;
 
-import com.unvail.app.oauth.CustomOAuth2User;
-import com.unvail.app.user.UnveilUser;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
-import java.security.Principal;
 
 @Controller
 @Slf4j
@@ -34,6 +27,7 @@ public class ViewCommController {
     @GetMapping("/pages/**")
     public String commRoute(HttpServletRequest request
                                 , Model model){
+        viewCommService.postLoginHandler(model);
         String uri = request.getRequestURI();
         String viewPath = uri.substring(7);
 

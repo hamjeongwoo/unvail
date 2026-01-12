@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="comm">
+    <sql id="auditColumns">
+        createBy, createAt, updateBy, updateAt
+    </sql>
+
+    <sql id="auditValues">
+        #{sessionId}, now(), #{sessionId}, now()
+    </sql>
+
+    <sql id="insertAuditColumns">
+        createBy, createAt
+    </sql>
+
+    <sql id="insertAuditValues">
+        #{sessionId}, now()
+    </sql>
+</mapper>
