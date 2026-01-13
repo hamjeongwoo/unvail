@@ -1,6 +1,5 @@
 // 타로 종류 선택 페이지 스크립트
-
-function selectTarotType(type, cost) {
+function selectTarotType(type) {
     window.location.href = '/pages/tarot?type=' + type;
 }
 

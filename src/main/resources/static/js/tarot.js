@@ -1,6 +1,7 @@
 // 타로 페이지 스크립트
 
 var selectedTarotCards = [];
+var setSelectedCards = new Set;
 var requiredCardCount = 1;
 var currentType = 'one-card';
 var currentCost = 10;
@@ -99,13 +100,11 @@ var tarotCards = [
 
 // 타로 종류 정보
 var tarotTypeInfo = {
-    'one-card': { name: '원카드 타로', cost: 10, cards: 1, spread: 5 },
-    'three-card': { name: '쓰리카드 타로', cost: 20, cards: 3, spread: 5 },
-    'celtic-cross': { name: '켈틱 크로스', cost: 30, cards: 10, spread: 15 },
-    'question-yesno': { name: 'Yes/No 질문', cost: 10, cards: 1, spread: 3 },
-    'question-love': { name: '연애·인간관계', cost: 20, cards: 3, spread: 7 },
-    'question-career': { name: '재물·직업·이직', cost: 30, cards: 3, spread: 10 },
-    'question-future': { name: '흐름·운세 질문', cost: 35, cards: 3, spread: 12 }
+    'one-card': { name: '원카드 타로', cost: 500, cards: 1, spread: 5 },
+    'three-card': { name: '쓰리카드 타로', cost: 600, cards: 3, spread: 5 },
+    'four-card': { name: '포카드 타로', cost: 700, cards: 4, spread: 7 },
+    'five-card': { name: '파이브카드 타로', cost: 800, cards: 5, spread: 9 },
+    'celtic-cross': { name: '켈틱 크로스', cost: 900, cards: 10, spread: 15 }
 };
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -126,8 +125,12 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('tarotInstruction').textContent = '질문을 입력하고 마음에 드는 카드를 선택하세요';
         } else if (requiredCardCount === 3) {
             document.getElementById('tarotInstruction').textContent = '질문을 입력하고 세 장의 카드를 선택하세요';
+        } else if (requiredCardCount === 4) {
+            document.getElementById('tarotInstruction').textContent = '질문을 입력하고 네 장의 카드를 선택하세요';
+        } else if (requiredCardCount === 5) {
+            document.getElementById('tarotInstruction').textContent = '질문을 입력하고 다섯 장의 카드를 선택하세요';
         } else if (requiredCardCount === 10) {
-            document.getElementById('tarotInstruction').textContent = '열 장의 카드를 선택하세요';
+            document.getElementById('tarotInstruction').textContent = '질문을 입력하고 열 장의 카드를 선택하세요';
         }
     }
 
@@ -154,14 +157,14 @@ function createTarotCards() {
     var shuffledCards = tarotCards.slice().sort(function() { return Math.random() - 0.5; });
 
     for (var i = 0; i < totalCards; i++) {
-        var cardData = shuffledCards[i % tarotCards.length];
+        const cardData = shuffledCards[i % tarotCards.length];
 
         var card = document.createElement('div');
         card.className = 'tarot__card';
         card.setAttribute('data-card', i);
         card.onclick = function() {
             var cardIndex = parseInt(this.getAttribute('data-card'));
-            selectTarotCard(cardIndex);
+            selectTarotCard(cardIndex, cardData);
         };
 
         var cardInner = document.createElement('div');
@@ -188,7 +191,7 @@ function createTarotCards() {
         img.alt = cardData.name;
         img.style.width = '100%';
         img.style.height = '100%';
-        img.style.objectFit = 'cover';
+        img.style.objectFit = 'contain';
         cardEmoji.appendChild(img);
 
         var cardName = document.createElement('div');
@@ -222,20 +225,21 @@ function changeMode(mode) {
 }
 
 // 타로 카드 선택 처리
-function selectTarotCard(cardIndex) {
+function selectTarotCard(cardIndex, cardData) {
     // 이미 선택된 카드인지 확인
     var isSelected = selectedTarotCards.indexOf(cardIndex) > -1;
 
     if (isSelected) {
         // 선택 취소
         selectedTarotCards = selectedTarotCards.filter(function(idx) { return idx !== cardIndex; });
+        setSelectedCards.delete(cardData);
         updateCardDisplay();
     } else {
         // 필요한 카드 개수만큼 선택되었는지 확인
         if (selectedTarotCards.length >= requiredCardCount) {
             return;
         }
-
+        setSelectedCards.add(cardData);
         selectedTarotCards.push(cardIndex);
 
         // 신중모드일 경우 확대 애니메이션 표시
@@ -326,39 +330,53 @@ function submitTarot() {
     }
 
     // 질문 기반 점사인 경우 질문 검증
-    if (currentType === 'question') {
-        var question = document.getElementById('tarotQuestion').value.trim();
-        if (!question) {
-            alert('질문을 입력해주세요.');
-            return;
-        }
-    }
+    var question = document.getElementById('tarotQuestion').value.trim();
 
     // 포인트 확인
-    if (!canConsumePoint(currentCost)) {
-        showModal({
-            title: '포인트가 부족합니다',
-            message: '서비스를 이용하기 위한<br>포인트가 부족합니다.',
-            type: 'warning',
-            confirmText: '확인',
-            showCancel: false,
-            onConfirm: function() {
-                goToMain();
-            }
-        });
-        return;
-    }
+    // if (!canConsumePoint(currentCost)) {
+    //     showModal({
+    //         title: '포인트가 부족합니다',
+    //         message: '서비스를 이용하기 위한<br>포인트가 부족합니다.',
+    //         type: 'warning',
+    //         confirmText: '확인',
+    //         showCancel: false,
+    //         onConfirm: function() {
+    //             goToMain();
+    //         }
+    //     });
+    //     return;
+    // }
 
-    // 포인트 차감
-    var newPoint = consumePoint(currentCost);
 
     // 타입에 따른 더미 결과 선택
-    var results = tarotResultsByType[currentType] || tarotResultsByType['one-card'];
-    var randomIndex = Math.floor(Math.random() * results.length);
+    const requestParam = {
+        type: currentType
+        ,cards: [...setSelectedCards]
+        ,question: question||'없음'
+    }
 
-    // 결과 페이지로 이동
-    var resultData = encodeResult(randomIndex, 'tarot', currentType);
-    window.location.href = 'result.html?point=' + newPoint + '&data=' + resultData;
+    let message = `${tarotTypeInfo[currentType].cost}포인트를 사용하여 결과를 확인하시겠습니까?`;
+    if (!question) {
+        message = `질문을 입력하지 않았습니다. 질문 없이 ${tarotTypeInfo[currentType].cost}포인트를 사용하여 결과를 확인하시겠습니까?`;
+    }
+
+    showModal({
+        title: '결과보기',
+        message: message,
+        type: 'info',
+        confirmText: '확인',
+        cancelText: '취소',
+        showCancel: true,
+        onConfirm: function() {
+            // 결과 페이지로 이동
+            var resultData = encodeResult('tarot', tarotTypeInfo[currentType].name, JSON.stringify(requestParam));
+            window.location.href = '/pages/result?data=' + resultData;
+        },
+    });
+
+
+
+
 }
 
 // 타로 카드 상태 초기화

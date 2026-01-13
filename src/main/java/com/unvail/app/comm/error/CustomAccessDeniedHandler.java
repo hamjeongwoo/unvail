@@ -3,6 +3,7 @@ package com.unvail.app.comm.error;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.AccessDeniedException;
@@ -11,8 +12,11 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
+@RequiredArgsConstructor
 @Component
 public class CustomAccessDeniedHandler implements AccessDeniedHandler {
+
+    private final ObjectMapper objectMapper;
 
     @Override
     public void handle(
@@ -28,6 +32,6 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
                 request.getRequestURI()
         );
 
-        new ObjectMapper().writeValue(response.getWriter(), error);
+        objectMapper.writeValue(response.getWriter(), error);
     }
 }

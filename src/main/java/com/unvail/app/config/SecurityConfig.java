@@ -4,12 +4,17 @@ import com.unvail.app.comm.error.CustomAccessDeniedHandler;
 import com.unvail.app.oauth.CustomAuthExceptionHandler;
 import com.unvail.app.oauth.CustomOAuth2SuccessHandler;
 import com.unvail.app.oauth.service.CustomOAuth2UserService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.security.web.util.matcher.RequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -20,6 +25,7 @@ public class SecurityConfig {
     private final CustomOAuth2SuccessHandler customOAuth2SuccessHandler;
     private final CustomAuthExceptionHandler customAuthExceptionHandler;
     private final CustomAccessDeniedHandler customAccessDeniedHandler;
+    private final RestAuthenticationEntryPoint restAuthenticationEntryPoint;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -27,6 +33,7 @@ public class SecurityConfig {
                 .requestMatchers("/css/**", "/js/**", "/favicon.ico", "/.well-known/appspecific/com.chrome.devtools.json").permitAll()
                 .requestMatchers("/", "/main", "/pages/**").permitAll()
                 .requestMatchers("/login/**", "/oauth2/**").permitAll()
+                .requestMatchers("/api/**").hasRole("USER")
                 .anyRequest().authenticated());
         http.oauth2Login(config -> config
                 .successHandler(customOAuth2SuccessHandler)
@@ -34,8 +41,18 @@ public class SecurityConfig {
                 .userInfoEndpoint(endpointConfig -> endpointConfig
                 .userService(customOAuth2UserService))
             )
+                .csrf(AbstractHttpConfigurer::disable)
             .exceptionHandling(ex ->
                 ex.accessDeniedHandler(customAccessDeniedHandler)
+                .defaultAuthenticationEntryPointFor(
+                        restAuthenticationEntryPoint,
+                        new RequestMatcher() {
+                            @Override
+                            public boolean matches(HttpServletRequest request) {
+                                return request.getRequestURI().startsWith("/api/");
+                            }
+                        }
+                )
             );
 
 

@@ -1516,3 +1516,60 @@ input {
     font-size: 32px;
     color: white;
 }
+
+/* ==================== 공유 버튼 (플로팅) ==================== */
+.btn-share {
+    position: fixed;
+    bottom: 32px;
+    right: 20px;
+    width: 64px;
+    height: 64px;
+    background: linear-gradient(135deg, #6f5cff 0%, #9b88ff 100%);
+    border-radius: 50%;
+    box-shadow: 0 4px 16px rgba(111, 92, 255, 0.4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    z-index: 90;
+    transition: all 0.3s ease;
+}
+
+.btn-share:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(111, 92, 255, 0.6);
+}
+
+.btn-share:active {
+    transform: translateY(0);
+}
+
+.btn-share__icon {
+    font-size: 24px;
+    line-height: 1;
+}
+
+.btn-share__text {
+    font-size: 10px;
+    font-weight: 500;
+    color: white;
+    line-height: 1;
+}
+
+@media (max-width: 360px) {
+    .btn-share {
+        bottom: 24px;
+        right: 16px;
+        width: 56px;
+        height: 56px;
+    }
+
+    .btn-share__icon {
+        font-size: 20px;
+    }
+
+    .btn-share__text {
+        font-size: 9px;
+    }
+}

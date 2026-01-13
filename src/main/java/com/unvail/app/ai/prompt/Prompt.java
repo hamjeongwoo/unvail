@@ -17,7 +17,11 @@ public class Prompt {
     @Getter
     @RequiredArgsConstructor
     public static enum Info {
-        ONECARD("one-card", new OneCardPrompt());
+        ONECARD("one-card", new OneCardPrompt()),
+        THREECARD("three-card", new ThreeCardPrompt()),
+        FOURCARD("four-card", new OneCardPrompt()),
+        FIVECARD("five-card", new OneCardPrompt()),
+        CELTICCARD("celtic-cross", new OneCardPrompt());
 
         private final String type;
         private final PromptStrategy strategy;

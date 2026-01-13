@@ -53,8 +53,8 @@ spring:
     password: ${DB_PASS}
     driver-class-name: org.postgresql.Driver
     hikari:
-      maximum-pool-size: 4
-      connection-test-query: select 1
+      maximum-pool-size: 8
+      minimum-idle: 2
 
   #openai
   ai:
@@ -77,3 +77,10 @@ logging:
 Jasypt:
   encryptor:
     bean: jasyptStringEncryptor
+
+server:
+  servlet:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true

@@ -1,34 +1,8 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="theme-color" content="#1e1b29">
-    <title>결과 - Unveil</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <!-- 헤더 (포인트 표시) -->
-    <header class="header">
-        <div class="header__container">
-            <h1 class="header__logo">Unveil</h1>
-            <div class="header__right">
-                <div class="header__point">
-                    <span class="point-icon">✦</span>
-                    <span id="pointDisplay">100</span>
-                </div>
-                <button class="header__login" id="loginBtn" onclick="goToLogin()" style="display: none;">로그인</button>
-                <div class="header__user" id="userInfo" style="display: none;">
-                    <span class="header__user-email" id="userEmail"></span>
-                </div>
-            </div>
-        </div>
-    </header>
-
+{{>layout/header}}
     <!-- 결과 화면 -->
     <section class="view view--active" id="resultView">
         <div class="view__header">
-            <button class="btn-back" onclick="goToMain()">← 처음으로</button>
+            <button class="btn-back" onclick="goToPage('/')">← 처음으로</button>
             <h2 class="view__title" id="resultTitle">결과</h2>
         </div>
 
@@ -39,6 +13,12 @@
                 </div>
             </div>
         </div>
+
+        <!-- 공유 버튼 (플로팅) -->
+        <button class="btn-share" id="shareBtn" onclick="showShareOptionsModal()" style="display: none;">
+            <span class="btn-share__icon">📤</span>
+            <span class="btn-share__text">공유</span>
+        </button>
     </section>
 
     <!-- 공통 모달 -->
@@ -55,10 +35,5 @@
         </div>
     </div>
 
-    <script src="js/mockData.js"></script>
-    <script src="js/utils.js"></script>
-    <script src="js/modal.js"></script>
-    <script src="js/loading.js"></script>
-    <script src="js/result.js"></script>
-</body>
-</html>
+    <script src="/js/result.js"></script>
+{{>layout/footer}}
