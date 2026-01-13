@@ -48,7 +48,7 @@ spring:
       expose-request-attributes: true
 
   datasource:
-    url: jdbc:postgresql://aws-1-ap-southeast-1.pooler.supabase.com:5432/postgres
+    url: jdbc:postgresql://aws-1-ap-southeast-1.pooler.supabase.com:5432/postgres?sslmode=require&reWriteBatchedInserts=true&tcpKeepAlive=true
     username: postgres.aekmugwewfkvepikdjib
     password: ${DB_PASS}
     driver-class-name: org.postgresql.Driver

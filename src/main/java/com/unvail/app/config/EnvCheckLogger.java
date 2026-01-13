@@ -18,9 +18,9 @@ public class EnvCheckLogger {
     public void logEnv() {
         log.info("==== ENV CHECK START ====");
         log.info("spring.profiles.active = {}", env.getProperty("spring.profiles.active"));
-        log.info("spring.datasource.password = {}", env.getProperty("spring.datasource.password"));
-        log.info("KAKAO CLIENT ID = {}", env.getProperty("spring.security.oauth2.client.registration.kakao.client-id"));
-        log.info("KAKAO REDIRECT URI = {}", env.getProperty("spring.security.oauth2.client.registration.kakao.redirect-uri"));
+//        log.info("spring.datasource.password = {}", env.getProperty("spring.datasource.password"));
+//        log.info("KAKAO CLIENT ID = {}", env.getProperty("spring.security.oauth2.client.registration.kakao.client-id"));
+//        log.info("KAKAO REDIRECT URI = {}", env.getProperty("spring.security.oauth2.client.registration.kakao.redirect-uri"));
         log.info("SERVER PORT = {}", env.getProperty("server.port"));
         log.info("==== ENV CHECK END ====");
     }
