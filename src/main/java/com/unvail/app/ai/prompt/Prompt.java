@@ -19,9 +19,9 @@ public class Prompt {
     public static enum Info {
         ONECARD("one-card", new OneCardPrompt()),
         THREECARD("three-card", new ThreeCardPrompt()),
-        FOURCARD("four-card", new OneCardPrompt()),
-        FIVECARD("five-card", new OneCardPrompt()),
-        CELTICCARD("celtic-cross", new OneCardPrompt());
+        FOURCARD("four-card", new FourCardPrompt()),
+        FIVECARD("five-card", new FiveCardPrompt()),
+        CELTICCARD("celtic-cross", new CelticCrossPrompt());
 
         private final String type;
         private final PromptStrategy strategy;

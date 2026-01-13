@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     _ac.post(`/api/ai/v1/tarot/prompt?type=${decoded.requestParam.type}`, decoded.requestParam)
       .then(res => {
-          resultTitle.textContent = 'un::veil 내용을 확인 하세요.';
+          resultTitle.textContent = 'unveil 내용을 확인 하세요.';
           resultContent.innerHTML = res.data
           // 공유 버튼 표시
           var shareBtn = document.getElementById('shareBtn');

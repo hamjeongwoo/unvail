@@ -21,20 +21,19 @@ public class OneCardPrompt implements PromptStrategy<TarotRequestDto>{
             
             질문자의 고민: 
             %s
-            오늘의 운세, 간단한 조언 리딩을 원합니다.
             
             다음 형식으로 답변해주세요:
-            1. 카드의 기본 의미 (1-2문장)
-            2. 현재 상황 해석 (3-4문장)
-            3. 조언과 방향성 (3-4문장)
-            4. 핵심 메시지 (2-3문장)
+            1. 카드의 기본 의미
+            2. 현재 상황 해석
+            3. 조언과 방향성
+            4. 핵심 메시지
             전체 길이는 500-600자 정도로 작성해주세요.
             
             응답구조: 아래 패턴으로
             <div class="result__section">
-                <h3 class="result__section-title">🃏 카드의 의미</h3>
-                <p><strong>바보(The Fool)</strong> 카드는 ...</p>
-                <p>당신은 지금 <strong>인생의 새로운 장</strong>을 ...</p>
+                <h3 class="result__section-title">{알맞는 이모지} 카드의 의미</h3>
+                <p><strong>{선택한 카드}</strong> {내용}</p>
+                <p>{내용, 중요한 부분은 <strong></strong> 처리} ...</p>
             </div>
             ...
             """;

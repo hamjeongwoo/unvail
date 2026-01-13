@@ -100,21 +100,29 @@ var tarotCards = [
 
 // 타로 종류 정보
 var tarotTypeInfo = {
-    'one-card': { name: '원카드 타로', cost: 500, cards: 1, spread: 5 },
-    'three-card': { name: '쓰리카드 타로', cost: 600, cards: 3, spread: 5 },
-    'four-card': { name: '포카드 타로', cost: 700, cards: 4, spread: 7 },
-    'five-card': { name: '파이브카드 타로', cost: 800, cards: 5, spread: 9 },
-    'celtic-cross': { name: '켈틱 크로스', cost: 900, cards: 10, spread: 15 }
+    'one-card': { name: '원카드 타로', cost: 500, cards: 1, spread: 5, qna: '오늘의 운세, 간단한 조언 리딩을 원합니다.'},
+    'three-card': { name: '쓰리카드 타로', cost: 600, cards: 3, spread: 5, qna: '과거-현재-미래 흐름 파악 리딩을 원합니다.' },
+    'four-card': { name: '포카드 타로', cost: 700, cards: 4, spread: 7, qna: '복잡한 상황, 갈등 해결 문제의 원인과 해결책 탐색 리딩을 원합니다.' },
+    'five-card': { name: '파이브카드 타로', cost: 800, cards: 5, spread: 9, qna: '중요한 결정, 인생 전환점 심층 분석과 구체적 조언 리딩을 원합니다.' },
+    'celtic-cross': { name: '켈틱 크로스', cost: 900, cards: 10, spread: 15, qna: '인생 전반 종합 운세, 가장 상세하고 깊이 있는 리딩을 원합니다.' }
 };
 
 document.addEventListener('DOMContentLoaded', function() {
     // URL에서 type과 cost 가져오기
     var urlParams = new URLSearchParams(window.location.search);
-    currentType = urlParams.get('type') || 'one-card';
+    currentType = urlParams.get('type')
+
+    if(!currentType){
+        alert('비정상적인 접근입니다.');
+        goToMain();
+    }
+
     currentCost = parseInt(urlParams.get('cost')) || 10;
 
     var typeInfo = tarotTypeInfo[currentType];
     if (typeInfo) {
+        document.getElementById('tarotQuestion').textContent = typeInfo.qna;
+
         requiredCardCount = typeInfo.cards;
         document.getElementById('tarotTypeTitle').textContent = typeInfo.name;
         document.getElementById('tarotTypeCost').textContent = typeInfo.cost + ' 포인트 소비';

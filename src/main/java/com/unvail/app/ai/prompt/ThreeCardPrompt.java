@@ -22,20 +22,18 @@ public class ThreeCardPrompt implements PromptStrategy<TarotRequestDto>{
             질문자의 고민: 
             %s
             
-            과거-현재-미래 흐름 파악 리딩을 원합니다.
-            
             다음 형식으로 답변해주세요:
-            1. 과거: [카드명]이 보여주는 과거 (3-4문장)
-            2. 현재: [카드명]이 말하는 현재 상황 (3-4문장)
-            3. 미래: [카드명]이 예측하는 앞으로의 흐름 (3-4문장)
-            4. 종합 조언 (3-4문장)
+            1. 과거: [카드명]이 보여주는 과거
+            2. 현재: [카드명]이 말하는 현재 상황
+            3. 미래: [카드명]이 예측하는 앞으로의 흐름
+            4. 종합 조언
             전체 길이는 600-700자 정도로 작성해주세요.
             
             응답 구조: 아래 패턴으로
             <div class="result__section">
-                <h3 class="result__section-title">🃏 과거</h3>
-                <p><strong>바보(The Fool)</strong> 카드는 ...</p>
-                <p>당신은 지금 <strong>인생의 새로운 장</strong>을 ...</p>
+                <h3 class="result__section-title">{알맞는 이모지} 과거</h3>
+                <p><strong>{선택한 카드}</strong> {내용}</p>
+                <p>{내용, 중요한 부분은 <strong></strong> 처리} ...</p>
             </div>
             ...
             """;

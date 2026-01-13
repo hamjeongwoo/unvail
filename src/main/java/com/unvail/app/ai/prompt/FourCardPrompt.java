@@ -25,8 +25,6 @@ public class FourCardPrompt implements PromptStrategy<TarotRequestDto>{
             질문자의 고민:
             %s
             
-            복잡한 상황, 갈등 해결 문제의 원인과 해결책 탐색
-            
             다음 형식으로 답변해주세요:
             1. 전체 흐름 요약 (2-3문장)
             2. 카드별 해석
@@ -37,13 +35,16 @@ public class FourCardPrompt implements PromptStrategy<TarotRequestDto>{
             3. 실천 조언 (3-4문장)
             4. 핵심 메시지 (2-3문장)
             
-            전체 길이는 600-700자 정도로 작성해주세요.
+            전체 길이는 700-800자 정도로 작성해주세요.
             
             응답구조: 아래 패턴으로
             <div class="result__section">
-                <h3 class="result__section-title">🃏 현재 상황</h3>
-                <p><strong>바보(The Fool)</strong> 카드는 ...</p>
-                <p>당신은 지금 <strong>인생의 새로운 장</strong>을 ...</p>
+                <h3 class="result__section-title">{알맞는 이모지} 전체 흐름 요약</h3>
+                <p>{내용, 중요한 부분은 <strong></strong> 처리} ...</p>
+            
+                <h3 class="result__section-title">{알맞는 이모지} 현재 상황</h3>
+                <p><strong>{선택한 카드}</strong> {내용}</p>
+                <p>{내용, 중요한 부분은 <strong></strong> 처리} ...</p>
             </div>
             ...
             """;

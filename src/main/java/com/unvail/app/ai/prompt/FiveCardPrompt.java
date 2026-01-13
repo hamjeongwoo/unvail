@@ -26,26 +26,27 @@ public class FiveCardPrompt implements PromptStrategy<TarotRequestDto>{
             질문자의 고민:
             %s
      
-            중요한 결정, 인생 전환점 심층 분석과 구체적 조언
-     
             다음 형식으로 답변해주세요:
             1. 리딩 전체 요약 (3-4문장)
             2. 카드별 심층 해석
-               - 현재 상태 (2-3문장)
-               - 과거의 영향 (2-3문장)
-               - 내면의 흐름 (2-3문장)
-               - 다가오는 미래 (3-4문장)
-               - 조언 및 결과 (3-4문장)
-            3. 지금 가장 중요한 선택 포인트 (2-3문장)
-            4. 핵심 메시지 (2-3문장)
+               - 현재 상태 
+               - 과거의 영향
+               - 내면의 흐름
+               - 다가오는 미래
+               - 조언 및 결과
+            3. 지금 가장 중요한 선택 포인트
+            4. 핵심 메시지
      
-            전체 길이는 700-800자 정도로 작성해주세요.
+            전체 길이는 900-1000자 정도로 작성해주세요.
             
             응답구조: 아래 패턴으로
             <div class="result__section">
-                <h3 class="result__section-title">🃏 현재 상태</h3>
-                <p><strong>바보(The Fool)</strong> 카드는 ...</p>
-                <p>당신은 지금 <strong>인생의 새로운 장</strong>을 ...</p>
+                <h3 class="result__section-title">{알맞는 이모지} 전체 흐름 요약</h3>
+                <p>{내용, 중요한 부분은 <strong></strong> 처리} ...</p>
+            
+                <h3 class="result__section-title">{알맞는 이모지} 현재 상황</h3>
+                <p><strong>{선택한 카드}</strong> {내용}</p>
+                <p>{내용, 중요한 부분은 <strong></strong> 처리} ...</p>
             </div>
             ...
             """;
