@@ -1,6 +1,6 @@
 /**
  * 공통 모달 시스템
- * 
+ *
  * 사용 예시:
  * showModal({
  *   title: '알림',
@@ -29,6 +29,7 @@ var Modal = {
      * @param {boolean} options.showCancel - 취소 버튼 표시 여부 (기본: true)
      * @param {Function} options.onConfirm - 확인 버튼 콜백
      * @param {Function} options.onCancel - 취소 버튼 콜백
+     * @param {Array} options.customButtons - 커스텀 버튼 배열 [{text, class, onClick}]
      */
     show: function(options) {
         var modal = document.getElementById('commonModal');
@@ -46,7 +47,8 @@ var Modal = {
             cancelText: options.cancelText || '취소',
             showCancel: options.showCancel !== undefined ? options.showCancel : true,
             onConfirm: options.onConfirm || null,
-            onCancel: options.onCancel || null
+            onCancel: options.onCancel || null,
+            customButtons: options.customButtons || null
         };
 
         // 콜백 저장
@@ -69,7 +71,7 @@ var Modal = {
             'warning': '⚠',
             'error': '✕'
         };
-        
+
         if (iconEl) {
             iconEl.textContent = icons[config.type] || icons.info;
             iconEl.className = 'modal__icon modal__icon--' + config.type;
@@ -79,14 +81,50 @@ var Modal = {
         if (titleEl) titleEl.textContent = config.title;
         if (messageEl) messageEl.innerHTML = config.message;
 
-        // 버튼 텍스트 설정
-        if (confirmBtn) {
-            confirmBtn.textContent = config.confirmText;
-        }
-        
-        if (cancelBtn) {
-            cancelBtn.textContent = config.cancelText;
-            cancelBtn.style.display = config.showCancel ? 'block' : 'none';
+        var buttonsContainer = modal.querySelector('.modal__buttons');
+
+        // 커스텀 버튼이 있는 경우
+        if (config.customButtons && config.customButtons.length > 0) {
+            buttonsContainer.innerHTML = '';
+
+            config.customButtons.forEach(function(btn) {
+                var button = document.createElement('button');
+                button.className = btn.class || 'btn btn--primary';
+                button.textContent = btn.text || '버튼';
+                button.onclick = function() {
+                    Modal.hide();
+                    if (btn.onClick) {
+                        btn.onClick();
+                    }
+                };
+                buttonsContainer.appendChild(button);
+            });
+
+            // 취소 버튼 추가
+            if (config.showCancel) {
+                var cancelButton = document.createElement('button');
+                cancelButton.className = 'btn btn--secondary modal__btn-cancel';
+                cancelButton.textContent = config.cancelText;
+                cancelButton.onclick = modalCancel;
+                buttonsContainer.appendChild(cancelButton);
+            }
+        } else {
+            // 기본 버튼 사용
+            buttonsContainer.innerHTML = '';
+
+            var cancelButton = document.createElement('button');
+            cancelButton.className = 'btn btn--secondary modal__btn-cancel';
+            cancelButton.textContent = config.cancelText;
+            cancelButton.style.display = config.showCancel ? 'block' : 'none';
+            cancelButton.onclick = modalCancel;
+
+            var confirmButton = document.createElement('button');
+            confirmButton.className = 'btn btn--primary modal__btn-confirm';
+            confirmButton.textContent = config.confirmText;
+            confirmButton.onclick = modalConfirm;
+
+            buttonsContainer.appendChild(cancelButton);
+            buttonsContainer.appendChild(confirmButton);
         }
 
         // 모달 표시

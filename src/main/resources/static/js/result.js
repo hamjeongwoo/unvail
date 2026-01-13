@@ -27,23 +27,26 @@ document.addEventListener('DOMContentLoaded', function() {
     if (decoded.category === 'saju') {
         Loading.show({
             title: '사주를 분석하고 있습니다',
-            text: '전통 운세 데이터베이스에서 정보를 불러오는 중...'
+            text: '전통 운세 데이터베이스에서 정보를 불러오는 중 입니다....'
         });
     } else if (decoded.category === 'tarot') {
         Loading.show({
             title: '타로를 해석하고 있습니다',
-            text: 'AI가 선택한 카드의 의미를 분석 중...'
+            text: '선택한 카드의 의미를 분석 중 입니다....'
         });
     }
     _ac.post(`/api/ai/v1/tarot/prompt?type=${decoded.requestParam.type}`, decoded.requestParam)
       .then(res => {
-          resultTitle.textContent = '';
+          resultTitle.textContent = 'un::veil 내용을 확인 하세요.';
           resultContent.innerHTML = res.data
           // 공유 버튼 표시
           var shareBtn = document.getElementById('shareBtn');
           if (shareBtn) {
               shareBtn.style.display = 'flex';
           }
+      })
+      .catch(err => {
+          resultContent.innerHTML = '<p>결과를 불러오는 중 문제가 발생 하였습니다.</p>'
       })
       .finally(() => {
           Loading.hide();
@@ -62,7 +65,8 @@ function showShareOptionsModal() {
                 text: '🔗 링크 공유',
                 class: 'btn btn--secondary',
                 onClick: function() {
-                    shareUrl();
+                    alert('기능을 준비 중입니다.')
+                    //shareUrl();
                 }
             },
             {
@@ -155,7 +159,7 @@ function fallbackCopyToClipboard(text) {
 
 // 이미지 공유
 function shareImage() {
-    var resultArea = document.getElementById('resultArea');
+    var resultArea = document.getElementById('resultView');
     var shareBtn = document.getElementById('shareBtn');
 
     if (!resultArea) {

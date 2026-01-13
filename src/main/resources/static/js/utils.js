@@ -144,8 +144,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // 로그인 페이지로 이동
 function goToLogin() {
-    var point = getCurrentPoint();
-    navigateWithPoint('login.html', point);
+    location.href = '/pages/login';
 }
 
 // 결과를 URL에 인코딩하여 저장
@@ -238,9 +237,19 @@ function decodeResult(encoded) {
     }
 
     function showErrorToast(resJson) {
-        if(resJson.smallMsg.includes('403')){
-            alert('접근 권한이 존재하지 않습니다. 로그인 후 다시 이용해 주시기 바랍니다.');
-            location.href="/";
+        if(resJson.smallMsg.includes('403')
+            || resJson.smallMsg.includes('401')){
+            showModal({
+                title: '로그인 필요',
+                message: '로그인 페이지로 이동 하시겠스니까?',
+                type: 'error',
+                confirmText: '확인',
+                cancelText: '취소',
+                showCancel: true,
+                onConfirm: function() {
+                    goToLogin()
+                }
+            });
         }else{
             showModal({
                 title: resJson.smallMsg,
