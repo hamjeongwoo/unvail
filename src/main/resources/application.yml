@@ -59,6 +59,15 @@ spring:
   #openai
   ai:
     openai.api-key: ${OPENAPI_API_KEY}
+    openai:
+      chat:
+        options:
+          model: gpt-4o
+          temperature: 0.9
+          top-p: 0.95
+          max-tokens: 1000
+          presence-penalty: 0.6
+          frequency-penalty: 0.3
     vertex.ai.gemini.project-id: ${GEMINI_PROJECT_ID}
     vertex.ai.gemini.location: ${GEMINI_LOCATION}
 
