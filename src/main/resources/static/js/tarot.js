@@ -164,6 +164,11 @@ function createTarotCards() {
     // 카드 배열 섞기
     var shuffledCards = tarotCards.slice().sort(function() { return Math.random() - 0.5; });
 
+    // 카드 생성 시작 시 부드럽게 스크롤
+    setTimeout(function() {
+        cardsContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 100);
+
     for (var i = 0; i < totalCards; i++) {
         const cardData = shuffledCards[i % tarotCards.length];
 
