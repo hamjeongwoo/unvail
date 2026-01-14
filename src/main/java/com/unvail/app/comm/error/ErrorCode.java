@@ -19,6 +19,7 @@ public enum ErrorCode {
     // BUSINESS
     USER_NOT_FOUND(HttpStatus.NOT_FOUND, "U001", "사용자를 찾을 수 없습니다."),
     DUPLICATE_EMAIL(HttpStatus.CONFLICT, "U002", "이미 존재하는 이메일입니다."),
+    
     PROMPT_ERROR01(HttpStatus.INTERNAL_SERVER_ERROR, "P001", "프롬프트를 구성중에 문제가 발생하였습니다."),
     PROMPT_ERROR02(HttpStatus.INTERNAL_SERVER_ERROR, "P002", "질문 유형에 대한 사전 정의된 내용이 존재 하지 않습니다.");
 

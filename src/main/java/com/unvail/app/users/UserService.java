@@ -21,6 +21,10 @@ public class UserService {
         return usersMapper.selectUsersByEmail(oAuth2UserInfo.getEmail());
     }
 
+    public UnveilUser selectUsersByEmail(String email){
+        return usersMapper.selectUsersByEmail(email);
+    }
+
     public Integer selectUserCurPointByEmail(String email){
         return usersMapper.selectUserCurPointByEmail(email);
     }

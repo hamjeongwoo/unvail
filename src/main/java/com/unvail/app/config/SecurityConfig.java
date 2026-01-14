@@ -1,6 +1,7 @@
 package com.unvail.app.config;
 
 import com.unvail.app.comm.error.CustomAccessDeniedHandler;
+import com.unvail.app.comm.error.OAuth2FailureHandler;
 import com.unvail.app.oauth.CustomAuthExceptionHandler;
 import com.unvail.app.oauth.CustomOAuth2SuccessHandler;
 import com.unvail.app.oauth.service.CustomOAuth2UserService;
@@ -24,6 +25,7 @@ public class SecurityConfig {
     private final CustomAuthExceptionHandler customAuthExceptionHandler;
     private final CustomAccessDeniedHandler customAccessDeniedHandler;
     private final RestAuthenticationEntryPoint restAuthenticationEntryPoint;
+    private final OAuth2FailureHandler oAuth2FailureHandler;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -39,6 +41,7 @@ public class SecurityConfig {
                 .failureHandler(customAuthExceptionHandler)
                 .userInfoEndpoint(endpointConfig -> endpointConfig
                 .userService(customOAuth2UserService))
+                .failureHandler(oAuth2FailureHandler)
             )
                 .csrf(AbstractHttpConfigurer::disable)
             .exceptionHandling(ex ->

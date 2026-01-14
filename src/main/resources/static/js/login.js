@@ -31,3 +31,16 @@ function skipLogin() {
     var point = getCurrentPoint();
     navigateWithPoint('main.html', point);
 }
+
+document.addEventListener('DOMContentLoaded', e => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const errorCode = urlParams.get('error')
+    if(errorCode === 'U002'){
+        showModal({
+            title: '사용자 중복',
+            message: '이미 다른 플랫폼의 동일 이메일로 가입되어 있습니다.',
+            type: 'error',
+            confirmText: '확인',
+        });
+    }
+});

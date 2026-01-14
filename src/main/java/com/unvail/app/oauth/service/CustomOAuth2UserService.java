@@ -1,5 +1,7 @@
 package com.unvail.app.oauth.service;
 
+import com.unvail.app.comm.error.ErrorCode;
+import com.unvail.app.comm.error.UserDuplicationException;
 import com.unvail.app.oauth.CustomOAuth2User;
 import com.unvail.app.oauth.OAuth2StrategyComposite;
 import com.unvail.app.oauth.OAuth2UserInfo;
@@ -34,6 +36,13 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
                 .getUserInfo(oauth2User);
         List<SimpleGrantedAuthority> authorities = getAuthorities(oauth2UserInfo);
         log.info("oauth2USerINfo: {} {}", oauth2UserInfo.getOauthId(), oauth2UserInfo.getName());
+
+        UnveilUser selectUser = userService.selectUsersByEmail(oauth2UserInfo.getEmail());
+
+        if(selectUser != null
+                && !selectUser.getOauthType().toLowerCase().equals(userRequest.getClientRegistration().getRegistrationId())){ //다른 auth 타입의 동일 이메일이 있는경우 중복
+            throw new OAuth2AuthenticationException(ErrorCode.DUPLICATE_EMAIL.getCode());
+        }
 
         UnveilUser user = userService.upsertOAuthUser(oauth2UserInfo);
         return new CustomOAuth2User(authorities, oauth2User.getAttributes(), oauth2UserInfo.getAttributeKey(), user);
