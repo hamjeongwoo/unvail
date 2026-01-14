@@ -36,7 +36,7 @@ public class FourCardPrompt implements PromptStrategy<TarotRequestDto>{
             3. 실천 조언
             4. 핵심 메시지
             
-            전체 길이는 800-900자 정도로 작성해주세요.
+            전체 길이는 1000-1100자 정도로 작성해주세요.
             
             응답구조: 아래 패턴으로
             <div class="result__section">

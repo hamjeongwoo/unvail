@@ -40,7 +40,7 @@ public class FiveCardPrompt implements PromptStrategy<TarotRequestDto>{
             5. 최종 방향성
             6. 핵심 메시지
      
-            전체 길이는 1000-1100자 정도로 작성해주세요.
+            전체 길이는 1300-1400자 정도로 작성해주세요.
             
             응답구조: 아래 패턴으로
             <div class="result__section">

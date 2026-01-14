@@ -45,7 +45,7 @@ public class CelticCrossPrompt implements PromptStrategy<TarotRequestDto>{
              - 인생 상담 수준
              - “지금의 문제가 왜 반복되는가”를 설명
              - 장기 흐름과 성격 패턴까지 읽음
-            전체 길이는 1200-1300자 정도로 작성해주세요.
+            전체 길이는 1600-1700자 정도로 작성해주세요.
             
             응답구조: 아래 패턴으로
             <div class="result__section">
