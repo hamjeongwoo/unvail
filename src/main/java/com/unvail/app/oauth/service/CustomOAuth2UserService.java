@@ -36,7 +36,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
         log.info("oauth2USerINfo: {} {}", oauth2UserInfo.getOauthId(), oauth2UserInfo.getName());
 
         UnveilUser user = userService.upsertOAuthUser(oauth2UserInfo);
-        return new CustomOAuth2User(authorities, oauth2User.getAttributes(), "id", user);
+        return new CustomOAuth2User(authorities, oauth2User.getAttributes(), oauth2UserInfo.getAttributeKey(), user);
     }
 
     private OauthType getSocialProvider(OAuth2UserRequest userRequest) {

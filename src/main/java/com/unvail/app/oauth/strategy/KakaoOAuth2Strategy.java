@@ -24,6 +24,6 @@ public class KakaoOAuth2Strategy implements OAuth2Strategy {
         Map<String, Object> kakaoAccount = (Map<String, Object>) attributes.get("kakao_account");
         String email = kakaoAccount != null ? (String) kakaoAccount.get("email") : null;
 
-        return new OAuth2UserInfo(OauthType.KAKAO, oauthId, oauthName, email);
+        return new OAuth2UserInfo(OauthType.KAKAO, oauthId, oauthName, email, "id");
     }
 }

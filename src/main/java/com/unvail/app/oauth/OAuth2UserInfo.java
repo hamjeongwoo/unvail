@@ -10,4 +10,5 @@ public class OAuth2UserInfo {
     private final String oauthId;
     private final String name;
     private final String email;
+    private final String attributeKey;
 }

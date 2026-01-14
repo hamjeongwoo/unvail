@@ -34,6 +34,7 @@ public class SecurityConfig {
                 .requestMatchers("/api/**").hasRole("USER")
                 .anyRequest().authenticated());
         http.oauth2Login(config -> config
+                .loginPage("/pages/login")
                 .successHandler(customOAuth2SuccessHandler)
                 .failureHandler(customAuthExceptionHandler)
                 .userInfoEndpoint(endpointConfig -> endpointConfig

@@ -8,19 +8,20 @@ import org.springframework.stereotype.Component;
 import java.util.Map;
 
 @Component
-public class GithubOAuth2Strategy implements OAuth2Strategy {
+public class GoogleOAuth2Strategy implements OAuth2Strategy {
     @Override
     public OauthType getOAuth2ProviderType() {
 
-        return OauthType.GITHUB;
+        return OauthType.GOOGLE;
     }
 
     @Override
     public OAuth2UserInfo getUserInfo(OAuth2User user) {
         final Map<String, Object> attributes = user.getAttributes();
-        final String oauthId = String.valueOf(attributes.get("id"));
-        final String oauthName = String.valueOf(attributes.get("name"));
+        final String oauthId = String.valueOf(attributes.get("sub"));
+        final String name = String.valueOf(attributes.get("name"));
+        final String email = String.valueOf(attributes.get("email"));
 
-        return new OAuth2UserInfo(OauthType.GITHUB, oauthId, oauthName, "", "");
+        return new OAuth2UserInfo(OauthType.GOOGLE, oauthId, name, email, "sub");
     }
 }

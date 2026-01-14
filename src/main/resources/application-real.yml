@@ -13,6 +13,12 @@ spring:
             scope:
               - profile_nickname
               - account_email
+          google:
+            client-id: 290551473190-echp48qonv5rhvdlmng4k6g9v36mg1nu.apps.googleusercontent.com
+            client-secret: ${GOOGLE_SEC}
+            scope:
+              - email
+              - profile
         provider:
           kakao:
             authorization-uri: https://kauth.kakao.com/oauth/authorize
