@@ -1,3 +1,6 @@
+var AppState = {
+    point: 0
+}
 // 충전 페이지 상태
 var chargeState = {
     selectedPoints: null,
