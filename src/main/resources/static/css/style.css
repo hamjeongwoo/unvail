@@ -339,6 +339,17 @@ input {
     box-shadow: 0 4px 12px rgba(254, 229, 0, 0.3);
 }
 
+.login-btn--naver {
+    background: #03C75A;
+    color: #ffffff;
+}
+
+.login-btn--naver:hover {
+    background: #02B350;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(3, 199, 90, 0.3);
+}
+
 .login-btn--google {
     background: #ffffff;
     color: #757575;

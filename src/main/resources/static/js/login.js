@@ -5,6 +5,11 @@ function loginWithKakao() {
     goToPage('/oauth2/authorization/kakao')
 }
 
+// 네이버 로그인
+function loginWithNaver() {
+    goToPage('/oauth2/authorization/naver')
+}
+
 // 구글 로그인
 function loginWithGoogle() {
     goToPage('/oauth2/authorization/google')

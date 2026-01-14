@@ -3,7 +3,7 @@ package com.unvail.app.oauth;
 import java.util.Arrays;
 
 public enum OauthType {
-    KAKAO("kakao"), GITHUB("github"), GOOGLE("google");
+    KAKAO("kakao"), GITHUB("github"), GOOGLE("google"), NAVER("naver");
 
     private final String type;
 
