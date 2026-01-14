@@ -80,11 +80,216 @@
             </div>
         </section>
 
+        <!-- 이용약관 및 정책 동의 -->
+        <section class="charge-terms">
+            <div class="terms-agree">
+                <label class="terms-agree__item">
+                    <input type="checkbox" id="agreeAll" onchange="toggleAllTerms()">
+                    <span>전체 동의</span>
+                </label>
+                <div class="terms-divider"></div>
+                <label class="terms-agree__item terms-agree__item--sub">
+                    <input type="checkbox" class="terms-checkbox" id="agreeRefund" required>
+                    <span>(필수) 환불 및 취소 정책 동의</span>
+                    <button type="button" class="terms-detail-btn" onclick="showRefundPolicy()">보기</button>
+                </label>
+                <label class="terms-agree__item terms-agree__item--sub">
+                    <input type="checkbox" class="terms-checkbox" id="agreeService" required>
+                    <span>(필수) 서비스 제공 정책 동의</span>
+                    <button type="button" class="terms-detail-btn" onclick="showServicePolicy()">보기</button>
+                </label>
+            </div>
+        </section>
+
         <!-- 충전 버튼 -->
         <div class="charge-actions">
             <button class="btn btn--primary btn--large" id="chargeBtn" onclick="processCharge()" disabled>
                 충전하기
             </button>
+        </div>
+
+        <!-- 환불 및 취소 정책 모달 -->
+        <div id="refundPolicyModal" class="policy-modal" style="display: none;">
+            <div class="policy-modal__backdrop" onclick="closeRefundPolicy()"></div>
+            <div class="policy-modal__box">
+                <div class="policy-modal__header">
+                    <h2 class="policy-modal__header-title">환불 및 취소 정책</h2>
+                </div>
+                <div class="policy-modal__body">
+                    <div class="policy-modal__section">
+                        <h3 class="policy-modal__section-title">1. 서비스 특성</h3>
+                        <p class="policy-modal__section-text">본 서비스는 디지털 콘텐츠(AI 사주/타로 운세 결과)를 제공하는 서비스로, 포인트 충전 및 사용 즉시 콘텐츠가 제공됩니다.</p>
+                    </div>
+
+                    <div class="policy-modal__section">
+                        <h3 class="policy-modal__section-title">2. 포인트 환불 정책</h3>
+                        <p class="policy-modal__section-text"><strong>충전 포인트 환불:</strong></p>
+                        <ul class="policy-modal__section-list">
+                            <li>충전 후 <strong>7일 이내</strong> 미사용 포인트에 한하여 환불 가능</li>
+                            <li>부분 사용 시 사용한 포인트를 제외한 잔액만 환불 가능</li>
+                            <li>보너스 포인트는 환불 대상에서 제외</li>
+                            <li>환불 수수료: 결제 금액의 10% (단, 1,000원 미만)</li>
+                        </ul>
+                    </div>
+
+                    <div class="policy-modal__section">
+                        <h3 class="policy-modal__section-title">3. 취소 및 철회권</h3>
+                        <p class="policy-modal__section-text"><strong>청약철회 불가 사항:</strong></p>
+                        <ul class="policy-modal__section-list">
+                            <li>포인트를 사용하여 운세 결과를 확인한 경우 (디지털 콘텐츠 이용 개시)</li>
+                            <li>운세 결과 화면 진입 시 자동으로 청약철회권이 소멸됩니다</li>
+                        </ul>
+                        <p class="policy-modal__section-text"><strong>청약철회 가능:</strong></p>
+                        <ul class="policy-modal__section-list">
+                            <li>포인트 충전 후 미사용 상태에서 7일 이내</li>
+                            <li>서비스 장애로 정상적인 이용이 불가한 경우</li>
+                        </ul>
+                    </div>
+
+                    <div class="policy-modal__section">
+                        <h3 class="policy-modal__section-title">4. 환불 처리 기간</h3>
+                        <ul class="policy-modal__section-list">
+                            <li>환불 신청 접수 후 <strong>3영업일 이내</strong> 처리</li>
+                            <li>신용카드: 승인 취소 후 카드사 정책에 따라 청구 취소 (5~7영업일)</li>
+                            <li>간편결제: 해당 결제사 정책에 따라 처리 (3~5영업일)</li>
+                        </ul>
+                    </div>
+
+                    <div class="policy-modal__section">
+                        <h3 class="policy-modal__section-title">5. 교환 정책</h3>
+                        <p class="policy-modal__section-text">본 서비스는 디지털 콘텐츠 특성상 <strong>교환이 불가</strong>합니다.</p>
+                        <p class="policy-modal__section-text">다만, 시스템 오류로 인한 잘못된 결과 제공 시 고객센터를 통해 재제공 또는 포인트 환급이 가능합니다.</p>
+                    </div>
+
+                    <div class="policy-modal__section">
+                        <h3 class="policy-modal__section-title">6. 환불 불가 사항</h3>
+                        <ul class="policy-modal__section-list">
+                            <li>운세 결과에 대한 주관적 불만족</li>
+                            <li>단순 변심 (콘텐츠 이용 개시 후)</li>
+                            <li>이벤트 또는 프로모션으로 무상 지급된 포인트</li>
+                            <li>부정한 방법으로 획득한 포인트</li>
+                        </ul>
+                    </div>
+
+                    <div class="policy-modal__section">
+                        <h3 class="policy-modal__section-title">7. 환불 신청 방법</h3>
+                        <p class="policy-modal__section-text">고객센터를 통해 환불 신청 가능:</p>
+                        <ul class="policy-modal__section-list">
+                            <li>이메일: support@unveil.kr</li>
+                            <li>신청 시 필요 정보: 결제 일시, 결제 금액, 환불 사유</li>
+                        </ul>
+                    </div>
+
+                    <div class="policy-modal__section">
+                        <h3 class="policy-modal__section-title">8. 기타 안내</h3>
+                        <ul class="policy-modal__section-list">
+                            <li>전자상거래 등에서의 소비자보호에 관한 법률에 따릅니다</li>
+                            <li>본 정책은 사전 공지 후 변경될 수 있습니다</li>
+                            <li>미성년자의 경우 법정대리인의 동의가 필요합니다</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="policy-modal__footer">
+                    <button class="btn btn--primary" onclick="closeRefundPolicy()">확인</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 서비스 제공 정책 모달 -->
+        <div id="servicePolicyModal" class="policy-modal" style="display: none;">
+            <div class="policy-modal__backdrop" onclick="closeServicePolicy()"></div>
+            <div class="policy-modal__box">
+                <div class="policy-modal__header">
+                    <h2 class="policy-modal__header-title">서비스 제공 정책</h2>
+                </div>
+                <div class="policy-modal__body">
+                    <div class="policy-modal__section">
+                        <h3 class="policy-modal__section-title">1. 서비스 제공 시기</h3>
+                        <ul class="policy-modal__section-list">
+                            <li>포인트 충전: <strong>즉시</strong> (결제 승인 완료 즉시)</li>
+                            <li>운세 결과 제공: <strong>즉시</strong> (포인트 차감 후 1~2초 이내)</li>
+                            <li>본 서비스는 실시간 디지털 콘텐츠 제공으로 별도의 배송기간이 없습니다</li>
+                        </ul>
+                    </div>
+
+                    <div class="policy-modal__section">
+                        <h3 class="policy-modal__section-title">2. 서비스 이용 방법</h3>
+                        <p class="policy-modal__section-text"><strong>사주 운세:</strong></p>
+                        <ul class="policy-modal__section-list">
+                            <li>필요 포인트 상품에 따라 다름</li>
+                            <li>생년월일, 출생시간 입력 후 즉시 결과 제공</li>
+                            <li>결과는 저장되어 언제든 재확인 가능</li>
+                        </ul>
+                        <p class="policy-modal__section-text"><strong>타로 운세:</strong></p>
+                        <ul class="policy-modal__section-list">
+                            <li>필요 포인트 상품에 따라 다름</li>
+                            <li>카드 선택 후 즉시 결과 제공</li>
+                            <li>결과는 저장되어 언제든 재확인 가능</li>
+                        </ul>
+                    </div>
+
+                    <div class="policy-modal__section">
+                        <h3 class="policy-modal__section-title">3. 포인트 유효기간</h3>
+                        <ul class="policy-modal__section-list">
+                            <li>충전 포인트: <strong>충전일로부터 5년</strong></li>
+                            <li>보너스 포인트: <strong>지급일로부터 1년</strong></li>
+                            <li>이벤트 포인트: 개별 이벤트 조건에 따름</li>
+                            <li>유효기간 만료 30일 전 알림 제공</li>
+                        </ul>
+                    </div>
+
+                    <div class="policy-modal__section">
+                        <h3 class="policy-modal__section-title">4. 서비스 제공 제한</h3>
+                        <p class="policy-modal__section-text">다음의 경우 서비스 제공이 제한될 수 있습니다:</p>
+                        <ul class="policy-modal__section-list">
+                            <li>시스템 점검 시간 (사전 공지)</li>
+                            <li>천재지변, 불가항력적 사유</li>
+                            <li>이용약관 위반 시</li>
+                            <li>부정 이용 적발 시</li>
+                        </ul>
+                    </div>
+
+                    <div class="policy-modal__section">
+                        <h3 class="policy-modal__section-title">5. 결과 저장 및 보관</h3>
+                        <ul class="policy-modal__section-list">
+                            <li>운세 결과는 <strong>6개월</strong> 서버에 저장됩니다</li>
+                            <li>저장 기간 내 언제든 무료로 재확인 가능</li>
+                            <li>6개월 경과 후 자동 삭제되며, 재확인 시 포인트 재차감</li>
+                        </ul>
+                    </div>
+
+                    <div class="policy-modal__section">
+                        <h3 class="policy-modal__section-title">6. 서비스 품질 보증</h3>
+                        <ul class="policy-modal__section-list">
+                            <li>AI 기반 운세 결과 제공</li>
+                            <li>시스템 오류 시 포인트 자동 환급</li>
+                            <li>결과 미제공 시 24시간 내 처리</li>
+                        </ul>
+                    </div>
+
+                    <div class="policy-modal__section">
+                        <h3 class="policy-modal__section-title">7. 고객 지원</h3>
+                        <ul class="policy-modal__section-list">
+                            <li>이메일: support@unveil.kr</li>
+                            <li>운영 시간: 평일 09:00 ~ 18:00 (주말/공휴일 제외)</li>
+                            <li>평균 응답 시간: 24시간 이내</li>
+                        </ul>
+                    </div>
+
+                    <div class="policy-modal__section">
+                        <h3 class="policy-modal__section-title">8. 유의사항</h3>
+                        <ul class="policy-modal__section-list">
+                            <li>본 서비스는 오락 목적의 콘텐츠입니다</li>
+                            <li>운세 결과는 참고용이며, 법적 책임을 지지 않습니다</li>
+                            <li>개인정보는 서비스 제공 목적으로만 사용됩니다</li>
+                            <li>타인의 정보를 무단으로 사용할 수 없습니다</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="policy-modal__footer">
+                    <button class="btn btn--primary" onclick="closeServicePolicy()">확인</button>
+                </div>
+            </div>
         </div>
     </main>
     <!-- 스크립트 -->

@@ -8,6 +8,8 @@ var chargeState = {
 document.addEventListener('DOMContentLoaded', function() {
     updatePointUI();
     updateCurrentPoint();
+    initTermsCheckboxes();
+    initSelectedStates();
 });
 
 // 현재 포인트 표시
@@ -59,7 +61,14 @@ function selectPayment(method) {
 // 충전 버튼 활성화 여부 확인
 function checkChargeButton() {
     var chargeBtn = document.getElementById('chargeBtn');
-    if (chargeState.selectedPoints && chargeState.selectedPayment) {
+    var agreeRefund = document.getElementById('agreeRefund');
+    var agreeService = document.getElementById('agreeService');
+
+    // 패키지, 결제수단, 약관 모두 동의 시 활성화
+    if (chargeState.selectedPoints &&
+        chargeState.selectedPayment &&
+        agreeRefund && agreeRefund.checked &&
+        agreeService && agreeService.checked) {
         chargeBtn.disabled = false;
     } else {
         chargeBtn.disabled = true;
@@ -82,14 +91,14 @@ function processCharge() {
     setTimeout(function() {
         // 포인트 추가
         var pointsToAdd = chargeState.selectedPoints;
-        
+
         // 보너스 적용
         if (chargeState.selectedPoints === 3000) {
             pointsToAdd = Math.floor(pointsToAdd * 1.05); // 5% 보너스
         } else if (chargeState.selectedPoints === 5000) {
             pointsToAdd = Math.floor(pointsToAdd * 1.10); // 10% 보너스
         }
-        
+
         AppState.point += pointsToAdd;
         updatePointUI();
         updateCurrentPoint();
@@ -157,12 +166,107 @@ function resetSelection() {
 
 // 뒤로가기
 function goBack() {
-    window.location.href = '/main';
+    window.location.href = 'main.html';
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    if(!currentInfo.isLoggedIn){
-        location.href='/pages/login';
-    }
-})
+// 전체 약관 동의 토글
+function toggleAllTerms() {
+    var agreeAll = document.getElementById('agreeAll');
+    var checkboxes = document.querySelectorAll('.terms-checkbox');
 
+    checkboxes.forEach(function(checkbox) {
+        checkbox.checked = agreeAll.checked;
+    });
+
+    checkChargeButton();
+}
+
+// 약관 체크박스 초기화
+function initTermsCheckboxes() {
+    var agreeAll = document.getElementById('agreeAll');
+    var checkboxes = document.querySelectorAll('.terms-checkbox');
+
+    // 개별 약관 체크박스에 이벤트 리스너 등록
+    checkboxes.forEach(function(checkbox) {
+        checkbox.addEventListener('change', function() {
+            var allChecked = Array.from(checkboxes).every(function(cb) {
+                return cb.checked;
+            });
+            agreeAll.checked = allChecked;
+            checkChargeButton();
+        });
+    });
+
+    // 전체 동의 체크박스에 이벤트 리스너 등록
+    if (agreeAll) {
+        agreeAll.addEventListener('change', toggleAllTerms);
+    }
+}
+
+// 초기 선택 상태 감지 및 설정
+function initSelectedStates() {
+    // 초기 선택된 패키지 감지
+    var selectedPackage = document.querySelector('.package-item--selected');
+    if (selectedPackage) {
+        var points = selectedPackage.getAttribute('data-points');
+        if (points) {
+            chargeState.selectedPoints = parseInt(points);
+        }
+    }
+
+    // 초기 선택된 결제수단 감지
+    var selectedPayment = document.querySelector('.payment-item--selected');
+    if (selectedPayment) {
+        var method = selectedPayment.getAttribute('data-method');
+        if (method) {
+            chargeState.selectedPayment = method;
+        }
+    }
+
+    // 초기 상태 확인 후 버튼 활성화 체크
+    checkChargeButton();
+}
+
+// 환불 정책 모달 표시
+function showRefundPolicy() {
+    var modal = document.getElementById('refundPolicyModal');
+    if (modal) {
+        modal.style.display = 'flex';
+        modal.classList.add('policy-modal--active');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+// 환불 정책 모달 닫기
+function closeRefundPolicy() {
+    var modal = document.getElementById('refundPolicyModal');
+    if (modal) {
+        modal.classList.remove('policy-modal--active');
+        setTimeout(function() {
+            modal.style.display = 'none';
+        }, 200);
+        document.body.style.overflow = '';
+    }
+}
+
+// 서비스 제공 정책 모달 표시
+function showServicePolicy() {
+    var modal = document.getElementById('servicePolicyModal');
+    if (modal) {
+        modal.style.display = 'flex';
+        modal.classList.add('policy-modal--active');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+// 서비스 제공 정책 모달 닫기
+function closeServicePolicy() {
+    var modal = document.getElementById('servicePolicyModal');
+    if (modal) {
+        modal.classList.remove('policy-modal--active');
+        setTimeout(function() {
+            modal.style.display = 'none';
+        }, 200);
+        document.body.style.overflow = '';
+    }
+}

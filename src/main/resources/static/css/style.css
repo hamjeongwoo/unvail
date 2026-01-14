@@ -1601,3 +1601,144 @@ input {
         font-size: 9px;
     }
 }
+
+/* ==================== 정책 모달 (독립적인 클래스명) ==================== */
+/* 정책 모달 래퍼 */
+.policy-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+}
+
+.policy-modal--active {
+    display: flex;
+}
+
+/* 정책 모달 배경 */
+.policy-modal__backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 2001;
+}
+
+/* 정책 모달 박스 */
+.policy-modal__box {
+    position: relative;
+    width: 90%;
+    max-width: 480px;
+    max-height: 80vh;
+    background: #1e1b29;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
+    z-index: 2002;
+    overflow: hidden;
+}
+
+/* 정책 모달 헤더 */
+.policy-modal__header {
+    padding: 24px 20px 18px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    flex-shrink: 0;
+}
+
+.policy-modal__header-title {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #e8e6f0;
+}
+
+/* 정책 모달 본문 (스크롤 영역) */
+.policy-modal__body {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 24px 20px;
+    min-height: 0;
+}
+
+/* 스크롤바 스타일 */
+.policy-modal__body::-webkit-scrollbar {
+    width: 6px;
+}
+
+.policy-modal__body::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 3px;
+}
+
+.policy-modal__body::-webkit-scrollbar-thumb {
+    background: rgba(111, 92, 255, 0.5);
+    border-radius: 3px;
+}
+
+.policy-modal__body::-webkit-scrollbar-thumb:hover {
+    background: rgba(111, 92, 255, 0.7);
+}
+
+/* 정책 섹션 */
+.policy-modal__section {
+    margin-bottom: 28px;
+}
+
+.policy-modal__section:last-child {
+    margin-bottom: 0;
+}
+
+.policy-modal__section-title {
+    color: #6f5cff;
+    font-size: 16px;
+    margin: 0 0 12px 0;
+    font-weight: 600;
+}
+
+.policy-modal__section-text {
+    color: #b8b5c8;
+    font-size: 14px;
+    line-height: 1.7;
+    margin: 0 0 10px 0;
+}
+
+.policy-modal__section-text strong {
+    color: #e8e6f0;
+    font-weight: 600;
+}
+
+.policy-modal__section-list {
+    padding-left: 20px;
+    margin: 10px 0;
+    list-style: disc;
+}
+
+.policy-modal__section-list li {
+    color: #b8b5c8;
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 8px;
+}
+
+/* 정책 모달 푸터 */
+.policy-modal__footer {
+    padding: 16px 20px 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    flex-shrink: 0;
+}
+
+.policy-modal__footer .btn {
+    width: 100%;
+    height: 50px;
+    font-size: 16px;
+    font-weight: 600;
+}
