@@ -36,11 +36,12 @@ jobs:
         run: ./gradlew build -x test
 
       - name: Deploy with rsync
-        uses: burnett01/rsync-deployments@v7
+        uses: burnett01/rsync-deployments@v6
         with:
           switches: -avz --delete
           path: build/libs/*.jar
           remote_path: /home/app/unveilApp/build
           remote_host: ${{ secrets.SSH_ADDR_1 }}
           remote_user: ${{ secrets.SSH_USER_1 }}
-          remote_key: ${{ secrets.SSH_KEY }}
+          remote_port: ${{ secrets.SSH_PORT_1 }}
+          remote_key: ${{ secrets.SSH_PRIVATE_KEY }}
