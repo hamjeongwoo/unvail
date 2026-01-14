@@ -264,6 +264,48 @@ input {
     min-height: 40px;
 }
 
+/* 랜딩 회사정보 섹션 */
+.landing-business {
+    padding: 32px 20px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.business-info-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: rgba(111, 92, 255, 0.08);
+    border: 1px solid rgba(111, 92, 255, 0.25);
+    border-radius: 24px;
+    color: #b8b5c8;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.business-info-btn:hover {
+    background: rgba(111, 92, 255, 0.15);
+    border-color: rgba(111, 92, 255, 0.4);
+    color: #e8e6f0;
+    transform: translateY(-1px);
+}
+
+.business-info-btn:active {
+    transform: translateY(0);
+}
+
+.business-info-btn__icon {
+    font-size: 16px;
+    line-height: 1;
+}
+
+.business-info-btn__text {
+    line-height: 1;
+}
+
 /* ==================== Login Page ==================== */
 .login-page {
     min-height: calc(100vh - 60px);
@@ -1223,6 +1265,119 @@ input {
 
 .modal__btn-confirm {
     flex: 1;
+}
+
+/* ==================== Business Info Modal ==================== */
+.business-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1001;
+    align-items: center;
+    justify-content: center;
+}
+
+.business-modal--active {
+    display: flex;
+}
+
+.business-modal__backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(4px);
+}
+
+.business-modal__container {
+    position: relative;
+    background: #2a2638;
+    border: 1px solid rgba(111, 92, 255, 0.3);
+    border-radius: 20px;
+    width: 90%;
+    max-width: 400px;
+    max-height: 80vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    animation: slideUpFade 0.3s ease;
+}
+
+@keyframes slideUpFade {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.business-modal__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    border-bottom: 1px solid rgba(111, 92, 255, 0.2);
+}
+
+.business-modal__title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.business-modal__close {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #b8b5c8;
+    font-size: 24px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.business-modal__close:hover {
+    background: rgba(111, 92, 255, 0.2);
+    color: #e8e6f0;
+}
+
+.business-modal__body {
+    padding: 24px 20px;
+    overflow-y: auto;
+}
+
+.business-info-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.business-info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.business-info-item__label {
+    font-size: 13px;
+    color: #9b88ff;
+    font-weight: 600;
+}
+
+.business-info-item__value {
+    font-size: 15px;
+    color: #e8e6f0;
+    line-height: 1.5;
 }
 
 /* ==================== Responsive ==================== */

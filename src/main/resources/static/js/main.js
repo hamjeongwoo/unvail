@@ -37,6 +37,24 @@ function confirmCharge() {
     navigateWithPoint('main.html', newPoint);
 }
 
+// 회사정보 모달 열기
+function openBusinessInfo() {
+    var modal = document.getElementById('businessInfoModal');
+    if (modal) {
+        modal.classList.add('business-modal--active');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+// 회사정보 모달 닫기
+function closeBusinessInfo() {
+    var modal = document.getElementById('businessInfoModal');
+    if (modal) {
+        modal.classList.remove('business-modal--active');
+        document.body.style.overflow = '';
+    }
+}
+
 document.addEventListener('DOMContentLoaded', e => {
     $('#curPoint').text(currentInfo.curPoint);
 
@@ -50,3 +68,4 @@ document.addEventListener('DOMContentLoaded', e => {
     }
 
 });
+

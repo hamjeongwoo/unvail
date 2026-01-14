@@ -42,8 +42,16 @@
             </div>
         </section>
 
+        <!-- 회사정보 섹션 -->
+        <section class="landing-business">
+            <button class="business-info-btn" onclick="openBusinessInfo()">
+                <span class="business-info-btn__icon">ℹ️</span>
+                <span class="business-info-btn__text">사업자 정보</span>
+            </button>
+        </section>
+
         <!-- 하단 여백 (고정 네비게이션 공간) -->
-        <div class="landing-spacer"></div>
+        <!--<div class="landing-spacer"></div>-->
     </main>
 
     <!-- 하단 고정 네비게이션 -->
@@ -62,20 +70,6 @@
         </button>
     </nav>
 
-    <!-- 공통 모달 -->
-    <div id="commonModal" class="modal">
-        <div class="modal__overlay" onclick="modalCancel()"></div>
-        <div class="modal__content">
-            <div class="modal__icon">💬</div>
-            <h3 class="modal__title">알림</h3>
-            <p class="modal__message">메시지</p>
-            <div class="modal__buttons">
-                <button class="btn btn--secondary modal__btn-cancel" onclick="modalCancel()">취소</button>
-                <button class="btn btn--primary modal__btn-confirm" onclick="modalConfirm()">확인</button>
-            </div>
-        </div>
-    </div>
-
     <!-- 하단 고정 네비게이션 -->
     <nav class="bottom-nav">
         <button class="bottom-nav__item" onclick="goToSaju()">
@@ -91,4 +85,47 @@
             <span class="bottom-nav__label">충전하기</span>
         </button>
     </nav>
+
+<!-- 회사정보 모달 -->
+<div id="businessInfoModal" class="business-modal">
+    <div class="business-modal__backdrop" onclick="closeBusinessInfo()"></div>
+    <div class="business-modal__container">
+        <div class="business-modal__header">
+            <h3 class="business-modal__title">사업자 정보</h3>
+            <button class="business-modal__close" onclick="closeBusinessInfo()" aria-label="닫기">✕</button>
+        </div>
+        <div class="business-modal__body">
+            <dl class="business-info-list">
+                <div class="business-info-item">
+                    <dt class="business-info-item__label">상호명</dt>
+                    <dd class="business-info-item__value">로네지트</dd>
+                </div>
+                <div class="business-info-item">
+                    <dt class="business-info-item__label">대표자명</dt>
+                    <dd class="business-info-item__value">함정우</dd>
+                </div>
+                <div class="business-info-item">
+                    <dt class="business-info-item__label">사업자등록번호</dt>
+                    <dd class="business-info-item__value">221-39-01023</dd>
+                </div>
+                <div class="business-info-item">
+                    <dt class="business-info-item__label">통신판매신고번호</dt>
+                    <dd class="business-info-item__value">대기중...</dd>
+                </div>
+                <!--<div class="business-info-item">
+                    <dt class="business-info-item__label">사업장 주소</dt>
+                    <dd class="business-info-item__value">서울특별시 강남구 테헤란로 123, 4층</dd>
+                </div>-->
+                <div class="business-info-item">
+                    <dt class="business-info-item__label">연락처</dt>
+                    <dd class="business-info-item__value">010-3356-8702</dd>
+                </div>
+                <div class="business-info-item">
+                    <dt class="business-info-item__label">이메일</dt>
+                    <dd class="business-info-item__value">hjw1456@unveil.kr</dd>
+                </div>
+            </dl>
+        </div>
+    </div>
+</div>
 {{>layout/footer}}
