@@ -220,9 +220,9 @@ input {
 
 .landing-features {
     padding: 0 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
     flex-shrink: 0;
 }
 
