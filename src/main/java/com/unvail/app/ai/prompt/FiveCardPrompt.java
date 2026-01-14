@@ -36,17 +36,15 @@ public class FiveCardPrompt implements PromptStrategy<TarotRequestDto>{
                - 다가오는 미래
                - 조언 및 결과
             3. 지금 가장 중요한 선택 포인트
-            4. 핵심 메시지
+            4. 조심해야 할 점
+            5. 최종 방향성
+            6. 핵심 메시지
      
-            전체 길이는 900-1000자 정도로 작성해주세요.
+            전체 길이는 1000-1100자 정도로 작성해주세요.
             
             응답구조: 아래 패턴으로
             <div class="result__section">
-                <h3 class="result__section-title">{알맞는 이모지} 전체 흐름 요약</h3>
-                <p>{내용, 중요한 부분은 <strong></strong> 처리} ...</p>
-            
-                <h3 class="result__section-title">{알맞는 이모지} 현재 상황</h3>
-                <p><strong>{선택한 카드}</strong> {내용}</p>
+                <h3 class="result__section-title">{알맞는 이모지}{소제목}</h3>
                 <p>{내용, 중요한 부분은 <strong></strong> 처리} ...</p>
             </div>
             ...
