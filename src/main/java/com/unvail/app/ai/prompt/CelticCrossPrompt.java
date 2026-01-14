@@ -62,6 +62,13 @@ public class CelticCrossPrompt implements PromptStrategy<TarotRequestDto>{
                     , CommUtils.nonnullMapper.writeValueAsString(request.getCards().get(0))
                     , CommUtils.nonnullMapper.writeValueAsString(request.getCards().get(1))
                     , CommUtils.nonnullMapper.writeValueAsString(request.getCards().get(2))
+                    , CommUtils.nonnullMapper.writeValueAsString(request.getCards().get(3))
+                    , CommUtils.nonnullMapper.writeValueAsString(request.getCards().get(4))
+                    , CommUtils.nonnullMapper.writeValueAsString(request.getCards().get(5))
+                    , CommUtils.nonnullMapper.writeValueAsString(request.getCards().get(6))
+                    , CommUtils.nonnullMapper.writeValueAsString(request.getCards().get(7))
+                    , CommUtils.nonnullMapper.writeValueAsString(request.getCards().get(8))
+                    , CommUtils.nonnullMapper.writeValueAsString(request.getCards().get(9))
                     , CommUtils.nonnullMapper.writeValueAsString(request.getQuestion()));
         }catch(JsonProcessingException e){
             e.printStackTrace();

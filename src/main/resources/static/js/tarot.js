@@ -362,11 +362,10 @@ function submitTarot() {
     //     return;
     // }
 
-
     // 타입에 따른 더미 결과 선택
     const requestParam = {
         type: currentType
-        ,cards: [...setSelectedCards]
+        ,cards: Array.from(setSelectedCards).map(card => ({name:card.name, number:card.number, suit: card.suit}))
         ,question: question||'없음'
     }
 
