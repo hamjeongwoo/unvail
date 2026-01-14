@@ -55,7 +55,6 @@ jobs:
           host: ${{ secrets.SSH_ADDR_1 }}
           password: ${{ secrets.SSH_PWD_1 }}
           port: ${{ secrets.SSH_PORT_1 }}
-          script_stop: true
           script: | 
             cd /home/app/unveilApp
             sh ./stop.sh

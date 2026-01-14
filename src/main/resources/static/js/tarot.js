@@ -101,10 +101,10 @@ var tarotCards = [
 // 타로 종류 정보
 var tarotTypeInfo = {
     'one-card': { name: '원카드 타로', cost: 500, cards: 1, spread: 5, qna: '오늘의 운세, 간단한 조언 리딩을 원합니다.'},
-    'three-card': { name: '쓰리카드 타로', cost: 600, cards: 3, spread: 5, qna: '과거-현재-미래 흐름 파악 리딩을 원합니다.' },
-    'four-card': { name: '포카드 타로', cost: 700, cards: 4, spread: 7, qna: '복잡한 상황, 갈등 해결 문제의 원인과 해결책 탐색 리딩을 원합니다.' },
-    'five-card': { name: '파이브카드 타로', cost: 800, cards: 5, spread: 9, qna: '중요한 결정, 인생 전환점 심층 분석과 구체적 조언 리딩을 원합니다.' },
-    'celtic-cross': { name: '켈틱 크로스', cost: 900, cards: 10, spread: 15, qna: '인생 전반 종합 운세, 가장 상세하고 깊이 있는 리딩을 원합니다.' }
+    'three-card': { name: '쓰리카드 타로', cost: 600, cards: 3, spread: 9, qna: '과거-현재-미래 흐름 파악 리딩을 원합니다.' },
+    'four-card': { name: '포카드 타로', cost: 700, cards: 4, spread: 12, qna: '복잡한 상황, 갈등 해결 문제의 원인과 해결책 탐색 리딩을 원합니다.' },
+    'five-card': { name: '파이브카드 타로', cost: 800, cards: 5, spread: 15, qna: '중요한 결정, 인생 전환점 심층 분석과 구체적 조언 리딩을 원합니다.' },
+    'celtic-cross': { name: '켈틱 크로스', cost: 900, cards: 10, spread: 30, qna: '인생 전반 종합 운세, 가장 상세하고 깊이 있는 리딩을 원합니다.' }
 };
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // 카드 개수에 따른 안내문구 변경
         if (requiredCardCount === 1) {
-            document.getElementById('tarotInstruction').textContent = '질문을 입력하고 마음에 드는 카드를 선택하세요';
+            document.getElementById('tarotInstruction').textContent = '질문을 입력하고 마음에 드는 카드를 한장을 선택하세요';
         } else if (requiredCardCount === 3) {
             document.getElementById('tarotInstruction').textContent = '질문을 입력하고 세 장의 카드를 선택하세요';
         } else if (requiredCardCount === 4) {
@@ -174,6 +174,13 @@ function createTarotCards() {
             var cardIndex = parseInt(this.getAttribute('data-card'));
             selectTarotCard(cardIndex, cardData);
         };
+
+        // 섞이는 애니메이션을 위한 랜덤 변수와 지연 시간 설정
+        var randomX = (Math.random() - 0.5) * 40; // -20px ~ 20px
+        var randomRotate = (Math.random() - 0.5) * 30; // -15deg ~ 15deg
+        card.style.setProperty('--shuffle-x', randomX + 'px');
+        card.style.setProperty('--shuffle-rotate', randomRotate + 'deg');
+        card.style.animationDelay = (i * 0.08) + 's';
 
         var cardInner = document.createElement('div');
         cardInner.className = 'tarot__card-inner';
