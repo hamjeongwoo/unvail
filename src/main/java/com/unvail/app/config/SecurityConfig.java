@@ -28,7 +28,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(authorize -> authorize
-                .requestMatchers("/css/**", "/js/**", "/favicon.ico", "/.well-known/appspecific/com.chrome.devtools.json").permitAll()
+                .requestMatchers("/images/**", "/css/**", "/js/**", "/favicon.ico", "/.well-known/appspecific/com.chrome.devtools.json").permitAll()
                 .requestMatchers("/", "/main", "/pages/**").permitAll()
                 .requestMatchers("/login/**", "/oauth2/**").permitAll()
                 .requestMatchers("/api/**").hasRole("USER")
