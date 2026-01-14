@@ -55,6 +55,24 @@ function closeBusinessInfo() {
     }
 }
 
+// 개인정보 처리방침 모달 열기
+function openPrivacyPolicy() {
+    var modal = document.getElementById('privacyPolicyModal');
+    if (modal) {
+        modal.classList.add('privacy-policy-modal--active');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+// 개인정보 처리방침 모달 닫기
+function closePrivacyPolicy() {
+    var modal = document.getElementById('privacyPolicyModal');
+    if (modal) {
+        modal.classList.remove('privacy-policy-modal--active');
+        document.body.style.overflow = '';
+    }
+}
+
 document.addEventListener('DOMContentLoaded', e => {
     $('#curPoint').text(currentInfo.curPoint);
 

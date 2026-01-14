@@ -264,10 +264,11 @@ input {
     min-height: 40px;
 }
 
-/* 랜딩 회사정보 섹션 */
 .landing-business {
     padding: 32px 20px 20px;
     display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
     justify-content: center;
 }
 
@@ -304,6 +305,148 @@ input {
 
 .business-info-btn__text {
     line-height: 1;
+}
+
+/* ==================== Privacy Policy Modal ==================== */
+.privacy-policy-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1001;
+    align-items: center;
+    justify-content: center;
+}
+
+.privacy-policy-modal--active {
+    display: flex;
+}
+
+.privacy-policy-modal__backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(4px);
+}
+
+.privacy-policy-modal__container {
+    position: relative;
+    background: #2a2638;
+    border: 1px solid rgba(111, 92, 255, 0.3);
+    border-radius: 20px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 80vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    animation: slideUpFade 0.3s ease;
+}
+
+.privacy-policy-modal__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    border-bottom: 1px solid rgba(111, 92, 255, 0.2);
+    flex-shrink: 0;
+}
+
+.privacy-policy-modal__title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.privacy-policy-modal__close {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #b8b5c8;
+    font-size: 24px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.privacy-policy-modal__close:hover {
+    background: rgba(111, 92, 255, 0.2);
+    color: #e8e6f0;
+}
+
+.privacy-policy-modal__body {
+    padding: 24px 20px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.privacy-section {
+    margin-bottom: 24px;
+}
+
+.privacy-section:last-child {
+    margin-bottom: 0;
+}
+
+.privacy-section__title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #9b88ff;
+    margin-bottom: 12px;
+}
+
+.privacy-section__content {
+    font-size: 14px;
+    color: #e8e6f0;
+    line-height: 1.6;
+    margin-bottom: 12px;
+}
+
+.privacy-section__content--highlight {
+    background: rgba(245, 211, 108, 0.1);
+    border-left: 3px solid #f5d36c;
+    padding: 12px 16px;
+    border-radius: 8px;
+    color: #ffffff;
+}
+
+.privacy-section__content--meta {
+    font-size: 13px;
+    color: #b8b5c8;
+    text-align: center;
+    margin-top: 32px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(111, 92, 255, 0.2);
+}
+
+.privacy-section__list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.privacy-section__list li {
+    font-size: 14px;
+    color: #e8e6f0;
+    line-height: 1.6;
+    padding-left: 20px;
+    position: relative;
+    margin-bottom: 8px;
+}
+
+.privacy-section__list li:before {
+    content: "•";
+    position: absolute;
+    left: 8px;
+    color: #6f5cff;
+    font-weight: bold;
 }
 
 /* ==================== Login Page ==================== */
