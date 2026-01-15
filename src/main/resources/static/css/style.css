@@ -449,6 +449,86 @@ input {
     font-weight: bold;
 }
 
+/* ==================== Operation Policy Modal ==================== */
+.operation-policy-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1001;
+    align-items: center;
+    justify-content: center;
+}
+
+.operation-policy-modal--active {
+    display: flex;
+}
+
+.operation-policy-modal__backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(4px);
+}
+
+.operation-policy-modal__container {
+    position: relative;
+    background: #2a2638;
+    border: 1px solid rgba(111, 92, 255, 0.3);
+    border-radius: 20px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 80vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    animation: slideUpFade 0.3s ease;
+}
+
+.operation-policy-modal__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    border-bottom: 1px solid rgba(111, 92, 255, 0.2);
+    flex-shrink: 0;
+}
+
+.operation-policy-modal__title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.operation-policy-modal__close {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #b8b5c8;
+    font-size: 24px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.operation-policy-modal__close:hover {
+    background: rgba(111, 92, 255, 0.2);
+    color: #e8e6f0;
+}
+
+.operation-policy-modal__body {
+    padding: 24px 20px;
+    overflow-y: auto;
+    flex: 1;
+}
+
 /* ==================== Login Page ==================== */
 .login-page {
     min-height: calc(100vh - 60px);
