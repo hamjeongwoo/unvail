@@ -2,10 +2,7 @@ package com.unvail.app.oauth.service;
 
 import com.unvail.app.comm.error.ErrorCode;
 import com.unvail.app.comm.error.UserDuplicationException;
-import com.unvail.app.oauth.CustomOAuth2User;
-import com.unvail.app.oauth.OAuth2StrategyComposite;
-import com.unvail.app.oauth.OAuth2UserInfo;
-import com.unvail.app.oauth.OauthType;
+import com.unvail.app.oauth.*;
 import com.unvail.app.users.UnveilUser;
 import com.unvail.app.users.UserService;
 import lombok.RequiredArgsConstructor;
@@ -30,6 +27,8 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
     @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
         OAuth2User oauth2User = super.loadUser(userRequest);
+
+        OAuth2TokenContext.set(userRequest.getAccessToken().getTokenValue());
 
         OAuth2UserInfo oauth2UserInfo = oauth2StrategyComposite
                 .getOAuth2Strategy(getSocialProvider(userRequest))

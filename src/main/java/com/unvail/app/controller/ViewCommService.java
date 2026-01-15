@@ -22,15 +22,18 @@ public class ViewCommService {
         String user = auth.getName();
         model.addAttribute("isLoggedIn", !"anonymousUser".equals(user));
         String name = "";
+        String email = "";
         int curPoint = 0;
         if(!"anonymousUser".equals(user)){
             UnveilUser unveilUser = ((CustomOAuth2User) auth.getPrincipal()).getUnveilUser();
             name = unveilUser.getName();
+            email = unveilUser.getEmail();
             curPoint = Optional.ofNullable(userService.selectUserCurPointByEmail(unveilUser.getEmail()))
                     .orElse(0);
         }
 
         model.addAttribute("name", name);
         model.addAttribute("curPoint", curPoint);
+        model.addAttribute("email", email);
     }
 }

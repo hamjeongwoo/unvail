@@ -1,0 +1,147 @@
+{{>layout/header}}
+    <!-- 마이페이지 컨텐츠 -->
+    <main class="my-page">
+        <!-- 프로필 섹션 -->
+        <section class="profile-section">
+            <div class="profile-card">
+                <div class="profile-card__avatar">
+                    <span class="profile-card__avatar-icon">👤</span>
+                </div>
+                <div class="profile-card__info">
+                    <h2 class="profile-card__name" id="userName">{{name}}</h2>
+                    <p class="profile-card__email" id="userEmail">{{email}}</p>
+                </div>
+            </div>
+            
+            <!-- 포인트 카드 -->
+            <div class="point-card">
+                <div class="point-card__label">보유 포인트</div>
+                <div class="point-card__amount">
+                    <span class="point-icon">✦</span>
+                    <span id="myPagePoint">{{curPoint}}</span>
+                </div>
+                <button class="point-card__charge-btn" onclick="goToCharge()">
+                    충전하기 →
+                </button>
+            </div>
+        </section>
+
+        <!-- 이력 섹션 -->
+        <section class="history-section">
+            <h3 class="section-title">이용 내역</h3>
+            <div class="menu-list">
+                <button class="menu-list__item" onclick="showChargeHistory()">
+                    <span class="menu-list__icon">💎</span>
+                    <span class="menu-list__text">충전 이력</span>
+                    <span class="menu-list__arrow">→</span>
+                </button>
+                <button class="menu-list__item" onclick="showUnveilHistory()">
+                    <span class="menu-list__icon">📜</span>
+                    <span class="menu-list__text">Unveil 이력</span>
+                    <span class="menu-list__arrow">→</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- 고객지원 섹션 -->
+        <section class="support-section">
+            <h3 class="section-title">고객지원</h3>
+            <div class="menu-list">
+                <button class="menu-list__item" onclick="showInquiry()">
+                    <span class="menu-list__icon">💬</span>
+                    <span class="menu-list__text">1:1 문의</span>
+                    <span class="menu-list__arrow">→</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- 계정 관리 섹션 -->
+        <section class="account-section">
+            <button class="account-btn account-btn--logout" onclick="handleLogout()">
+                로그아웃
+            </button>
+            <button class="account-btn account-btn--delete" onclick="handleDeleteAccount()">
+                회원 탈퇴
+            </button>
+        </section>
+    </main>
+
+    <!-- 충전 이력 모달 -->
+    <div id="chargeHistoryModal" class="history-modal">
+        <div class="history-modal__backdrop" onclick="closeChargeHistory()"></div>
+        <div class="history-modal__container">
+            <div class="history-modal__header">
+                <h3 class="history-modal__title">충전 이력</h3>
+                <button class="history-modal__close" onclick="closeChargeHistory()">✕</button>
+            </div>
+            <div class="history-modal__body">
+                <div class="history-list" id="chargeHistoryList">
+                    <!-- 더미 데이터로 채워질 예정 -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Unveil 이력 모달 -->
+    <div id="unveilHistoryModal" class="history-modal">
+        <div class="history-modal__backdrop" onclick="closeUnveilHistory()"></div>
+        <div class="history-modal__container">
+            <div class="history-modal__header">
+                <h3 class="history-modal__title">Unveil 이력</h3>
+                <button class="history-modal__close" onclick="closeUnveilHistory()">✕</button>
+            </div>
+            <div class="history-modal__body">
+                <div class="history-list" id="unveilHistoryList">
+                    <!-- 더미 데이터로 채워질 예정 -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 1:1 문의 모달 -->
+    <div id="inquiryModal" class="inquiry-modal">
+        <div class="inquiry-modal__backdrop" onclick="closeInquiry()"></div>
+        <div class="inquiry-modal__container">
+            <div class="inquiry-modal__header">
+                <h3 class="inquiry-modal__title">1:1 문의</h3>
+                <button class="inquiry-modal__close" onclick="closeInquiry()">✕</button>
+            </div>
+            <div class="inquiry-modal__body">
+                <div class="inquiry-form">
+                    <div class="inquiry-form__group">
+                        <label class="inquiry-form__label">문의 유형</label>
+                        <select class="inquiry-form__select" id="inquiryType">
+                            <option value="">선택해주세요</option>
+                            <option value="payment">결제 문의</option>
+                            <option value="service">서비스 이용</option>
+                            <option value="account">계정 문의</option>
+                            <option value="other">기타</option>
+                        </select>
+                    </div>
+                    <div class="inquiry-form__group">
+                        <label class="inquiry-form__label">문의 내용</label>
+                        <textarea class="inquiry-form__textarea" id="inquiryContent" rows="6" placeholder="문의하실 내용을 작성해주세요."></textarea>
+                    </div>
+                    <button class="btn btn--primary btn--large" onclick="submitInquiry()">
+                        문의하기
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 공통 모달 -->
+    <div id="commonModal" class="modal">
+        <div class="modal__overlay" onclick="modalCancel()"></div>
+        <div class="modal__content">
+            <div class="modal__icon">💬</div>
+            <h3 class="modal__title">알림</h3>
+            <p class="modal__message">메시지</p>
+            <div class="modal__buttons">
+                <button class="btn btn--secondary modal__btn-cancel" onclick="modalCancel()">취소</button>
+                <button class="btn btn--primary modal__btn-confirm" onclick="modalConfirm()">확인</button>
+            </div>
+        </div>
+    </div>
+    <script src="/js/my-page.js"></script>
+{{>layout/header}}

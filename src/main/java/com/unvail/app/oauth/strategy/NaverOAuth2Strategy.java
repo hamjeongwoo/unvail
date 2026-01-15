@@ -18,11 +18,12 @@ public class NaverOAuth2Strategy implements OAuth2Strategy {
 
     @Override
     public OAuth2UserInfo getUserInfo(OAuth2User user) {
-        final Map<String, Object> attributes = user.getAttributes();
+        final Map<String, Object> response = user.getAttributes();
+        final Map<String, Object> attributes = (Map<String, Object>) response.get("response");
         final String oauthId = String.valueOf(attributes.get("id"));
         final String name = String.valueOf(attributes.get("name"));
         final String email = String.valueOf(attributes.get("email"));
 
-        return new OAuth2UserInfo(OauthType.NAVER, oauthId, name, email, "id");
+        return new OAuth2UserInfo(OauthType.NAVER, oauthId, name, email, "response");
     }
 }

@@ -37,4 +37,10 @@ public class ViewCommController {
 
         return viewPath;
     }
+
+    @GetMapping("/mypage")
+    public String mypage(Model model) {
+        viewCommService.postLoginHandler(model);
+        return "my-page";
+    }
 }

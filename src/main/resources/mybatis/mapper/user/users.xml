@@ -10,7 +10,12 @@
              #{email}
             ,#{oauthType}
             ,#{authId}
-            ,#{name}
+            ,CASE
+                 WHEN char_length(#{name}) = 1 THEN #{name}
+                 WHEN char_length(#{name}) = 2 THEN regexp_replace(#{name}, '^(.).$', '\1*')
+                 WHEN char_length(#{name}) = 3 THEN regexp_replace(#{name}, '^(.).(.)$', '\1*\2')
+                 ELSE regexp_replace(#{name}, '^(.).*(.)$', '\1**\2')
+                 END
             ,#{sessionId}
             ,now()
             ,now()

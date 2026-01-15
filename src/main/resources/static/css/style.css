@@ -547,6 +547,17 @@ input {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
+.login-btn--github {
+    background: #3f4143;
+    color: #ffffff;
+}
+
+.login-btn--github:hover {
+    background: #1a1e22;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(36, 41, 46, 0.3);
+}
+
 .login-footer {
     text-align: center;
 }
@@ -2106,4 +2117,518 @@ input {
     height: 50px;
     font-size: 16px;
     font-weight: 600;
+}
+
+/* ==================== My Page ==================== */
+.my-page {
+    max-width: 430px;
+    margin: 0 auto;
+    padding: 20px;
+    padding-bottom: 40px;
+    min-height: calc(100vh - 60px);
+}
+
+/* 프로필 섹션 */
+.profile-section {
+    margin-bottom: 32px;
+}
+
+.profile-card {
+    background: linear-gradient(135deg, rgba(111, 92, 255, 0.15) 0%, rgba(155, 136, 255, 0.1) 100%);
+    border: 1px solid rgba(111, 92, 255, 0.3);
+    border-radius: 16px;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.profile-card__avatar {
+    width: 64px;
+    height: 64px;
+    background: linear-gradient(135deg, #6f5cff 0%, #9b88ff 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.profile-card__avatar-icon {
+    font-size: 32px;
+    color: white;
+}
+
+.profile-card__info {
+    flex: 1;
+    min-width: 0;
+}
+
+.profile-card__name {
+    font-size: 20px;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 4px;
+}
+
+.profile-card__email {
+    font-size: 14px;
+    color: #b8b5c8;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* 포인트 카드 */
+.point-card {
+    background: linear-gradient(135deg, rgba(245, 211, 108, 0.15) 0%, rgba(255, 160, 108, 0.1) 100%);
+    border: 1px solid rgba(245, 211, 108, 0.3);
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+}
+
+.point-card__label {
+    font-size: 14px;
+    color: #9d95b8;
+    margin-bottom: 8px;
+}
+
+.point-card__amount {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 32px;
+    font-weight: 700;
+    color: #f5d36c;
+    margin-bottom: 16px;
+}
+
+.point-card__amount .point-icon {
+    font-size: 28px;
+}
+
+.point-card__charge-btn {
+    width: 100%;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #6f5cff 0%, #9b88ff 100%);
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.point-card__charge-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(111, 92, 255, 0.4);
+}
+
+/* 섹션 타이틀 */
+.section-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #e8e6f0;
+    margin-bottom: 12px;
+    padding-left: 4px;
+}
+
+/* 이력 섹션 */
+.history-section {
+    margin-bottom: 32px;
+}
+
+/* 고객지원 섹션 */
+.support-section {
+    margin-bottom: 32px;
+}
+
+/* 메뉴 리스트 */
+.menu-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.menu-list__item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(111, 92, 255, 0.2);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    text-align: left;
+}
+
+.menu-list__item:hover {
+    background: rgba(111, 92, 255, 0.1);
+    border-color: rgba(111, 92, 255, 0.4);
+    transform: translateX(4px);
+}
+
+.menu-list__icon {
+    font-size: 24px;
+    width: 32px;
+    text-align: center;
+}
+
+.menu-list__text {
+    flex: 1;
+    font-size: 15px;
+    font-weight: 500;
+    color: #e8e6f0;
+}
+
+.menu-list__arrow {
+    font-size: 18px;
+    color: #6f5cff;
+}
+
+/* 계정 관리 섹션 */
+.account-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 40px;
+}
+
+.account-btn {
+    width: 100%;
+    padding: 14px 24px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.account-btn--logout {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(111, 92, 255, 0.3);
+    color: #e8e6f0;
+}
+
+.account-btn--logout:hover {
+    background: rgba(111, 92, 255, 0.15);
+    border-color: rgba(111, 92, 255, 0.5);
+}
+
+.account-btn--delete {
+    background: rgba(244, 67, 54, 0.1);
+    border-color: rgba(244, 67, 54, 0.3);
+    color: #ff6b6b;
+}
+
+.account-btn--delete:hover {
+    background: rgba(244, 67, 54, 0.2);
+    border-color: rgba(244, 67, 54, 0.5);
+}
+
+/* ==================== History Modal ==================== */
+.history-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1001;
+    align-items: center;
+    justify-content: center;
+}
+
+.history-modal--active {
+    display: flex;
+}
+
+.history-modal__backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(4px);
+}
+
+.history-modal__container {
+    position: relative;
+    background: #2a2638;
+    border: 1px solid rgba(111, 92, 255, 0.3);
+    border-radius: 20px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 80vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    animation: slideUpFade 0.3s ease;
+}
+
+.history-modal__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    border-bottom: 1px solid rgba(111, 92, 255, 0.2);
+    flex-shrink: 0;
+}
+
+.history-modal__title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.history-modal__close {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #b8b5c8;
+    font-size: 24px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.history-modal__close:hover {
+    background: rgba(111, 92, 255, 0.2);
+    color: #e8e6f0;
+}
+
+.history-modal__body {
+    padding: 20px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+/* 이력 리스트 */
+.history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.history-empty {
+    text-align: center;
+    color: #9d95b8;
+    padding: 40px 20px;
+    font-size: 15px;
+}
+
+.history-item {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(111, 92, 255, 0.2);
+    border-radius: 12px;
+    padding: 16px;
+}
+
+.history-item__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.history-item__date {
+    font-size: 13px;
+    color: #9d95b8;
+}
+
+.history-item__badge {
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.history-item__badge--complete {
+    background: rgba(76, 175, 80, 0.15);
+    color: #4caf50;
+}
+
+.history-item__body {
+    margin-bottom: 12px;
+}
+
+.history-item__title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #e8e6f0;
+    margin-bottom: 6px;
+}
+
+.history-item__detail {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: #b8b5c8;
+}
+
+.history-item__method {
+    color: #9d95b8;
+}
+
+.history-item__footer {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 12px;
+    border-top: 1px solid rgba(111, 92, 255, 0.15);
+}
+
+.history-item__amount {
+    font-size: 16px;
+    font-weight: 700;
+    color: #f5d36c;
+}
+
+.history-item__cost {
+    font-size: 15px;
+    font-weight: 600;
+    color: #ff6b9d;
+}
+
+/* ==================== Inquiry Modal ==================== */
+.inquiry-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1001;
+    align-items: center;
+    justify-content: center;
+}
+
+.inquiry-modal--active {
+    display: flex;
+}
+
+.inquiry-modal__backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(4px);
+}
+
+.inquiry-modal__container {
+    position: relative;
+    background: #2a2638;
+    border: 1px solid rgba(111, 92, 255, 0.3);
+    border-radius: 20px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 80vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    animation: slideUpFade 0.3s ease;
+}
+
+.inquiry-modal__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    border-bottom: 1px solid rgba(111, 92, 255, 0.2);
+    flex-shrink: 0;
+}
+
+.inquiry-modal__title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.inquiry-modal__close {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #b8b5c8;
+    font-size: 24px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.inquiry-modal__close:hover {
+    background: rgba(111, 92, 255, 0.2);
+    color: #e8e6f0;
+}
+
+.inquiry-modal__body {
+    padding: 24px 20px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+/* 문의 폼 */
+.inquiry-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.inquiry-form__group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.inquiry-form__label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #e8e6f0;
+}
+
+.inquiry-form__select,
+.inquiry-form__textarea {
+    width: 100%;
+    padding: 14px 16px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(111, 92, 255, 0.3);
+    border-radius: 12px;
+    color: #ffffff;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+.inquiry-form__select:focus,
+.inquiry-form__textarea:focus {
+    outline: none;
+    border-color: #6f5cff;
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 0 0 3px rgba(111, 92, 255, 0.1);
+}
+
+.inquiry-form__select option {
+    background: #2a2638;
+    color: #e8e6f0;
+}
+
+.inquiry-form__textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.inquiry-form__textarea::placeholder {
+    color: #6b6878;
 }
