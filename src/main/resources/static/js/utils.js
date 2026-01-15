@@ -167,6 +167,38 @@ function decodeResult(encoded) {
     }
 }
 
+// 카카오 로그인
+function loginWithKakao() {
+    goToPage('/oauth2/authorization/kakao')
+}
+
+// 네이버 로그인
+function loginWithNaver() {
+    goToPage('/oauth2/authorization/naver')
+}
+
+// 구글 로그인
+function loginWithGoogle() {
+    goToPage('/oauth2/authorization/google')
+}
+
+// GitHub 로그인
+function loginWithGithub() {
+    goToPage('/oauth2/authorization/github')
+}
+
+// 로그아웃
+function handleLogout() {
+    showConfirmModal(
+      '로그아웃',
+      '로그아웃 하시겠습니까?',
+      function() {
+          localStorage.removeItem('oauthType');
+          window.location.href = '/logout';
+      }
+    );
+}
+
 
 (function (glb) {
     const defaultHeaders = {

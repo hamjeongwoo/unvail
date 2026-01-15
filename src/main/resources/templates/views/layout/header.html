@@ -17,6 +17,11 @@
       isLoggedIn: {{isLoggedIn}}
       , name: '{{name}}'
       , curPoint: {{curPoint}}
+      , oauthType: '{{oauthType}}'
+    }
+
+    if(currentInfo.oauthType){
+      localStorage.setItem('oauthType', '{{oauthType}}')
     }
   </script>
   <script src="/js/comm/jquery-3.7.1.min.js"></script>

@@ -73,6 +73,25 @@ function closePrivacyPolicy() {
     }
 }
 
+
+// 운영방침 모달 열기
+function openOperationPolicy() {
+    var modal = document.getElementById('operationPolicyModal');
+    if (modal) {
+        modal.classList.add('operation-policy-modal--active');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+// 운영방침 모달 닫기
+function closeOperationPolicy() {
+    var modal = document.getElementById('operationPolicyModal');
+    if (modal) {
+        modal.classList.remove('operation-policy-modal--active');
+        document.body.style.overflow = '';
+    }
+}
+
 document.addEventListener('DOMContentLoaded', e => {
     $('#curPoint').text(currentInfo.curPoint);
 
@@ -85,5 +104,18 @@ document.addEventListener('DOMContentLoaded', e => {
         $('#userInfo').hide();
     }
 
+    const oauthType = localStorage.getItem('oauthType');
+    console.log(oauthType, currentInfo.isLoggedIn)
+    if(!currentInfo.isLoggedIn){
+        if (oauthType === 'KAKAO') {
+            loginWithKakao();
+        } else if (oauthType === 'NAVER') {
+            loginWithNaver();
+        } else if (oauthType === 'GOOGLE') {
+            loginWithGoogle();
+        } else if (oauthType === 'GITHUB') {
+            loginWithGithub();
+        }
+    }
 });
 

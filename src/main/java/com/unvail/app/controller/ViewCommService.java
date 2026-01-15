@@ -23,11 +23,13 @@ public class ViewCommService {
         model.addAttribute("isLoggedIn", !"anonymousUser".equals(user));
         String name = "";
         String email = "";
+        String oauthType = "";
         int curPoint = 0;
         if(!"anonymousUser".equals(user)){
             UnveilUser unveilUser = ((CustomOAuth2User) auth.getPrincipal()).getUnveilUser();
             name = unveilUser.getName();
             email = unveilUser.getEmail();
+            oauthType = unveilUser.getOauthType();
             curPoint = Optional.ofNullable(userService.selectUserCurPointByEmail(unveilUser.getEmail()))
                     .orElse(0);
         }
@@ -35,5 +37,6 @@ public class ViewCommService {
         model.addAttribute("name", name);
         model.addAttribute("curPoint", curPoint);
         model.addAttribute("email", email);
+        model.addAttribute("oauthType", oauthType);
     }
 }

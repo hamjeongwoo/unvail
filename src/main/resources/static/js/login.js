@@ -1,26 +1,3 @@
-// 로그인 페이지 스크립트
-
-// 카카오 로그인
-function loginWithKakao() {
-    goToPage('/oauth2/authorization/kakao')
-}
-
-// 네이버 로그인
-function loginWithNaver() {
-    goToPage('/oauth2/authorization/naver')
-}
-
-// 구글 로그인
-function loginWithGoogle() {
-    goToPage('/oauth2/authorization/google')
-}
-
-// GitHub 로그인
-function loginWithGithub() {
-    goToPage('/oauth2/authorization/github')
-}
-
-
 // 로그인 완료 처리
 function completeLogin(email) {
     var point = getCurrentPoint();

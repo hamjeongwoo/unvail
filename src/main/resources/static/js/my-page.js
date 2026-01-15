@@ -157,24 +157,6 @@ function submitInquiry() {
     });
 }
 
-// 로그아웃
-function handleLogout() {
-    showConfirmModal(
-        '로그아웃',
-        '로그아웃 하시겠습니까?',
-        function() {
-            // 로그아웃 처리
-            localStorage.removeItem('isLoggedIn');
-            localStorage.removeItem('userEmail');
-            localStorage.removeItem('userName');
-            
-            showModal('로그아웃 완료', '로그아웃되었습니다.', function() {
-                window.location.href = 'login.html';
-            });
-        }
-    );
-}
-
 // 회원 탈퇴
 function handleDeleteAccount() {
     showConfirmModal(
@@ -189,4 +171,61 @@ function handleDeleteAccount() {
             });
         }
     );
+}
+
+// ====================
+// 공통 모달 헬퍼 함수 (modal.js 사용)
+// ====================
+
+/**
+ * 간단한 알림 모달 (확인 버튼만)
+ */
+function showAlertModal(title, message, onConfirm) {
+    showModal({
+        title: title,
+        message: message,
+        type: 'info',
+        showCancel: false,
+        onConfirm: onConfirm
+    });
+}
+
+/**
+ * 확인/취소 모달
+ */
+function showConfirmModal(title, message, onConfirm, onCancel) {
+    showModal({
+        title: title,
+        message: message,
+        type: 'warning',
+        showCancel: true,
+        onConfirm: onConfirm,
+        onCancel: onCancel
+    });
+}
+
+/**
+ * 성공 모달
+ */
+function showSuccessModal(title, message, onConfirm) {
+    showModal({
+        title: title,
+        message: message,
+        type: 'success',
+        showCancel: false,
+        onConfirm: onConfirm
+    });
+}
+
+/**
+ * 에러 모달
+ */
+function showErrorModal(title, message, onConfirm) {
+    showModal({
+        title: title,
+        message: message,
+        type: 'error',
+        showCancel: false,
+        onConfirm: onConfirm
+    });
 }

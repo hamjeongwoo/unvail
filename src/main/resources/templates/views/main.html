@@ -52,6 +52,10 @@
                 <span class="business-info-btn__icon">🔒</span>
                 <span class="business-info-btn__text">개인정보 처리방침</span>
             </button>
+            <button class="business-info-btn" onclick="openOperationPolicy()">
+                <span class="business-info-btn__icon">📋</span>
+                <span class="business-info-btn__text">운영방침</span>
+            </button>
         </section>
 
         <!-- 하단 여백 (고정 네비게이션 공간) -->
@@ -215,6 +219,97 @@
                 <p class="privacy-section__content privacy-section__content--meta">
                     시행일자: 2026년 1월 15일<br>
                     본 방침은 2026년 1월 15일부터 시행됩니다.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 운영방침 모달 -->
+<div id="operationPolicyModal" class="operation-policy-modal">
+    <div class="operation-policy-modal__backdrop" onclick="closeOperationPolicy()"></div>
+    <div class="operation-policy-modal__container">
+        <div class="operation-policy-modal__header">
+            <h3 class="operation-policy-modal__title">운영방침</h3>
+            <button class="operation-policy-modal__close" onclick="closeOperationPolicy()" aria-label="닫기">✕</button>
+        </div>
+        <div class="operation-policy-modal__body">
+            <div class="privacy-section">
+                <h4 class="privacy-section__title">1. 서비스 이용</h4>
+                <p class="privacy-section__content">
+                    본 서비스는 AI 기반 사주·타로 해석 서비스를 제공하며, 회원은 포인트를 구매하여 서비스를 이용할 수 있습니다.
+                </p>
+                <ul class="privacy-section__list">
+                    <li>서비스는 모바일 웹 환경에 최적화되어 있습니다</li>
+                    <li>AI 해석 결과는 참고용이며, 법적 효력이 없습니다</li>
+                    <li>서비스 이용 중 발생한 결과에 대한 책임은 이용자 본인에게 있습니다</li>
+                </ul>
+            </div>
+
+            <div class="privacy-section">
+                <h4 class="privacy-section__title">2. 포인트 정책</h4>
+                <p class="privacy-section__content privacy-section__content--highlight">
+                    <strong>⚠️ 중요:</strong> 구매한 포인트의 <strong>유효기간은 3개월</strong>입니다.
+                </p>
+                <ul class="privacy-section__list">
+                    <li>포인트는 충전 후 즉시 사용 가능합니다</li>
+                    <li>유효기간이 지난 포인트는 자동 소멸되며 복구되지 않습니다</li>
+                    <li>포인트는 현금으로 환불되지 않습니다</li>
+                </ul>
+            </div>
+
+            <div class="privacy-section">
+                <h4 class="privacy-section__title">3. 결제 및 환불</h4>
+                <p class="privacy-section__content">
+                    포인트 충전은 신용카드, 계좌이체 등 다양한 방법으로 가능합니다.
+                </p>
+                <ul class="privacy-section__list">
+                    <li><strong>신용카드 할부는 최대 3개월까지 가능합니다</strong></li>
+                    <li>결제 취소는 결제 후 7일 이내, 포인트 미사용 시 가능합니다</li>
+                    <li>일부 사용한 경우 잔여 포인트에 대해서만 환불이 진행됩니다</li>
+                    <li>환불 시 결제 수수료는 차감될 수 있습니다</li>
+                </ul>
+            </div>
+
+            <div class="privacy-section">
+                <h4 class="privacy-section__title">4. 서비스 이용 제한</h4>
+                <p class="privacy-section__content">
+                    다음의 경우 서비스 이용이 제한될 수 있습니다:
+                </p>
+                <ul class="privacy-section__list">
+                    <li>타인의 정보를 도용하거나 허위 정보를 입력한 경우</li>
+                    <li>서비스를 부정한 목적으로 이용한 경우</li>
+                    <li>기타 관계 법령 또는 회사 정책을 위반한 경우</li>
+                </ul>
+            </div>
+
+            <div class="privacy-section">
+                <h4 class="privacy-section__title">5. 면책사항</h4>
+                <p class="privacy-section__content">
+                    회사는 다음의 사항에 대해 책임을 지지 않습니다:
+                </p>
+                <ul class="privacy-section__list">
+                    <li>AI 해석 결과에 따른 이용자의 의사결정 및 그 결과</li>
+                    <li>이용자의 귀책사유로 인한 서비스 이용 장애</li>
+                    <li>천재지변, 시스템 장애 등 불가항력적 사유로 인한 서비스 중단</li>
+                </ul>
+            </div>
+
+            <div class="privacy-section">
+                <h4 class="privacy-section__title">6. 문의</h4>
+                <p class="privacy-section__content">
+                    운영방침에 대한 문의사항은 고객센터로 연락 주시기 바랍니다.
+                </p>
+                <ul class="privacy-section__list">
+                    <li>이메일: support@unveil.co.kr</li>
+                    <li>전화번호: 010-3356-8702</li>
+                    <li>운영시간: 평일 09:00 - 18:00 (주말 및 공휴일 휴무)</li>
+                </ul>
+            </div>
+
+            <div class="privacy-section">
+                <p class="privacy-section__content privacy-section__content--meta">
+                    시행일자: 2026년 1월 15일<br>
+                    본 운영방침은 2026년 1월 15일부터 시행됩니다.
                 </p>
             </div>
         </div>
