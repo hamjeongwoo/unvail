@@ -1,56 +1,56 @@
 {{>layout/header}}
     <!-- 충전 화면 -->
     <main class="charge">
-        <!-- 현재 포인트 -->
+        <!-- 현재 이용권 -->
         <section class="charge-balance">
-            <div class="charge-balance__label">현재 보유 포인트</div>
+            <div class="charge-balance__label">현재 보유 이용권</div>
             <div class="charge-balance__amount">
-                <span class="point-icon">✦</span>
-                <span id="currentPoint">100</span>
+                <span class="point-icon">🎫</span>
+                <span id="currentPoint">0회</span>
             </div>
         </section>
 
         <!-- 충전 금액 선택 -->
         <section class="charge-packages">
-            <h2 class="charge-packages__title">충전 금액 선택</h2>
+            <h2 class="charge-packages__title">이용권 패키지 선택</h2>
             <div class="package-list">
-                <button class="package-item package-item--selected" data-points="1000" onclick="selectPackage(1000)">
+                <button class="package-item" onclick="selectPackage(300)">
                     <div class="package-item__points">
-                        <span class="point-icon">✦</span>
-                        <span class="points-amount">1,000</span>
+                        <span class="point-icon">🎫</span>
+                        <span class="points-amount">1회 이용권</span>
                     </div>
-                    <div class="package-item__price">₩1,000</div>
+                    <div class="package-item__price">₩300</div>
                     <div class="package-item__check">✓</div>
                 </button>
 
-                <button class="package-item package-item--popular" data-points="2000" onclick="selectPackage(2000)">
+                <button class="package-item package-item--popular package-item--selected" onclick="selectPackage()">
                     <div class="package-item__badge">인기</div>
                     <div class="package-item__points">
-                        <span class="point-icon">✦</span>
-                        <span class="points-amount">2,000</span>
+                        <span class="point-icon">🎫</span>
+                        <span class="points-amount">4회 이용권</span>
                     </div>
-                    <div class="package-item__price">₩2,000</div>
-                    <div class="package-item__bonus">+10% 보너스(₩2,200)</div>
+                    <div class="package-item__price">₩900</div>
+                    <div class="package-item__bonus">기본 3회 보너스 +1회</div>
                     <div class="package-item__check">✓</div>
                 </button>
 
-                <button class="package-item" data-points="3000" onclick="selectPackage(3000)">
+                <button class="package-item" onclick="selectPackage()">
                     <div class="package-item__points">
-                        <span class="point-icon">✦</span>
-                        <span class="points-amount">3,000</span>
+                        <span class="point-icon">🎫</span>
+                        <span class="points-amount">8회 이용권</span>
                     </div>
-                    <div class="package-item__price">₩3,000</div>
-                    <div class="package-item__bonus">+15% 보너스(₩3,450)</div>
+                    <div class="package-item__price">₩1,800</div>
+                    <div class="package-item__bonus">기본 6회 보너스 +2회</div>
                     <div class="package-item__check">✓</div>
                 </button>
 
-                <button class="package-item" data-points="5000" onclick="selectPackage(5000)">
+                <button class="package-item" onclick="selectPackage()">
                     <div class="package-item__points">
-                        <span class="point-icon">✦</span>
-                        <span class="points-amount">5,000</span>
+                        <span class="point-icon">🎫</span>
+                        <span class="points-amount">12회 이용권</span>
                     </div>
-                    <div class="package-item__price">₩5,000</div>
-                    <div class="package-item__bonus">+20% 보너스(₩6,000)</div>
+                    <div class="package-item__price">₩2,700</div>
+                    <div class="package-item__bonus">기본9회 보너스 +3회</div>
                     <div class="package-item__check">✓</div>
                 </button>
             </div>
@@ -118,16 +118,16 @@
                 <div class="policy-modal__body">
                     <div class="policy-modal__section">
                         <h3 class="policy-modal__section-title">1. 서비스 특성</h3>
-                        <p class="policy-modal__section-text">본 서비스는 디지털 콘텐츠(AI 사주/타로 운세 결과)를 제공하는 서비스로, 포인트 충전 및 사용 즉시 콘텐츠가 제공됩니다.</p>
+                        <p class="policy-modal__section-text">본 서비스는 디지털 콘텐츠(AI 사주/타로 운세 결과)를 제공하는 서비스로, 이용권 구매 및 사용 즉시 콘텐츠가 제공됩니다.</p>
                     </div>
 
                     <div class="policy-modal__section">
-                        <h3 class="policy-modal__section-title">2. 포인트 환불 정책</h3>
-                        <p class="policy-modal__section-text"><strong>충전 포인트 환불:</strong></p>
+                        <h3 class="policy-modal__section-title">2. 이용권 환불 정책</h3>
+                        <p class="policy-modal__section-text"><strong>이용권 환불:</strong></p>
                         <ul class="policy-modal__section-list">
-                            <li>충전 후 <strong>7일 이내</strong> 미사용 포인트에 한하여 환불 가능</li>
-                            <li>부분 사용 시 사용한 포인트를 제외한 잔액만 환불 가능</li>
-                            <li>보너스 포인트는 환불 대상에서 제외</li>
+                            <li>구매 후 <strong>7일 이내</strong> 미사용 이용권에 한하여 환불 가능</li>
+                            <li>부분 사용 시 사용한 이용권을 제외한 잔여 이용권만 환불 가능</li>
+                            <li>이벤트로 무료 지급된 이용권은 환불 대상에서 제외</li>
                             <li>환불 수수료: 결제 금액의 10% (단, 1,000원 미만)</li>
                         </ul>
                     </div>
@@ -136,12 +136,12 @@
                         <h3 class="policy-modal__section-title">3. 취소 및 철회권</h3>
                         <p class="policy-modal__section-text"><strong>청약철회 불가 사항:</strong></p>
                         <ul class="policy-modal__section-list">
-                            <li>포인트를 사용하여 운세 결과를 확인한 경우 (디지털 콘텐츠 이용 개시)</li>
+                            <li>이용권을 사용하여 운세 결과를 확인한 경우 (디지털 콘텐츠 이용 개시)</li>
                             <li>운세 결과 화면 진입 시 자동으로 청약철회권이 소멸됩니다</li>
                         </ul>
                         <p class="policy-modal__section-text"><strong>청약철회 가능:</strong></p>
                         <ul class="policy-modal__section-list">
-                            <li>포인트 충전 후 미사용 상태에서 7일 이내</li>
+                            <li>이용권 구매 후 미사용 상태에서 7일 이내</li>
                             <li>서비스 장애로 정상적인 이용이 불가한 경우</li>
                         </ul>
                     </div>
@@ -165,9 +165,10 @@
                         <h3 class="policy-modal__section-title">6. 환불 불가 사항</h3>
                         <ul class="policy-modal__section-list">
                             <li>운세 결과에 대한 주관적 불만족</li>
+                            <li>이용권 구매 후 사용하여 횟수가 차감된 경우</li>
                             <li>단순 변심 (콘텐츠 이용 개시 후)</li>
-                            <li>이벤트 또는 프로모션으로 무상 지급된 포인트</li>
-                            <li>부정한 방법으로 획득한 포인트</li>
+                            <li>이벤트 또는 프로모션으로 무상 지급된 이용권</li>
+                            <li>부정한 방법으로 획득한 이용권</li>
                         </ul>
                     </div>
 
@@ -206,8 +207,8 @@
                     <div class="policy-modal__section">
                         <h3 class="policy-modal__section-title">1. 서비스 제공 시기</h3>
                         <ul class="policy-modal__section-list">
-                            <li>포인트 충전: <strong>즉시</strong> (결제 승인 완료 즉시)</li>
-                            <li>운세 결과 제공: <strong>즉시</strong> (포인트 차감 후 1~2초 이내)</li>
+                            <li>이용권 구매: <strong>즉시</strong> (결제 승인 완료 즉시)</li>
+                            <li>운세 결과 제공: <strong>즉시</strong> (이용권 차감 후 1~2초 이내)</li>
                             <li>본 서비스는 실시간 디지털 콘텐츠 제공으로 별도의 배송기간이 없습니다</li>
                         </ul>
                     </div>
@@ -216,25 +217,25 @@
                         <h3 class="policy-modal__section-title">2. 서비스 이용 방법</h3>
                         <p class="policy-modal__section-text"><strong>사주 운세:</strong></p>
                         <ul class="policy-modal__section-list">
-                            <li>필요 포인트 상품에 따라 다름</li>
+                            <li>1회 이용권 차감</li>
                             <li>생년월일, 출생시간 입력 후 즉시 결과 제공</li>
                             <li>결과는 저장되어 언제든 재확인 가능</li>
                         </ul>
                         <p class="policy-modal__section-text"><strong>타로 운세:</strong></p>
                         <ul class="policy-modal__section-list">
-                            <li>필요 포인트 상품에 따라 다름</li>
+                            <li>1회 이용권 차감</li>
                             <li>카드 선택 후 즉시 결과 제공</li>
                             <li>결과는 저장되어 언제든 재확인 가능</li>
                         </ul>
                     </div>
 
                     <div class="policy-modal__section">
-                        <h3 class="policy-modal__section-title">3. 포인트 유효기간</h3>
+                        <h3 class="policy-modal__section-title">3. 이용권 유효기간</h3>
                         <ul class="policy-modal__section-list">
-                            <li>충전 포인트: <strong>충전일로부터 5년</strong></li>
-                            <li>보너스 포인트: <strong>지급일로부터 1년</strong></li>
-                            <li>이벤트 포인트: 개별 이벤트 조건에 따름</li>
-                            <li>유효기간 만료 30일 전 알림 제공</li>
+                            <li>구매 이용권: <strong>구매일로부터 3개월</strong></li>
+                            <li>이벤트 이용권: 개별 이벤트 조건에 따름</li>
+                            <li>유효기간 만료 7일 전 알림 제공</li>
+                            <li>유효기간 만료 시 자동 소멸되며 복구 불가</li>
                         </ul>
                     </div>
 
@@ -262,7 +263,7 @@
                         <h3 class="policy-modal__section-title">6. 서비스 품질 보증</h3>
                         <ul class="policy-modal__section-list">
                             <li>AI 기반 운세 결과 제공</li>
-                            <li>시스템 오류 시 포인트 자동 환급</li>
+                            <li>시스템 오류 시 이용권 자동 환급</li>
                             <li>결과 미제공 시 24시간 내 처리</li>
                         </ul>
                     </div>
