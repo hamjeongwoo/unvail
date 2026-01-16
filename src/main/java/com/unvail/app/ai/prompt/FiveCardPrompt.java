@@ -9,8 +9,6 @@ import lombok.Getter;
 @Getter
 public class FiveCardPrompt implements PromptStrategy<TarotRequestDto>{
 
-    private int point = 800;
-
     String base= """
             당신은 30년 경력의 전문 타로 리더입니다.
             파이브카드 타로 리딩을 제공하며, 깊이 있고 구조적인 해석을 합니다.
@@ -40,7 +38,7 @@ public class FiveCardPrompt implements PromptStrategy<TarotRequestDto>{
             5. 최종 방향성
             6. 핵심 메시지
      
-            전체 길이는 1300-1400자 정도로 작성해주세요.
+            전체 길이는 1100-1500자 정도로 작성해주세요.
             
             응답구조: 아래 패턴으로
             <div class="result__section">
@@ -66,8 +64,4 @@ public class FiveCardPrompt implements PromptStrategy<TarotRequestDto>{
         }
     }
 
-    @Override
-    public int getPoint(){
-        return point;
-    }
 }

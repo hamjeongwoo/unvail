@@ -9,8 +9,6 @@ import lombok.Getter;
 @Getter
 public class OneCardPrompt implements PromptStrategy<TarotRequestDto>{
 
-    private int point = 500;
-
     String base= """
             당신은 30년 경력의 전문 타로 리더입니다.
             원카드 타로 리딩을 제공하며, 신비롭고 통찰력 있는 해석을 제공합니다.
@@ -24,11 +22,8 @@ public class OneCardPrompt implements PromptStrategy<TarotRequestDto>{
             %s
             
             다음 형식으로 답변해주세요:
-            1. 카드의 기본 의미
-            2. 현재 상황 해석
-            3. 조언과 방향성
-            4. 핵심 메시지
-            전체 길이는 500-600자 정도로 작성해주세요.
+            자유형식
+            전체 길이는 300-400자 정도로 작성해주세요.
             
             응답구조: 아래 패턴으로
             <div class="result__section">
@@ -48,10 +43,5 @@ public class OneCardPrompt implements PromptStrategy<TarotRequestDto>{
             e.printStackTrace();
             throw new BusinessException(ErrorCode.PROMPT_ERROR01);
         }
-    }
-
-    @Override
-    public int getPoint(){
-        return point;
     }
 }

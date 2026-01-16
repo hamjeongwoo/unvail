@@ -387,9 +387,9 @@ function submitTarot() {
         ,question: question||'없음'
     }
 
-    let message = `${tarotTypeInfo[currentType].cost}포인트를 사용하여 결과를 확인하시겠습니까?`;
+    let message = `선택하신 카드로 리딩을 진행 하시겠습니까?`;
     if (!question) {
-        message = `질문을 입력하지 않았습니다. 질문 없이 ${tarotTypeInfo[currentType].cost}포인트를 사용하여 결과를 확인하시겠습니까?`;
+        message = `질문을 입력하지 않았습니다. 질문 없이 선택하신 카드로 리딩을 진행 하시겠습니까?`;
     }
 
     showModal({

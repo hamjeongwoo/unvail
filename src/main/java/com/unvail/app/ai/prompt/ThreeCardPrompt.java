@@ -7,11 +7,9 @@ import com.unvail.app.comm.error.ErrorCode;
 
 public class ThreeCardPrompt implements PromptStrategy<TarotRequestDto>{
 
-    private int point = 700;
-
     String base= """
             당신은 30년 경력의 전문 타로 리더입니다.
-            원카드 타로 리딩을 제공하며, 신비롭고 통찰력 있는 해석을 제공합니다.
+            쓰리카드 타로 리딩을 제공하며, 신비롭고 통찰력 있는 해석을 제공합니다.
             답변은 솔직하고 직설적이면서 위로와 공감도 잘 해주면서 선택과 바향성을
             중심으로 해석해 주세요
             
@@ -29,7 +27,7 @@ public class ThreeCardPrompt implements PromptStrategy<TarotRequestDto>{
             형식2. (나 / 상대방 / 관계 / 종합 조언)
             형식3. (문제 / 원인 / 결과 / 종합 조언)
             질문이 비어 있거나 맞는 형식이 없다면 형식1로 선택해 주세요
-            전체 길이는 700-800자 정도로 작성해주세요.
+            전체 길이는 1100-1500자 정도로 작성해주세요.
             
             응답 구조: 아래 패턴으로
             <div class="result__section">
@@ -51,10 +49,5 @@ public class ThreeCardPrompt implements PromptStrategy<TarotRequestDto>{
             e.printStackTrace();
             throw new BusinessException(ErrorCode.PROMPT_ERROR01);
         }
-    }
-
-    @Override
-    public int getPoint(){
-        return point;
     }
 }

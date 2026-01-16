@@ -7,11 +7,9 @@ import com.unvail.app.comm.error.ErrorCode;
 
 public class CelticCrossPrompt implements PromptStrategy<TarotRequestDto>{
 
-    private int point = 900;
-
     String base= """
             당신은 30년 경력의 전문 타로 리더입니다.
-            원카드 타로 리딩을 제공하며, 신비롭고 통찰력 있는 해석을 제공합니다.
+            켈틱크로스 타로 리딩을 제공하며, 신비롭고 통찰력 있는 해석을 제공합니다.
             답변은 솔직하고 직설적이면서 위로와 공감도 잘 해주면서 선택과 바향성을
             중심으로 해석해 주세요
             
@@ -45,7 +43,7 @@ public class CelticCrossPrompt implements PromptStrategy<TarotRequestDto>{
              - 인생 상담 수준
              - “지금의 문제가 왜 반복되는가”를 설명
              - 장기 흐름과 성격 패턴까지 읽음
-            전체 길이는 1600-1700자 정도로 작성해주세요.
+            전체 길이는 1100-1500자 정도로 작성해주세요.
             
             응답구조: 아래 패턴으로
             <div class="result__section">
@@ -74,10 +72,5 @@ public class CelticCrossPrompt implements PromptStrategy<TarotRequestDto>{
             e.printStackTrace();
             throw new BusinessException(ErrorCode.PROMPT_ERROR01);
         }
-    }
-
-    @Override
-    public int getPoint(){
-        return point;
     }
 }

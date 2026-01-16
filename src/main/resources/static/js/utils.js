@@ -127,8 +127,8 @@ function goToMain() {
 }
 
 // 뒤로 가기
-function goBack(pageUrl) {
-    location.href=pageUrl;
+function goBack() {
+    location.history.back();
 }
 
 function goToPage(pagesUrl){
