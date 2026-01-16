@@ -101,36 +101,18 @@ function chargeBtnChargeState(trueFalse) {
     document.getElementById('chargeBtn').textContent = trueFalse ? '구매 중...' : '이용권 구매하기';
 }
 
-async function requestPayment(provider) {
+function requestPayment(provider) {
     chargeBtnChargeState(true);
-    const paymentId = `payment-${crypto.randomUUID()}`;
-    const payment = await PortOne.requestPayment({
+    PortOne.requestPayment({
         storeId: currentInfo.storeId,
         channelKey: currentInfo.channelId,
-        paymentId: paymentId,
+        paymentId: `payment-unveil-${crypto.randomUUID()}`,
         orderName: chargeState.selectedTicket.dataset.prodNm,
         totalAmount: chargeState.selectedTicket.dataset.amount,
         currency: "CURRENCY_KRW",
         payMethod: getPayMethod(),
-        /*redirectUrl: `${location.protocol}//${location.host}/payment/${chargeState.selectedPayment}/complete`,*/
+        redirectUrl: `${location.protocol}//${location.host}/payment/${chargeState.selectedPayment}/complete`,
     });
-
-    if (payment.code !== undefined) {
-        chargeBtnChargeState(false);
-        console.log(payment)
-        showChargeErrorModal(payment.message)
-        return;
-    }
-
-    const completeResponse = await _ac.get(`/api/payment/${provider}/complete`, {paymentId: payment.paymentId})
-    if (completeResponse.ok) {
-        const paymentComplete = await completeResponse.json()
-        if (paymentComplete.status === "PAID") {
-            this.openSuccessDialog()
-        }
-    } else {
-        this.openFailDialog(await completeResponse.text())
-    }
 }
 
 function getPayMethod(){
