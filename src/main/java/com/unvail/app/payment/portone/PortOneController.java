@@ -24,22 +24,24 @@ public class PortOneController {
 
     @GetMapping("/kakao/complete")
     public ModelAndView paymentComplete(PayRequestDto param){
-        ModelAndView modelAndView = new ModelAndView("auth/charge?success=ok");
+        ModelAndView modelAndView = new ModelAndView();
         log.debug("payment_id = {}, code = {}", param.getPaymentId(),  param.getCode());
 
         if(param.getCode() != null){
-            modelAndView.setViewName("auth/charge?error=ok&message=" + param.getMessage());
+            modelAndView.setViewName("redirect:/charge?error=ok&message=" + param.getMessage());
+            return modelAndView;
         }
 
         try {
             Payment payment = portOneClient.getKakaoPayment(param.getPaymentId());
+            modelAndView.setViewName("redirect:/charge?success=ok");
             if(log.isDebugEnabled()){
                 log.debug(objectMapper.writeValueAsString(payment));
             }
         } catch (ExecutionException | InterruptedException e) {
-            modelAndView.setViewName("auth/charge?error=ok");
+            modelAndView.setViewName("redirect:/charge?error=ok");
         } catch (JsonProcessingException e) {
-            modelAndView.setViewName("auth/charge?error=ok");
+            modelAndView.setViewName("redirect:/charge?error=ok");
             throw new RuntimeException(e);
         }
 
