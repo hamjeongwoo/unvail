@@ -107,7 +107,7 @@ function requestPayment() {
         totalAmount: 1000,
         currency: "CURRENCY_KRW",
         payMethod: getPayMethod(),
-        redirectUrl: `${location.host}/payment/${chargeState.selectedPayment}/complete`,
+        redirectUrl: `${location.protocol}://${location.host}/payment/${chargeState.selectedPayment}/complete`,
     });
 }
 
