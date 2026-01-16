@@ -2,7 +2,9 @@ package com.unvail.app.payment.portone;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.unvail.app.comm.ContextUtils;
 import com.unvail.app.comm.error.BusinessException;
+import com.unvail.app.users.UnveilUser;
 import io.portone.sdk.server.payment.Payment;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,7 +27,8 @@ public class PortOneController {
 
     @GetMapping("/{provider}/complete")
     public ModelAndView paymentComplete(PayRequestDto param, @PathVariable String provider) {
-        log.debug("provider= {} param={}", provider, param);
+        UnveilUser user = ContextUtils.getUnveilUser().get();
+        log.debug("provider= {} param= {} user= {}", provider, param, user);
 
         ModelAndView modelAndView = new ModelAndView();
         log.debug("payment_id = {}, code = {}", param.getPaymentId(),  param.getCode());
