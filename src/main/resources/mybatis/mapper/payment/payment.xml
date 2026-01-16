@@ -26,8 +26,8 @@
             receipt_url,
             pg_response
         ) VALUES (
-                     #{paymentId},
-                     #{sessionId}
+                     #{paymentId}
+                     #{sessionId},
                      #{transactionId},
                      #{merchantId},
                      #{storeId},
