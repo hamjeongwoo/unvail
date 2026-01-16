@@ -4,6 +4,7 @@ import com.unvail.app.oauth.CustomOAuth2User;
 import com.unvail.app.users.UnveilUser;
 import com.unvail.app.users.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,12 @@ import java.util.Optional;
 public class ViewCommService {
 
     private final UserService userService;
+
+    @Value("${portone.store-id}")
+    private String storeId;
+
+    @Value("${portone.channel-id}")
+    private String channelId;
 
     public void postLoginHandler(Model model){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -38,5 +45,7 @@ public class ViewCommService {
         model.addAttribute("curPoint", curPoint);
         model.addAttribute("email", email);
         model.addAttribute("oauthType", oauthType);
+        model.addAttribute("storeId", storeId);
+        model.addAttribute("channelId", channelId);
     }
 }

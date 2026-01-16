@@ -2,11 +2,13 @@ package com.unvail.app.payment.portone;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.unvail.app.comm.error.BusinessException;
 import io.portone.sdk.server.payment.Payment;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -19,11 +21,12 @@ import java.util.concurrent.ExecutionException;
 @Controller
 public class PortOneController {
 
-    private final PortOneClient portOneClient;
-    private final ObjectMapper objectMapper;
+    private final PortOneService portOneService;
 
-    @GetMapping("/kakao/complete")
-    public ModelAndView paymentComplete(PayRequestDto param){
+    @GetMapping("/{provider}/complete")
+    public ModelAndView paymentComplete(PayRequestDto param, @PathVariable String provider) {
+        log.debug("provider= {} param={}", provider, param);
+
         ModelAndView modelAndView = new ModelAndView();
         log.debug("payment_id = {}, code = {}", param.getPaymentId(),  param.getCode());
 
@@ -33,17 +36,14 @@ public class PortOneController {
         }
 
         try {
-            Payment payment = portOneClient.getKakaoPayment(param.getPaymentId());
-            modelAndView.setViewName("redirect:/charge?success=ok");
-            if(log.isDebugEnabled()){
-                log.debug(objectMapper.writeValueAsString(payment));
-            }
-        } catch (ExecutionException | InterruptedException e) {
+            portOneService.ticketPucharse(param.getPaymentId(), PgTypeEnum.KAKAO);
+        } catch (ExecutionException | JsonProcessingException | InterruptedException e) {
             modelAndView.setViewName("redirect:/charge?error=ok");
-        } catch (JsonProcessingException e) {
-            modelAndView.setViewName("redirect:/charge?error=ok");
-            throw new RuntimeException(e);
+        } catch (BusinessException e){
+            modelAndView.setViewName("redirect:/charge?error=ok&message=" + e.getErrorCode().getMessage());
         }
+
+
 
         return modelAndView;
     }

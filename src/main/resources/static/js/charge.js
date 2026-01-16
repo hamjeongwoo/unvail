@@ -1,16 +1,17 @@
 // 충전 페이지 상태
 const chargeState = {
-    selectedTicket: 'b',
+    selectedTicket: null,
     selectedPayment: null
 };
 
 // 페이지 로드 시 초기화
 document.addEventListener('DOMContentLoaded', function() {
-    updatePointUI();
-    updateCurrentPoint();
+    if(!window.currentInfo.isLoggedIn) goToLogin();
+
     initTermsCheckboxes();
     initSelectedStates();
 
+    chargeState.selectedTicket = document.getElementsByClassName('package-item--selected')[0]
     const urlParams = new URLSearchParams(window.location.search);
     const error = urlParams.get('error');
     const success = urlParams.get('success');
@@ -18,10 +19,6 @@ document.addEventListener('DOMContentLoaded', function() {
     if(error === 'ok') showChargeErrorModal(message)
     if(success === 'ok') showChargeSuccessModal();
 });
-
-// 현재 포인트 표시
-function updateCurrentPoint() {
-}
 
 // 패키지 선택
 function selectPackage(el) {
@@ -32,7 +29,7 @@ function selectPackage(el) {
     });
 
     el.classList.add('package-item--selected');
-    chargeState.selectedTicket = el.dataset.ticketId;
+    chargeState.selectedTicket = el
 
     // 충전 버튼 활성화 여부 확인
     checkChargeButton();
@@ -101,11 +98,11 @@ function processCharge() {
 
 function requestPayment() {
     PortOne.requestPayment({
-        storeId: "store-d634ec72-0de5-4990-84fc-f2aa1450b88b",
-        channelKey: "channel-key-9878a0fa-0a48-4ac4-8b16-8a53bff786c3",
+        storeId: currentInfo.storeId,
+        channelKey: currentInfo.channelId,
         paymentId: `payment-${crypto.randomUUID()}`,
-        orderName: "나이키 와플 트레이너 2 SD",
-        totalAmount: 1000,
+        orderName: chargeState.selectedTicket.dataset.prodNm,
+        totalAmount: chargeState.selectedTicket.dataset.amount,
         currency: "CURRENCY_KRW",
         payMethod: getPayMethod(),
         redirectUrl: `${location.protocol}//${location.host}/payment/${chargeState.selectedPayment}/complete`,

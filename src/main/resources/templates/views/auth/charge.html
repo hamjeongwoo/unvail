@@ -14,43 +14,44 @@
         <section class="charge-packages">
             <h2 class="charge-packages__title">이용권 패키지 선택</h2>
             <div class="package-list">
-                <button class="package-item" data-ticket-id="a" onclick="selectPackage(this)">
-                    <div class="package-item__points">
-                        <span class="point-icon">🎫</span>
-                        <span class="points-amount">1회 이용권</span>
-                    </div>
-                    <div class="package-item__price">₩300</div>
-                    <div class="package-item__check">✓</div>
-                </button>
-
-                <button class="package-item package-item--popular package-item--selected" data-ticket-id="b" onclick="selectPackage(this)">
+                <button class="package-item" data-ticket-id="basic" data-amount="900" data-prod-nm="Basic 이용권" onclick="selectPackage(this)">
                     <div class="package-item__badge">인기</div>
                     <div class="package-item__points">
                         <span class="point-icon">🎫</span>
-                        <span class="points-amount">4회 이용권</span>
+                        <span class="points-amount">Basic 이용권</span>
                     </div>
-                    <div class="package-item__price">₩900</div>
-                    <div class="package-item__bonus">기본 3회 보너스 +1회</div>
+                    <div class="package-item__price">₩900원</div>
+                    <div class="package-item__bonus">사주 1 · 타로 1</div>
                     <div class="package-item__check">✓</div>
                 </button>
 
-                <button class="package-item" data-ticket-id="c" onclick="selectPackage(this)">
+                <button class="package-item package-item--popular package-item--selected" data-ticket-id="standard" data-amount="1700" data-prod-nm="Standard 이용권" onclick="selectPackage(this)">
                     <div class="package-item__points">
                         <span class="point-icon">🎫</span>
-                        <span class="points-amount">8회 이용권</span>
+                        <span class="points-amount">Standard 이용권</span>
                     </div>
-                    <div class="package-item__price">₩1,800</div>
-                    <div class="package-item__bonus">기본 6회 보너스 +2회</div>
+                    <div class="package-item__price">₩1,700원</div>
+                    <div class="package-item__bonus">사주 2 · 타로 3</div>
                     <div class="package-item__check">✓</div>
                 </button>
 
-                <button class="package-item" data-ticket-id="d" onclick="selectPackage(this)">
+                <button class="package-item" data-ticket-id="premium" data-amount="2600" data-prod-nm="Premium 이용권" onclick="selectPackage(this)">
                     <div class="package-item__points">
                         <span class="point-icon">🎫</span>
-                        <span class="points-amount">12회 이용권</span>
+                        <span class="points-amount">Premium 이용권</span>
                     </div>
-                    <div class="package-item__price">₩2,700</div>
-                    <div class="package-item__bonus">기본9회 보너스 +3회</div>
+                    <div class="package-item__price">₩2,600원</div>
+                    <div class="package-item__bonus">사주 3 · 타로 6</div>
+                    <div class="package-item__check">✓</div>
+                </button>
+
+                <button class="package-item" data-ticket-id="ultimate" data-amount="3500" data-prod-nm="Ultimate 이용권" onclick="selectPackage(this)">
+                    <div class="package-item__points">
+                        <span class="point-icon">🎫</span>
+                        <span class="points-amount">Ultimate 이용권</span>
+                    </div>
+                    <div class="package-item__price">₩3,500원</div>
+                    <div class="package-item__bonus">사주 4 · 타로 9</div>
                     <div class="package-item__check">✓</div>
                 </button>
             </div>

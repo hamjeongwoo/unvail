@@ -23,10 +23,11 @@ public enum ErrorCode {
     PROMPT_ERROR01(HttpStatus.INTERNAL_SERVER_ERROR, "P001", "프롬프트를 구성중에 문제가 발생하였습니다."),
     PROMPT_ERROR02(HttpStatus.INTERNAL_SERVER_ERROR, "P002", "질문 유형에 대한 사전 정의된 내용이 존재 하지 않습니다."),
 
-    NOT_FOUND_EMAIL(HttpStatus.INTERNAL_SERVER_ERROR, "I001", "이메일 정보가 없어 로그인할 수 없습니다.");
+    NOT_FOUND_EMAIL(HttpStatus.INTERNAL_SERVER_ERROR, "I001", "이메일 정보가 없어 로그인할 수 없습니다."),
 
-
-
+    ERROR_PG_TICKET(HttpStatus.INTERNAL_SERVER_ERROR, "PG001", "결제 정보에 문제가 있어 결제 처리 되지 않았습니다."),
+    ERROR_PG_RES(HttpStatus.INTERNAL_SERVER_ERROR, "PG002", "PG사에서 받은 데이터에 문제가 있어 처리 되지 않았습니다."),
+    ERROR_PG_RES_SAVE(HttpStatus.INTERNAL_SERVER_ERROR, "PG003", "PG사로 부터 전달받은 데이터를 저장 중 문제가 생겨 처리 되지 않았습니다.");
 
 
     private final HttpStatus status;

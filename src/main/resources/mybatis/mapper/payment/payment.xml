@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.unvail.app.payment.PaymentMapper">
+
+    <insert id="insertPayment" parameterType="com.unvail.app.payment.PaymentVo">
+        INSERT INTO payments (
+            payment_id,
+            transaction_id,
+            merchant_id,
+            store_id,
+            status,
+            payment_provider,
+            order_name,
+            amount_total,
+            amount_vat,
+            amount_supply,
+            currency,
+            customer_id,
+            requested_at,
+            paid_at,
+            pg_tx_id,
+            receipt_url,
+            pg_response
+        ) VALUES (
+                     #{paymentId},
+                     #{transactionId},
+                     #{merchantId},
+                     #{storeId},
+                     #{status},
+                     #{paymentProvider},
+                     #{orderName},
+                     #{amountTotal},
+                     #{amountVat},
+                     #{amountSupply},
+                     #{currency},
+                     #{customerId},
+                     #{requestedAt},
+                     #{paidAt},
+                     #{pgTxId},
+                     #{receiptUrl},
+                     #{pgResponse}
+                 )
+    </insert>
+
+    <select id="selectByPaymentId"
+            parameterType="string"
+            resultType="com.unvail.app.payment.PaymentVo">
+        SELECT
+            payment_id
+            , transaction_id
+            , merchant_id
+            , store_id
+            , status,
+            , payment_provide
+            , order_name
+            , amount_total
+            , amount_vat
+            , amount_supply
+            , currency
+            , customer_id
+            , requested_at
+            , paid_at
+            , pg_tx_id
+            , receipt_url
+            , pg_response
+        FROM payments
+        WHERE payment_id = #{paymentId}
+    </select>
+
+</mapper>
