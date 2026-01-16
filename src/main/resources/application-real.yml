@@ -67,3 +67,8 @@ server:
     key-store-type: PKCS12
     key-store-password: gkawjddn!1
     key-alias: unveil
+
+portone:
+  api_url: https://api.portone.io
+  kakao_sec_key: Kuoag87lxkkoFVDUdQXkWTI8eYKGGlet3rotHtJxbd2GI3ZzIQzIxTl1lQovUq268UviJTekrzXZccgc
+  store_id: store-d634ec72-0de5-4990-84fc-f2aa1450b88b

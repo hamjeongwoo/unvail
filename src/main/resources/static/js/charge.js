@@ -1,9 +1,6 @@
-var AppState = {
-    point: 0
-}
 // 충전 페이지 상태
-var chargeState = {
-    selectedPoints: null,
+const chargeState = {
+    selectedTicket: 'b',
     selectedPayment: null
 };
 
@@ -13,30 +10,28 @@ document.addEventListener('DOMContentLoaded', function() {
     updateCurrentPoint();
     initTermsCheckboxes();
     initSelectedStates();
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const error = urlParams.get('error');
+    const success = urlParams.get('success');
+    if(error === 'ok') showChargeErrorModal()
+    if(success === 'ok') showChargeSuccessModal();
 });
 
 // 현재 포인트 표시
 function updateCurrentPoint() {
-    var currentPoint = document.getElementById('currentPoint');
-    if (currentPoint) {
-        currentPoint.textContent = AppState.point;
-    }
 }
 
 // 패키지 선택
-function selectPackage(points) {
+function selectPackage(el) {
     // 모든 패키지 비활성화
     var packages = document.querySelectorAll('.package-item');
     packages.forEach(function(pkg) {
         pkg.classList.remove('package-item--selected');
     });
 
-    // 선택한 패키지 활성화
-    var selectedPackage = document.querySelector('.package-item[data-points="' + points + '"]');
-    if (selectedPackage) {
-        selectedPackage.classList.add('package-item--selected');
-        chargeState.selectedPoints = points;
-    }
+    el.classList.add('package-item--selected');
+    chargeState.selectedTicket = el.dataset.ticketId;
 
     // 충전 버튼 활성화 여부 확인
     checkChargeButton();
@@ -68,7 +63,7 @@ function checkChargeButton() {
     var agreeService = document.getElementById('agreeService');
 
     // 패키지, 결제수단, 약관 모두 동의 시 활성화
-    if (chargeState.selectedPoints &&
+    if (chargeState.selectedTicket &&
         chargeState.selectedPayment &&
         agreeRefund && agreeRefund.checked &&
         agreeService && agreeService.checked) {
@@ -80,96 +75,71 @@ function checkChargeButton() {
 
 // 충전 처리
 function processCharge() {
-    if (!chargeState.selectedPoints || !chargeState.selectedPayment) {
+    if (!chargeState.selectedTicket || !chargeState.selectedPayment) {
         return;
     }
 
-    // 로딩 표시 (실제로는 결제 API 호출)
-    var chargeBtn = document.getElementById('chargeBtn');
-    var originalText = chargeBtn.textContent;
-    chargeBtn.disabled = true;
-    chargeBtn.textContent = '처리 중...';
+    if(chargeState.selectedPayment === 'kakao'){
+        // 로딩 표시 (실제로는 결제 API 호출)
+        const chargeBtn = document.getElementById('chargeBtn');
+        const originalText = chargeBtn.textContent;
+        chargeBtn.disabled = true;
+        chargeBtn.textContent = '처리 중...';
 
-    // 더미 결제 처리 (실제로는 결제 API 연동)
-    setTimeout(function() {
-        // 포인트 추가
-        var pointsToAdd = chargeState.selectedPoints;
-
-        // 보너스 적용
-        if (chargeState.selectedPoints === 3000) {
-            pointsToAdd = Math.floor(pointsToAdd * 1.05); // 5% 보너스
-        } else if (chargeState.selectedPoints === 5000) {
-            pointsToAdd = Math.floor(pointsToAdd * 1.10); // 10% 보너스
-        }
-
-        AppState.point += pointsToAdd;
-        updatePointUI();
-        updateCurrentPoint();
-
-        // 성공 모달 표시
-        showChargeSuccessModal(pointsToAdd);
-
-        // 버튼 원상복구
-        chargeBtn.disabled = false;
-        chargeBtn.textContent = originalText;
-
-        // 선택 초기화
-        resetSelection();
-    }, 1500);
-}
-
-// 충전 성공 모달
-function showChargeSuccessModal(points) {
-    var modal = document.createElement('div');
-    modal.className = 'modal modal--active';
-    modal.innerHTML = `
-        <div class="modal__overlay"></div>
-        <div class="modal__content modal__content--success">
-            <div class="modal__icon">✓</div>
-            <h3 class="modal__title">충전 완료</h3>
-            <p class="modal__desc">
-                ${points.toLocaleString()} 포인트가 충전되었습니다.<br>
-                현재 보유: ${AppState.point.toLocaleString()} 포인트
-            </p>
-            <button class="btn btn--primary btn--large" onclick="closeSuccessModal()">확인</button>
-        </div>
-    `;
-    document.body.appendChild(modal);
-}
-
-// 성공 모달 닫기
-function closeSuccessModal() {
-    var modal = document.querySelector('.modal--active');
-    if (modal) {
-        modal.remove();
+        requestPayment();
+    }else{
+        showModal({
+            title: '구매하기',
+            message: `준비중 입니다...`,
+            type: 'warning',
+            confirmText: '확인',
+            showCancel: false,
+        });
     }
 }
 
-// 선택 초기화
-function resetSelection() {
-    // 패키지 선택 초기화
-    var packages = document.querySelectorAll('.package-item');
-    packages.forEach(function(pkg) {
-        pkg.classList.remove('package-item--selected');
+function requestPayment() {
+    PortOne.requestPayment({
+        storeId: "store-d634ec72-0de5-4990-84fc-f2aa1450b88b",
+        channelKey: "channel-key-9878a0fa-0a48-4ac4-8b16-8a53bff786c3",
+        paymentId: `payment-${crypto.randomUUID()}`,
+        orderName: "나이키 와플 트레이너 2 SD",
+        totalAmount: 1000,
+        currency: "CURRENCY_KRW",
+        payMethod: "EASY_PAY",
+        redirectUrl: `${location.host}/api/`,
     });
 
-    // 결제 수단 선택 초기화
-    var payments = document.querySelectorAll('.payment-item');
-    payments.forEach(function(payment) {
-        payment.classList.remove('payment-item--selected');
-    });
-
-    chargeState.selectedPoints = null;
-    chargeState.selectedPayment = null;
-
-    // 충전 버튼 비활성화
-    var chargeBtn = document.getElementById('chargeBtn');
-    chargeBtn.disabled = true;
+    // /payment/complete 엔드포인트를 구현해야 합니다. 다음 목차에서 설명합니다.
+    // const notified = await fetch(`${SERVER_BASE_URL}/payment/complete`, {
+    //     method: "POST",
+    //     headers: { "Content-Type": "application/json" },
+    //     // paymentId와 주문 정보를 서버에 전달합니다
+    //     body: JSON.stringify({
+    //         paymentId: paymentId,
+    //         // 주문 정보...
+    //     }),
+    // });
 }
 
-// 뒤로가기
-function goBack() {
-    window.location.href = 'main.html';
+function showChargeSuccessModal() {
+    showModal({
+        title: '구매 성공',
+        message: `이용권 구매가 정상 처리 되었습니다.`,
+        type: 'success',
+        confirmText: '확인',
+        showCancel: false,
+    });
+}
+
+function showChargeErrorModal() {
+    showModal({
+        title: '구매하기',
+        message: `결제 처리가 이루어 지지 않았습니다.`,
+        type: 'error',
+        confirmText: '확인',
+        showCancel: false,
+    });
 }
 
 // 전체 약관 동의 토글
@@ -213,7 +183,7 @@ function initSelectedStates() {
     if (selectedPackage) {
         var points = selectedPackage.getAttribute('data-points');
         if (points) {
-            chargeState.selectedPoints = parseInt(points);
+            chargeState.selectedTicket = parseInt(points);
         }
     }
 

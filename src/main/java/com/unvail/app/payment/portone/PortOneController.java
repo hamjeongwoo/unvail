@@ -1,0 +1,41 @@
+package com.unvail.app.payment.portone;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import io.portone.sdk.server.payment.Payment;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.concurrent.ExecutionException;
+
+@Slf4j
+@RequiredArgsConstructor
+@Controller
+public class PortOneController {
+
+    private final PortOneClient portOneClient;
+    private final ObjectMapper objectMapper;
+
+    @GetMapping("/payment/kakao/complete")
+    public String paymentComplete(@RequestParam String payment_id){
+        log.debug("payment_id {}", payment_id);
+
+        try {
+            Payment payment = portOneClient.getKakaoPayment(payment_id);
+            if(log.isDebugEnabled()){
+                log.debug(objectMapper.writeValueAsString(payment));
+            }
+        } catch (ExecutionException | InterruptedException e) {
+            return "charge?error=ok";
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+
+        return "charge?success=ok";
+    }
+
+
+}

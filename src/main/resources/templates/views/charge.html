@@ -14,7 +14,7 @@
         <section class="charge-packages">
             <h2 class="charge-packages__title">이용권 패키지 선택</h2>
             <div class="package-list">
-                <button class="package-item" onclick="selectPackage(300)">
+                <button class="package-item" data-ticket-id="a" onclick="selectPackage(this)">
                     <div class="package-item__points">
                         <span class="point-icon">🎫</span>
                         <span class="points-amount">1회 이용권</span>
@@ -23,7 +23,7 @@
                     <div class="package-item__check">✓</div>
                 </button>
 
-                <button class="package-item package-item--popular package-item--selected" onclick="selectPackage()">
+                <button class="package-item package-item--popular package-item--selected" data-ticket-id="b" onclick="selectPackage(this)">
                     <div class="package-item__badge">인기</div>
                     <div class="package-item__points">
                         <span class="point-icon">🎫</span>
@@ -34,7 +34,7 @@
                     <div class="package-item__check">✓</div>
                 </button>
 
-                <button class="package-item" onclick="selectPackage()">
+                <button class="package-item" data-ticket-id="c" onclick="selectPackage(this)">
                     <div class="package-item__points">
                         <span class="point-icon">🎫</span>
                         <span class="points-amount">8회 이용권</span>
@@ -44,7 +44,7 @@
                     <div class="package-item__check">✓</div>
                 </button>
 
-                <button class="package-item" onclick="selectPackage()">
+                <button class="package-item" data-ticket-id="d" onclick="selectPackage(this)">
                     <div class="package-item__points">
                         <span class="point-icon">🎫</span>
                         <span class="points-amount">12회 이용권</span>
@@ -295,4 +295,5 @@
     </main>
     <!-- 스크립트 -->
     <script src="/js/charge.js"></script>
+    <script src="https://cdn.portone.io/v2/browser-sdk.js"></script>
 {{>layout/footer}}
