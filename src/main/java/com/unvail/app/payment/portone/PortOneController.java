@@ -7,19 +7,21 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.concurrent.ExecutionException;
 
 @Slf4j
 @RequiredArgsConstructor
+@RequestMapping("/payment")
 @Controller
 public class PortOneController {
 
     private final PortOneClient portOneClient;
     private final ObjectMapper objectMapper;
 
-    @GetMapping("/payment/kakao/complete")
+    @GetMapping("/kakao/complete")
     public String paymentComplete(@RequestParam String payment_id){
         log.debug("payment_id {}", payment_id);
 

@@ -106,20 +106,19 @@ function requestPayment() {
         orderName: "나이키 와플 트레이너 2 SD",
         totalAmount: 1000,
         currency: "CURRENCY_KRW",
-        payMethod: "EASY_PAY",
-        redirectUrl: `${location.host}/api/`,
+        payMethod: getPayMethod(),
+        redirectUrl: `${location.host}/payment/${chargeState.selectedPayment}/complete`,
     });
+}
 
-    // /payment/complete 엔드포인트를 구현해야 합니다. 다음 목차에서 설명합니다.
-    // const notified = await fetch(`${SERVER_BASE_URL}/payment/complete`, {
-    //     method: "POST",
-    //     headers: { "Content-Type": "application/json" },
-    //     // paymentId와 주문 정보를 서버에 전달합니다
-    //     body: JSON.stringify({
-    //         paymentId: paymentId,
-    //         // 주문 정보...
-    //     }),
-    // });
+function getPayMethod(){
+    if(chargeState.selectedPayment === 'kakao'
+        || chargeState.selectedPayment === 'naver'
+        || chargeState.selectedPayment === 'toss'){
+        return "EASY_PAY"
+    }else{
+        return "CARD"
+    }
 }
 
 function showChargeSuccessModal() {
