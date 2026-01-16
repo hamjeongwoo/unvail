@@ -4,8 +4,10 @@ import com.unvail.app.payment.portone.PaymentStatus;
 import io.portone.sdk.server.payment.PaidPayment;
 import io.portone.sdk.server.payment.Payment;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+@Slf4j
 @RequiredArgsConstructor
 @Service
 public class PaymentService {
@@ -13,7 +15,11 @@ public class PaymentService {
     private final PaymentMapper paymentMapper;
 
     public int insertPayment(Payment payment){
-        return paymentMapper.insertPayment(from(payment));
+        PaymentVo vo = from(payment);
+
+
+
+        return paymentMapper.insertPayment(vo);
     }
 
     public static PaymentVo from(Payment payment) {

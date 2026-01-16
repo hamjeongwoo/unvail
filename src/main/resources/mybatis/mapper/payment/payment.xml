@@ -7,7 +7,7 @@
 
     <insert id="insertPayment" parameterType="com.unvail.app.payment.PaymentVo">
         INSERT INTO payments (
-            payment_id,
+            id,
             transaction_id,
             merchant_id,
             store_id,
