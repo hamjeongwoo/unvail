@@ -14,7 +14,7 @@ function goToTarot() {
 
 // 포인트 충전 모달 표시
 function chargePoints() {
-    goToPage('/pages/charge');
+    goToPage('/charge');
     // showModal({
     //     title: '포인트 충전',
     //     message: '100 포인트를 충전하시겠습니까?<br><small style="color: #b8b5c8;">(MVP 버전에서는 무료로 제공됩니다)</small>',

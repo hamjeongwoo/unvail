@@ -41,6 +41,12 @@ public class ViewCommController {
     @GetMapping("/mypage")
     public String mypage(Model model) {
         viewCommService.postLoginHandler(model);
-        return "my-page";
+        return "auth/my-page";
+    }
+
+    @GetMapping("/charge")
+    public String charge(Model model) {
+        viewCommService.postLoginHandler(model);
+        return "auth/chargee";
     }
 }

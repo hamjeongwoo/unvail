@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.concurrent.ExecutionException;
 
@@ -22,26 +23,27 @@ public class PortOneController {
     private final ObjectMapper objectMapper;
 
     @GetMapping("/kakao/complete")
-    public String paymentComplete(PayRequestDto param){
+    public ModelAndView paymentComplete(PayRequestDto param){
+        ModelAndView modelAndView = new ModelAndView();
         log.debug("payment_id = {}, code = {}", param.getPaymentId(),  param.getCode());
 
         if(param.getCode() != null){
-            return "charge?error=ok&message=" + param.getMessage();
+            modelAndView.setViewName("/auth/charge?error=ok&message=" + param.getMessage());
         }
 
         try {
             Payment payment = portOneClient.getKakaoPayment(param.getPaymentId());
+            modelAndView.setViewName("/auth/charge?success=ok");
             if(log.isDebugEnabled()){
                 log.debug(objectMapper.writeValueAsString(payment));
             }
         } catch (ExecutionException | InterruptedException e) {
-            return "charge?error=ok";
+            modelAndView.setViewName("/auth/charge?error=ok");
         } catch (JsonProcessingException e) {
+            modelAndView.setViewName("/auth/charge?error=ok");
             throw new RuntimeException(e);
         }
 
-        return "charge?success=ok";
+        return modelAndView;
     }
-
-
 }
