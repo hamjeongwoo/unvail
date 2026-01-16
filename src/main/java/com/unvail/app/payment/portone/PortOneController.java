@@ -27,11 +27,9 @@ public class PortOneController {
 
     @GetMapping("/{provider}/complete")
     public ModelAndView paymentComplete(PayRequestDto param, @PathVariable String provider) {
-        UnveilUser user = ContextUtils.getUnveilUser().get();
-        log.debug("provider= {} param= {} user= {}", provider, param, user);
+        log.debug("provider= {}", provider);
 
         ModelAndView modelAndView = new ModelAndView();
-        log.debug("payment_id = {}, code = {}", param.getPaymentId(),  param.getCode());
 
         if(param.getCode() != null){
             modelAndView.setViewName("redirect:/charge?error=ok&message=" + param.getMessage());

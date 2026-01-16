@@ -1,6 +1,8 @@
 package com.unvail.app.payment;
 
+import com.unvail.app.comm.ContextUtils;
 import com.unvail.app.payment.portone.PaymentStatus;
+import com.unvail.app.users.UnveilUser;
 import io.portone.sdk.server.payment.PaidPayment;
 import io.portone.sdk.server.payment.Payment;
 import lombok.RequiredArgsConstructor;
@@ -15,10 +17,8 @@ public class PaymentService {
     private final PaymentMapper paymentMapper;
 
     public int insertPayment(Payment payment){
+        UnveilUser user = ContextUtils.getUnveilUser().get();
         PaymentVo vo = from(payment);
-
-        log.debug("insert paymentvo: {}", vo);
-
         return paymentMapper.insertPayment(vo);
     }
 

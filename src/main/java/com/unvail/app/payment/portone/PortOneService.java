@@ -29,9 +29,9 @@ public class PortOneService {
             payment = portOneClient.getKakaoPayment(paymentId);
         }
 
-        if(log.isDebugEnabled()){
-            log.debug(objectMapper.writeValueAsString(payment));
-        }
+//        if(log.isDebugEnabled()){
+//            log.debug(objectMapper.writeValueAsString(payment));
+//        }
 
         if (payment instanceof Payment.Recognized recognized) {
             TicketEnum ticket = TicketEnum.getByAmount(recognized.getAmount().getTotal());

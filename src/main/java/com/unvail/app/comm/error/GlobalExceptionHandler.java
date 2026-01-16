@@ -79,7 +79,7 @@ public class GlobalExceptionHandler {
     public ModelAndView notFound(
             NoResourceFoundException e,
             HttpServletRequest request) {
-        return new ModelAndView("/error/404");
+        return new ModelAndView("error/404");
     }
 
     /* ===============================
