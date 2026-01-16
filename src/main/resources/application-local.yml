@@ -62,6 +62,6 @@ server:
   port: 8080
 
 portone:
-  api_url: https://api.portone.io
-  kakao_sec_key: Kuoag87lxkkoFVDUdQXkWTI8eYKGGlet3rotHtJxbd2GI3ZzIQzIxTl1lQovUq268UviJTekrzXZccgc
-  store_id: store-d634ec72-0de5-4990-84fc-f2aa1450b88b
+  api-url: https://api.portone.io
+  kakao-sec-key: Kuoag87lxkkoFVDUdQXkWTI8eYKGGlet3rotHtJxbd2GI3ZzIQzIxTl1lQovUq268UviJTekrzXZccgc
+  store-id: store-d634ec72-0de5-4990-84fc-f2aa1450b88b
