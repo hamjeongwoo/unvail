@@ -1,7 +1,10 @@
 package com.unvail.app.aop;
 
+import com.unvail.app.comm.ContextUtils;
 import com.unvail.app.comm.model.Audit;
+import com.unvail.app.users.UnveilUser;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.catalina.manager.util.SessionUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -35,7 +38,8 @@ public class MapperArgumentAspect {
     }
 
     private String getLoginUserId() {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        return auth != null ? auth.getName() : "SYSTEM";
+        return ContextUtils.getUnveilUser()
+                .map(UnveilUser::getEmail)
+                .orElse("NO_SESSION_USER");
     }
 }
