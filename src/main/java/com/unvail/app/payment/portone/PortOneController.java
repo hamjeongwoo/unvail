@@ -22,11 +22,15 @@ public class PortOneController {
     private final ObjectMapper objectMapper;
 
     @GetMapping("/kakao/complete")
-    public String paymentComplete(@RequestParam String payment_id){
-        log.debug("payment_id {}", payment_id);
+    public String paymentComplete(PayRequestDto param){
+        log.debug("payment_id = {}, code = {}", param.getPaymentId(),  param.getCode());
+
+        if(param.getCode() != null){
+            return "charge?error=ok&message=" + param.getMessage();
+        }
 
         try {
-            Payment payment = portOneClient.getKakaoPayment(payment_id);
+            Payment payment = portOneClient.getKakaoPayment(param.getPaymentId());
             if(log.isDebugEnabled()){
                 log.debug(objectMapper.writeValueAsString(payment));
             }

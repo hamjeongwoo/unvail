@@ -14,7 +14,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const urlParams = new URLSearchParams(window.location.search);
     const error = urlParams.get('error');
     const success = urlParams.get('success');
-    if(error === 'ok') showChargeErrorModal()
+    const message = urlParams.get('message');
+    if(error === 'ok') showChargeErrorModal(message)
     if(success === 'ok') showChargeSuccessModal();
 });
 
@@ -107,7 +108,7 @@ function requestPayment() {
         totalAmount: 1000,
         currency: "CURRENCY_KRW",
         payMethod: getPayMethod(),
-        redirectUrl: `${location.protocol}://${location.host}/payment/${chargeState.selectedPayment}/complete`,
+        redirectUrl: `${location.protocol}//${location.host}/payment/${chargeState.selectedPayment}/complete`,
     });
 }
 
@@ -131,10 +132,10 @@ function showChargeSuccessModal() {
     });
 }
 
-function showChargeErrorModal() {
+function showChargeErrorModal(msg) {
     showModal({
         title: '구매하기',
-        message: `결제 처리가 이루어 지지 않았습니다.`,
+        message: msg ? msg : '결제 처리가 이루어 지지 않았습니다.',
         type: 'error',
         confirmText: '확인',
         showCancel: false,
