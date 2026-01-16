@@ -12,6 +12,8 @@ import java.time.Instant;
 @Builder
 public class PaymentVo {
 
+    private final String email;
+
     /** 포트원 결제 ID */
     private final String paymentId;
 

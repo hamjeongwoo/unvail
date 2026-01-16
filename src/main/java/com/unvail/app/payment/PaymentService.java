@@ -17,7 +17,6 @@ public class PaymentService {
     private final PaymentMapper paymentMapper;
 
     public int insertPayment(Payment payment){
-        UnveilUser user = ContextUtils.getUnveilUser().get();
         PaymentVo vo = from(payment);
         return paymentMapper.insertPayment(vo);
     }

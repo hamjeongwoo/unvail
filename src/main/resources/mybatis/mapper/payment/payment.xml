@@ -8,6 +8,7 @@
     <insert id="insertPayment" parameterType="com.unvail.app.payment.PaymentVo">
         INSERT INTO payments (
             id,
+            email,
             transaction_id,
             merchant_id,
             store_id,
@@ -26,6 +27,7 @@
             pg_response
         ) VALUES (
                      #{paymentId},
+                     #{sessionId}
                      #{transactionId},
                      #{merchantId},
                      #{storeId},
@@ -49,11 +51,12 @@
             parameterType="string"
             resultType="com.unvail.app.payment.PaymentVo">
         SELECT
-            payment_id
+            id
+            , email
             , transaction_id
             , merchant_id
             , store_id
-            , status,
+            , status
             , payment_provide
             , order_name
             , amount_total
