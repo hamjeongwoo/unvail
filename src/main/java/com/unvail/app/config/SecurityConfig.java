@@ -31,7 +31,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(authorize -> authorize
                 .requestMatchers("/images/**", "/css/**", "/js/**", "/favicon.ico", "/.well-known/appspecific/com.chrome.devtools.json").permitAll()
-                .requestMatchers("/", "/main", "/pages/**").permitAll()
+                .requestMatchers("/", "/main", "/pages/**", "/error/**").permitAll()
                 .requestMatchers("/login/**", "/oauth2/**").permitAll()
                 .requestMatchers("/api/**").hasRole("USER")
                 .anyRequest().authenticated());
