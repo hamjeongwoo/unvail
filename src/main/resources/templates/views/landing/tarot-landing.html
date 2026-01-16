@@ -1,0 +1,372 @@
+{{>layout/header}}
+<style>
+    /* ==================== Tarot Landing Page ==================== */
+    .tarot-landing {
+        max-width: 430px;
+        margin: 0 auto;
+        padding-bottom: 40px;
+        min-height: calc(100vh - 60px);
+    }
+
+    .tarot-landing-hero {
+        text-align: center;
+        padding: 40px 20px 24px;
+    }
+
+    .tarot-landing-hero__icon {
+        font-size: 80px;
+        margin-bottom: 24px;
+        animation: floatCard 3s ease-in-out infinite;
+    }
+
+    @keyframes floatCard {
+        0%, 100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-10px);
+        }
+    }
+
+    .tarot-landing-hero__title {
+        font-size: 36px;
+        font-weight: 700;
+        color: #ffffff;
+        margin-bottom: 16px;
+    }
+
+    .tarot-landing-hero__subtitle {
+        font-size: 16px;
+        color: #b8b5c8;
+        line-height: 1.6;
+    }
+
+    .tarot-landing-section {
+        padding: 20px 20px;
+    }
+
+    .tarot-landing-section__title {
+        font-size: 22px;
+        font-weight: 600;
+        color: #ffffff;
+        text-align: center;
+        margin-bottom: 16px;
+    }
+
+    /* 타로를 보면 좋은 순간 카드 */
+    .tarot-moment-cards {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .tarot-moment-card {
+        background: rgba(111, 92, 255, 0.08);
+        border: 1px solid rgba(111, 92, 255, 0.2);
+        border-radius: 16px;
+        padding: 20px;
+        transition: all 0.3s ease;
+    }
+
+    .tarot-moment-card:hover {
+        background: rgba(111, 92, 255, 0.12);
+        border-color: rgba(111, 92, 255, 0.4);
+        transform: translateX(4px);
+    }
+
+    .tarot-moment-card__icon {
+        font-size: 32px;
+        margin-bottom: 12px;
+    }
+
+    .tarot-moment-card__title {
+        font-size: 18px;
+        font-weight: 600;
+        color: #ffffff;
+        margin-bottom: 8px;
+    }
+
+    .tarot-moment-card__desc {
+        font-size: 14px;
+        color: #b8b5c8;
+        line-height: 1.6;
+    }
+
+    /* 질문 예시 */
+    .tarot-questions {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .tarot-question-category {
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 12px;
+        padding: 20px;
+    }
+
+    .tarot-question-category__title {
+        font-size: 16px;
+        font-weight: 600;
+        color: #f5d36c;
+        margin-bottom: 12px;
+    }
+
+    .tarot-question-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .tarot-question-list li {
+        font-size: 14px;
+        color: #e8e6f0;
+        line-height: 1.6;
+        padding-left: 20px;
+        position: relative;
+    }
+
+    .tarot-question-list li:before {
+        content: "•";
+        position: absolute;
+        left: 8px;
+        color: #6f5cff;
+        font-weight: bold;
+    }
+
+    /* 타로의 특징 */
+    .tarot-features {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .tarot-feature-item {
+        display: flex;
+        gap: 16px;
+        background: rgba(111, 92, 255, 0.08);
+        border: 1px solid rgba(111, 92, 255, 0.2);
+        border-radius: 12px;
+        padding: 20px;
+        transition: all 0.3s ease;
+    }
+
+    .tarot-feature-item:hover {
+        background: rgba(111, 92, 255, 0.12);
+        border-color: rgba(111, 92, 255, 0.4);
+    }
+
+    .tarot-feature-item__icon {
+        font-size: 28px;
+        flex-shrink: 0;
+        line-height: 1;
+    }
+
+    .tarot-feature-item__content {
+        flex: 1;
+    }
+
+    .tarot-feature-item__title {
+        font-size: 16px;
+        font-weight: 600;
+        color: #ffffff;
+        margin-bottom: 6px;
+    }
+
+    .tarot-feature-item__desc {
+        font-size: 14px;
+        color: #b8b5c8;
+        line-height: 1.6;
+    }
+
+    /* 안내 문구 */
+    .tarot-landing-notice {
+        padding: 16px 20px;
+    }
+
+    .tarot-landing-notice__content {
+        background: rgba(245, 211, 108, 0.1);
+        border-left: 3px solid #f5d36c;
+        border-radius: 8px;
+        padding: 20px;
+    }
+
+    .tarot-landing-notice__text {
+        font-size: 14px;
+        color: #e8e6f0;
+        line-height: 1.8;
+        text-align: center;
+    }
+
+    .tarot-landing-notice__text strong {
+        color: #f5d36c;
+        font-weight: 600;
+    }
+
+    /* 시작 버튼 */
+    .tarot-landing-cta {
+        padding: 0 20px 20px;
+        position: sticky;
+        bottom: 20px;
+    }
+
+    .tarot-landing-cta__btn {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        padding: 18px 24px;
+        background: linear-gradient(135deg, #6f5cff 0%, #9b88ff 100%);
+        border: none;
+        border-radius: 16px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 16px rgba(111, 92, 255, 0.3);
+    }
+
+    .tarot-landing-cta__btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 24px rgba(111, 92, 255, 0.5);
+    }
+
+    .tarot-landing-cta__btn:active {
+        transform: translateY(0);
+    }
+
+    .tarot-landing-cta__btn-text {
+        font-size: 18px;
+        font-weight: 600;
+        color: #ffffff;
+    }
+
+    .tarot-landing-cta__btn-icon {
+        font-size: 20px;
+        color: #ffffff;
+    }
+
+    .tarot-landing-cta__point {
+        text-align: center;
+        font-size: 13px;
+        color: #f5d36c;
+        margin-top: 8px;
+    }
+</style>
+    <!-- 타로 랜딩 화면 -->
+    <main class="tarot-landing">
+        <!-- 히어로 섹션 -->
+        <section class="tarot-landing-hero">
+            <!--<div class="tarot-landing-hero__icon">🃏</div>-->
+            <h1 class="tarot-landing-hero__title">타로 리딩</h1>
+            <p class="tarot-landing-hero__subtitle">"걔가 날 어떻게 생각하지?"<br>"나는 널 어떻게 생각하지?"<br><br>말하지 못한 마음, 궁금한 그 사람의 생각<br>타로 카드가 답을 전해드립니다</p>
+        </section>
+
+        <!-- 타로를 보면 좋은 순간 -->
+        <section class="tarot-landing-section">
+            <h2 class="tarot-landing-section__title">💫 이럴 때 타로를 봐보세요</h2>
+            <div class="tarot-moment-cards">
+                <div class="tarot-moment-card">
+                    <div class="tarot-moment-card__icon">❤️</div>
+                    <h3 class="tarot-moment-card__title">관계에 대한 고민이 있을 때</h3>
+                    <p class="tarot-moment-card__desc">연애, 우정, 가족 관계의 흐름과 상대의 마음을 이해하고 싶을 때</p>
+                </div>
+                <div class="tarot-moment-card">
+                    <div class="tarot-moment-card__icon">🎯</div>
+                    <h3 class="tarot-moment-card__title">미래를 준비하고 싶을 때</h3>
+                    <p class="tarot-moment-card__desc">앞으로의 흐름을 미리 파악하고 더 나은 선택을 하고 싶을 때</p>
+                </div>
+                <div class="tarot-moment-card">
+                    <div class="tarot-moment-card__icon">💭</div>
+                    <h3 class="tarot-moment-card__title">답답한 상황을 벗어나고 싶을 때</h3>
+                    <p class="tarot-moment-card__desc">막막한 현실 속에서 실마리를 찾고 싶을 때, 카드가 방향을 알려줍니다</p>
+                </div>
+                <div class="tarot-moment-card">
+                    <div class="tarot-moment-card__icon">🤔</div>
+                    <h3 class="tarot-moment-card__title">선택의 기로에 섰을 때</h3>
+                    <p class="tarot-moment-card__desc">두 가지 이상의 선택지 앞에서 고민될 때, 타로는 새로운 관점을 제시합니다</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 질문 예시 -->
+        <section class="tarot-landing-section">
+            <h2 class="tarot-landing-section__title">✨ 이렇게 질문해보세요</h2>
+            <div class="tarot-questions">
+                <div class="tarot-question-category">
+                    <h3 class="tarot-question-category__title">💼 커리어</h3>
+                    <ul class="tarot-question-list">
+                        <li>"지금 이직하는 것이 좋을까요?"</li>
+                        <li>"새로운 프로젝트가 성공할 수 있을까요?"</li>
+                        <li>"직장 내 인간관계를 개선하려면 어떻게 해야 할까요?"</li>
+                    </ul>
+                </div>
+                <div class="tarot-question-category">
+                    <h3 class="tarot-question-category__title">💕 연애</h3>
+                    <ul class="tarot-question-list">
+                        <li>"상대방은 나를 어떻게 생각하고 있을까요?"</li>
+                        <li>"이 관계의 앞으로의 흐름은 어떨까요?"</li>
+                        <li>"새로운 만남이 곧 찾아올까요?"</li>
+                    </ul>
+                </div>
+                <div class="tarot-question-category">
+                    <h3 class="tarot-question-category__title">🌟 자기계발</h3>
+                    <ul class="tarot-question-list">
+                        <li>"지금 내가 집중해야 할 것은 무엇인가요?"</li>
+                        <li>"나의 숨겨진 강점은 무엇인가요?"</li>
+                        <li>"현재 내 에너지 상태는 어떤가요?"</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 타로의 특징 -->
+        <section class="tarot-landing-section">
+            <h2 class="tarot-landing-section__title">🎴 Unveil 타로만의 특별함</h2>
+            <div class="tarot-features">
+                <div class="tarot-feature-item">
+                    <div class="tarot-feature-item__icon">🎯</div>
+                    <div class="tarot-feature-item__content">
+                        <h3 class="tarot-feature-item__title">정확한 카드 해석</h3>
+                        <p class="tarot-feature-item__desc">78장 풀덱 타로의 의미를 정통 해석법으로 분석합니다</p>
+                    </div>
+                </div>
+                <div class="tarot-feature-item">
+                    <div class="tarot-feature-item__icon">🧠</div>
+                    <div class="tarot-feature-item__content">
+                        <h3 class="tarot-feature-item__title">AI 통찰력</h3>
+                        <p class="tarot-feature-item__desc">수십만 건의 리딩 데이터로 학습한 AI가 깊이 있는 해석을 제공합니다</p>
+                    </div>
+                </div>
+                <div class="tarot-feature-item">
+                    <div class="tarot-feature-item__icon">💬</div>
+                    <div class="tarot-feature-item__content">
+                        <h3 class="tarot-feature-item__title">실용적 조언</h3>
+                        <p class="tarot-feature-item__desc">추상적인 메시지가 아닌, 실제 행동으로 옮길 수 있는 구체적 가이드</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 안내 문구 -->
+        <section class="tarot-landing-notice">
+            <div class="tarot-landing-notice__content">
+                <p class="tarot-landing-notice__text">
+                    <strong>타로는 미래를 예언하는 도구가 아닙니다.</strong><br>
+                    현재 상황에 대한 통찰과 가능성을 제시하여<br>
+                    더 나은 선택을 할 수 있도록 돕는 지혜의 도구입니다.
+                </p>
+            </div>
+        </section>
+
+        <!-- 시작 버튼 -->
+        <div class="tarot-landing-cta">
+            <button class="tarot-landing-cta__btn" onclick="goToPage('/pages/tarot-types')">
+                <span class="tarot-landing-cta__btn-text">타로 리딩 시작하기</span>
+                <span class="tarot-landing-cta__btn-icon">→</span>
+            </button>
+        </div>
+    </main>
+{{>layout/footer}}

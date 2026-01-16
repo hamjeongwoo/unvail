@@ -125,12 +125,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
         requiredCardCount = typeInfo.cards;
         document.getElementById('tarotTypeTitle').textContent = typeInfo.name;
-        document.getElementById('tarotTypeCost').textContent = typeInfo.cost + ' 포인트 소비';
-        document.getElementById('tarotSubmit').textContent = '결과 보기 (' + typeInfo.cost + ' 포인트)';
 
         // 카드 개수에 따른 안내문구 변경
         if (requiredCardCount === 1) {
-            document.getElementById('tarotInstruction').textContent = '질문을 입력하고 마음에 드는 카드를 한장을 선택하세요';
+            document.getElementById('tarotInstruction').textContent = '질문을 입력하고 마음에 드는 카드 한장을 선택하세요';
         } else if (requiredCardCount === 3) {
             document.getElementById('tarotInstruction').textContent = '질문을 입력하고 세 장의 카드를 선택하세요';
         } else if (requiredCardCount === 4) {
@@ -346,6 +344,21 @@ function updateCardDisplay() {
 function submitTarot() {
     // 필요한 카드가 모두 선택되었는지 확인
     if (selectedTarotCards.length !== requiredCardCount) {
+        return;
+    }
+
+    if(!currentInfo.isLoggedIn){
+        showModal({
+            title: '결과보기',
+            message: '로그인이 필요한 서비스 입니다</br>로그인 페이지로 이동 하시겠습니까?',
+            type: 'info',
+            confirmText: '확인',
+            cancelText: '취소',
+            showCancel: true,
+            onConfirm: function() {
+                location.href='/pages/login';
+            },
+        });
         return;
     }
 

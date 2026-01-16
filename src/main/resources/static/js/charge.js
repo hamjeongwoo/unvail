@@ -6,7 +6,6 @@ const chargeState = {
 
 // 페이지 로드 시 초기화
 document.addEventListener('DOMContentLoaded', function() {
-    debugger;
     updatePointUI();
     updateCurrentPoint();
     initTermsCheckboxes();

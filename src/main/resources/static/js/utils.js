@@ -77,9 +77,8 @@ function getCurrentPoint() {
 }
 
 // 포인트와 함께 페이지 이동
-function navigateWithPoint(url, point) {
-    var userEmail = getCurrentUser();
-    navigateWithUserAndPoint(url, point, userEmail);
+function navigateWithPoint(url) {
+    navigateWithUserAndPoint(url);
 }
 
 // 포인트 UI 업데이트

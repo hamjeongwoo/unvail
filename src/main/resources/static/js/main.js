@@ -2,14 +2,11 @@
 
 // 사주 종류 선택 페이지로 이동
 function goToSaju() {
-    var point = getCurrentPoint();
-    navigateWithPoint('/pages/saju-types', point);
 }
 
 // 타로 종류 선택 페이지로 이동
 function goToTarot() {
-    var point = getCurrentPoint();
-    navigateWithPoint('/pages/tarot-types', point);
+    goToPage('/pages/landing/tarot-landing')
 }
 
 // 포인트 충전 모달 표시
