@@ -1,5 +1,6 @@
 package com.unvail.app.payment;
 
+import com.unvail.app.comm.model.Audit;
 import com.unvail.app.payment.portone.PaymentStatus;
 import lombok.Builder;
 import lombok.Getter;
@@ -10,7 +11,7 @@ import java.time.Instant;
 @Getter
 @ToString
 @Builder
-public class PaymentVo {
+public class PaymentVo extends Audit {
 
     private final String email;
 

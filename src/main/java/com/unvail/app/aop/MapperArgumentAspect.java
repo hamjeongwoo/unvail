@@ -20,11 +20,9 @@ public class MapperArgumentAspect {
     public Object setCommonFields(ProceedingJoinPoint joinPoint) throws Throwable {
         String methodName = joinPoint.getSignature().getName();
         Object[] args = joinPoint.getArgs();
-        if(methodName.contains("insert") || methodName.contains("update") || methodName.contains("upsert")){
-            for (Object arg : args) {
-                if (arg instanceof Audit audit) {
-                    applyCommonFields(audit);
-                }
+        for (Object arg : args) {
+            if (arg instanceof Audit audit) {
+                applyCommonFields(audit);
             }
         }
         return joinPoint.proceed(args);
