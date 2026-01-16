@@ -14,12 +14,6 @@ function goToMain() {
     window.location.href = 'main.html';
 }
 
-// 충전 페이지로 이동
-function goToCharge() {
-    var point = getCurrentPoint();
-    navigateWithPoint('charge.html', point);
-}
-
 // 충전 이력 모달 열기
 function showChargeHistory() {
     var modal = document.getElementById('chargeHistoryModal');
