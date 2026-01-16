@@ -17,7 +17,7 @@ public class PaymentService {
     public int insertPayment(Payment payment){
         PaymentVo vo = from(payment);
 
-
+        log.debug("insert paymentvo: {}", vo);
 
         return paymentMapper.insertPayment(vo);
     }
