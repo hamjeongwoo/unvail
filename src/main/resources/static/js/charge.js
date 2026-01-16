@@ -84,7 +84,7 @@ function processCharge() {
         chargeBtn.disabled = true;
         chargeBtn.textContent = '처리 중...';
 
-        requestPayment();
+        requestPayment('kakao');
     }else{
         showModal({
             title: '구매하기',
@@ -96,17 +96,41 @@ function processCharge() {
     }
 }
 
-function requestPayment() {
-    PortOne.requestPayment({
+function chargeBtnChargeState(trueFalse) {
+    document.getElementById('chargeBtn').disabled = trueFalse;
+    document.getElementById('chargeBtn').textContent = trueFalse ? '구매 중...' : '이용권 구매하기';
+}
+
+async function requestPayment(provider) {
+    chargeBtnChargeState(true);
+    const paymentId = `payment-${crypto.randomUUID()}`;
+    const payment = await PortOne.requestPayment({
         storeId: currentInfo.storeId,
         channelKey: currentInfo.channelId,
-        paymentId: `payment-${crypto.randomUUID()}`,
+        paymentId: paymentId,
         orderName: chargeState.selectedTicket.dataset.prodNm,
         totalAmount: chargeState.selectedTicket.dataset.amount,
         currency: "CURRENCY_KRW",
         payMethod: getPayMethod(),
-        redirectUrl: `${location.protocol}//${location.host}/payment/${chargeState.selectedPayment}/complete`,
+        /*redirectUrl: `${location.protocol}//${location.host}/payment/${chargeState.selectedPayment}/complete`,*/
     });
+
+    if (payment.code !== undefined) {
+        chargeBtnChargeState(false);
+        console.log(payment)
+        showChargeErrorModal(payment.message)
+        return;
+    }
+
+    const completeResponse = await _ac.get(`/api/payment/${provider}/complete`, {paymentId: payment.paymentId})
+    if (completeResponse.ok) {
+        const paymentComplete = await completeResponse.json()
+        if (paymentComplete.status === "PAID") {
+            this.openSuccessDialog()
+        }
+    } else {
+        this.openFailDialog(await completeResponse.text())
+    }
 }
 
 function getPayMethod(){
