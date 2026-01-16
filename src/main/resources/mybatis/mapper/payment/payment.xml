@@ -41,7 +41,7 @@
                      #{paidAt},
                      #{pgTxId},
                      #{receiptUrl},
-                     #{pgResponse}
+                     #{pgResponse}::json
                  )
     </insert>
 
