@@ -47,6 +47,6 @@ public class ViewCommController {
     @GetMapping("/charge")
     public String charge(Model model) {
         viewCommService.postLoginHandler(model);
-        return "auth/chargee";
+        return "auth/charge";
     }
 }
