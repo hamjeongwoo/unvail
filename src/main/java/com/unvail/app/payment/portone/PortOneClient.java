@@ -30,7 +30,7 @@ public class PortOneClient {
                 , null
                 , null
                 , null
-                , URLEncoder.encode(cancelRaeson, StandardCharsets.UTF_8)
+                , cancelRaeson
                 , null
                 , null
                 , null

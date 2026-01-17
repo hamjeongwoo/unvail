@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.concurrent.ExecutionException;
 
 @Slf4j
@@ -46,7 +48,7 @@ public class PortOneController {
             modelAndView.setViewName("redirect:/charge?error=ok");
         } catch (BusinessException e){
             portOneService.cancelRequest(param.getPaymentId(), "결제 요청 처리 중 서버 오류[02]");
-            modelAndView.setViewName("redirect:/charge?error=ok&message=" + e.getErrorCode().getMessage());
+            modelAndView.setViewName("redirect:/charge?error=ok&message=" + URLEncoder.encode(e.getErrorCode().getMessage(), StandardCharsets.UTF_8));
         } catch (Exception e) {
             portOneService.cancelRequest(param.getPaymentId(), "결제 요청 처리 중 서버 오류[03]");
             modelAndView.setViewName("redirect:/charge?error=ok&message=" + e.getMessage());
