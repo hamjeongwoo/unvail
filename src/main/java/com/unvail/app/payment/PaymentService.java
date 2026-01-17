@@ -20,7 +20,7 @@ public class PaymentService {
     }
 
     public PaymentVo selectByPaymentId(String paymentId){
-        return paymentMapper.selectByPaymentId(paymentId);
+        return paymentMapper.selectByPaymentIdBySession(paymentId);
     }
 
 

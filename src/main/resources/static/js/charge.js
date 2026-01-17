@@ -120,12 +120,18 @@ function chargeBtnChargeState(trueFalse) {
     }
 }
 
+let checkcount = 0;
 function pucharseChecker(){
     _ac.get('/api/payment', {paymentId: chargeState.callbackPaymetnId})
         .then(response => {
             if(response.data){
                 chargeBtnChargeState(false);
             }else{
+                if(checkcount === 5) {
+                    showChargeErrorModal('결제 처리 중 문제 또는 지연이 발생 하고 있습니다 잠시 후 마이페이지로 이동후 결제는 되었으나 이용권 구매가 안된 경우에 관리자에게 문의 하시기 바랍니다.(support@un-veil.co.kr)')
+                    return;
+                }
+                ++checkcount;
                 setTimeout(pucharseChecker, 1000)
             }
         })
