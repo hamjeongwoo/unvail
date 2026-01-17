@@ -43,6 +43,8 @@ public class PortOneController {
             modelAndView.setViewName("redirect:/charge?error=ok");
         } catch (BusinessException e){
             modelAndView.setViewName("redirect:/charge?error=ok&message=" + e.getErrorCode().getMessage());
+        } catch (Exception e) {
+            modelAndView.setViewName("redirect:/charge?error=ok&message=" + e.getMessage());
         }
 
 

@@ -29,12 +29,11 @@ public class PaymentService {
                     .build();
         }
 
-        log.debug("recognized.getCustomData() = {}", recognized.getCustomData());
-
         PaymentStatus status = PaymentUtils.mapStatus(payment);
 
         PaymentVo.PaymentVoBuilder builder = PaymentVo.builder()
                 .paymentId(recognized.getId())
+                .ticketId(recognized.getCustomData())
                 .transactionId(recognized.getTransactionId())
                 .merchantId(recognized.getMerchantId())
                 .storeId(recognized.getStoreId())

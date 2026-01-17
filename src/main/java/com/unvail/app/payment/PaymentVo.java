@@ -14,9 +14,11 @@ import java.time.Instant;
 public class PaymentVo extends Audit {
 
     private final String email;
+    private final String ticketId;
 
     /** 포트원 결제 ID */
     private final String paymentId;
+
 
     /** 포트원 transactionId (PG 트랜잭션 기준) */
     private final String transactionId;
