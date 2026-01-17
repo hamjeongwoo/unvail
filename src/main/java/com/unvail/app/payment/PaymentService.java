@@ -28,10 +28,14 @@ public class PaymentService {
         }
 
         PaymentStatus status = PaymentUtils.mapStatus(payment);
+        String customDataStr = recognized.getCustomData().replaceAll("\"", "");
+
+        log.debug("customDataStr = {}", customDataStr);
 
         PaymentVo.PaymentVoBuilder builder = PaymentVo.builder()
                 .paymentId(recognized.getId())
-                .ticketId(recognized.getCustomData().replace("\"", ""))
+                .ticketId(customDataStr.split("#,#")[0])
+                .email(customDataStr.split("#,#")[1])
                 .transactionId(recognized.getTransactionId())
                 .merchantId(recognized.getMerchantId())
                 .storeId(recognized.getStoreId())

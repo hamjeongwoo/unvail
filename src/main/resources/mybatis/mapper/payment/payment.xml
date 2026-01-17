@@ -28,7 +28,7 @@
             pg_response
         ) VALUES (
                      #{paymentId},
-                     #{sessionId},
+                     #{email},
                      #{ticketId},
                      #{transactionId},
                      #{merchantId},
