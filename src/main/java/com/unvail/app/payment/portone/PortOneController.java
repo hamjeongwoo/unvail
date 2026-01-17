@@ -38,10 +38,10 @@ public class PortOneController {
         log.debug("provider= {}", provider);
 
         ModelAndView modelAndView = new ModelAndView("auth/charge");
-        modelAndView.addObject("isCallback", "OK");
+        model.addAttribute("isCallback", "OK");
         if(param.getCode() != null) {
-            modelAndView.addObject("error", "OK");
-            modelAndView.addObject("message", param.getMessage());
+            model.addAttribute("error", "OK");
+            model.addAttribute("message", param.getMessage());
         }
 
         return modelAndView;
