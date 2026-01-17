@@ -33,8 +33,7 @@ public class PortOneController {
     public ModelAndView paymentComplete(PayRequestDto param, @PathVariable String provider) {
         log.debug("provider= {}", provider);
 
-        ModelAndView modelAndView = new ModelAndView("/charge");
-        modelAndView.addObject("isCallback", "OK");
+        ModelAndView modelAndView = new ModelAndView("redirect:/charge?isCallback=OK");
         if(param.getCode() != null) {
             modelAndView.setViewName("redirect:/charge?error=ok&message=" + param.getMessage());
             return modelAndView;
