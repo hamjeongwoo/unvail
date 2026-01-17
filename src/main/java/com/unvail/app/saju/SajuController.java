@@ -10,7 +10,6 @@ import java.util.Map;
 @RestController
 public class SajuController {
 
-
     @PostMapping("/analysis/callback")
     public void sajuTest(@RequestBody Map<String, Object> params) {
         log.debug("sajuTest = {}", params);

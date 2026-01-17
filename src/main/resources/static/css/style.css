@@ -1778,9 +1778,9 @@ input {
 
 .package-item__bonus {
     position: absolute;
-    bottom: 8px;
+    bottom: 3px;
     left: 20px;
-    font-size: 12px;
+    font-size: 14px;
     color: #f5d36c;
     font-weight: 600;
 }
@@ -1851,12 +1851,31 @@ input {
 }
 
 .payment-item__icon {
-    font-size: 24px;
-    width: 32px;
-    height: 32px;
+    font-size: 18px;
+    font-weight: 700;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
+    color: white;
+    background: rgba(111, 92, 255, 0.2);
+}
+
+.payment-item__icon--kakao {
+    background: #fee500;
+    color: #3c1e1e;
+}
+
+.payment-item__icon--naver {
+    background: #03c75a;
+    color: white;
+}
+
+.payment-item__icon--toss {
+    background: #0064ff;
+    color: white;
 }
 
 .payment-item__name {
