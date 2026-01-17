@@ -1,26 +1,15 @@
 package com.unvail.app.payment.portone;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.api.client.json.Json;
-import com.unvail.app.comm.ContextUtils;
 import com.unvail.app.comm.error.BusinessException;
-import com.unvail.app.comm.error.ErrorCode;
 import com.unvail.app.controller.ViewCommService;
-import com.unvail.app.users.UnveilUser;
-import io.portone.sdk.server.payment.Payment;
-import io.portone.sdk.server.payment.PaymentWebhookRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 @Slf4j
@@ -57,13 +46,13 @@ public class PortOneController {
             try {
                 portOneService.ticketPucharse(requestDto.getPaymentId(), PgTypeEnum.from(provider));
             } catch (ExecutionException | JsonProcessingException | InterruptedException e) {
-                log.error("Exception [Err_Location] : {}", e.getStackTrace()[0]);
+                e.printStackTrace();
                 portOneService.cancelRequest(requestDto.getPaymentId(), "결제 요청 처리 중 서버 오류[01]");
             } catch (BusinessException e){
-                log.error("Exception [Err_Location] : {}", e.getStackTrace()[0]);
+                e.printStackTrace();
                 portOneService.cancelRequest(requestDto.getPaymentId(), "결제 요청 처리 중 서버 오류[02]");
             } catch (Exception e) {
-                log.error("Exception [Err_Location] : {}", e.getStackTrace()[0]);
+                e.printStackTrace();
                 portOneService.cancelRequest(requestDto.getPaymentId(), "결제 요청 처리 중 서버 오류[03]");
             }
         }
