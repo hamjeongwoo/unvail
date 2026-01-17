@@ -33,18 +33,18 @@ public class PortOneController {
     private final PortOneService portOneService;
 
     @GetMapping("/{provider}/complete")
-    public ModelAndView paymentComplete(PayRequestDto param, @PathVariable String provider, Model model) {
+    public String paymentComplete(PayRequestDto param, @PathVariable String provider, Model model) {
         viewCommService.postLoginHandler(model);
         log.debug("provider= {}", provider);
-
-        ModelAndView modelAndView = new ModelAndView("auth/charge");
         model.addAttribute("isCallback", "OK");
+        model.addAttribute("error", "");
+        model.addAttribute("message", "");
         if(param.getCode() != null) {
             model.addAttribute("error", "OK");
             model.addAttribute("message", param.getMessage());
         }
 
-        return modelAndView;
+        return "auth/charge";
     }
 
     @PostMapping("/{provider}/complete/webhook")
