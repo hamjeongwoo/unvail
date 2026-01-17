@@ -67,3 +67,7 @@ portone:
   kakao:
     sec-key: Kuoag87lxkkoFVDUdQXkWTI8eYKGGlet3rotHtJxbd2GI3ZzIQzIxTl1lQovUq268UviJTekrzXZccgc
     channel-id: channel-key-9878a0fa-0a48-4ac4-8b16-8a53bff786c3
+  toss:
+    sec-key: test_sk_d26DlbXAaV0xQbpa7y1VqY50Q9RB
+    client-key: test_ck_lpP2YxJ4K877JAdv7KX8RGZwXLOb
+    channel-id: channel-key-f5e7613a-aef9-441b-8156-cd3d24c2ac0e
