@@ -47,7 +47,7 @@ public class PortOneController {
     public ResponseEntity<Void> paymentCompleteWebhook(
             @RequestBody PortOnePaymentWebhookRequest requestDto
             , @PathVariable String provider) {
-        log.debug("PortOnePaymentWebhookRequest = {}", requestDto);
+        log.debug("provider = {}, PortOnePaymentWebhookRequest = {}", provider, requestDto);
 
         if("Paid".equals(requestDto.getStatus())){
             try {

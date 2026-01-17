@@ -20,10 +20,10 @@ import java.util.concurrent.ExecutionException;
 public class PortOneService {
 
     private final PortOneClient portOneClient;
-    private final ObjectMapper objectMapper;
     private final PaymentService paymentService;
 
     public void ticketPucharse(String paymentId, PgTypeEnum pgtype) throws ExecutionException, InterruptedException, JsonProcessingException {
+        log.debug("ticketPucharse = {} pgtype = {}", paymentId, pgtype);
         Payment payment = null;
         if(PgTypeEnum.KAKAO.equals(pgtype)){
             payment = portOneClient.getKakaoPayment(paymentId);
