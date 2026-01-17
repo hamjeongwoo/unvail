@@ -12,20 +12,15 @@ document.addEventListener('DOMContentLoaded', function() {
     initSelectedStates();
 
     chargeState.selectedTicket = document.getElementsByClassName('package-item--selected')[0]
-    const urlParams = new URLSearchParams(window.location.search);
-    const error = urlParams.get('error');
-    const isCallback = urlParams.get('isCallback');
-    const message = urlParams.get('message');
 
-    if(isCallback === 'ok') {
-        if(error === 'ok'){
-            showChargeErrorModal(message)
+    if(window.callbackInfo.isCallback === 'OK') {
+        if(window.callbackInfo.error === 'OK'){
+            showChargeErrorModal(window.callbackInfo.message)
         } else{
             window.scrollTo(0, document.body.scrollHeight);
             chargeBtnChargeState(true);
             //showChargeSuccessModal();
         }
-
     }
 
 });

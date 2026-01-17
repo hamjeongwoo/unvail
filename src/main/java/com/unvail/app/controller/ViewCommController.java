@@ -48,6 +48,8 @@ public class ViewCommController {
     public String charge(Model model) {
         viewCommService.postLoginHandler(model);
         model.addAttribute("isCallback", "");
+        model.addAttribute("error", "");
+        model.addAttribute("message", "");
         return "auth/charge";
     }
 }

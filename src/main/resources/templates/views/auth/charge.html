@@ -1,6 +1,10 @@
 {{>layout/header}}
 <script>
-    window.isCallback = '{{isCallback}}'
+    window.callbackInfo = {
+        error: '{{error}}'
+        , message: '{{message}}'
+        , isCallback: '{{isCallback}}'
+    }
 </script>
     <!-- 충전 화면 -->
     <main class="charge">
