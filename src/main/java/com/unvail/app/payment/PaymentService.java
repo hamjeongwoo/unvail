@@ -1,8 +1,6 @@
 package com.unvail.app.payment;
 
-import com.unvail.app.comm.ContextUtils;
 import com.unvail.app.payment.portone.PaymentStatus;
-import com.unvail.app.users.UnveilUser;
 import io.portone.sdk.server.payment.PaidPayment;
 import io.portone.sdk.server.payment.Payment;
 import lombok.RequiredArgsConstructor;

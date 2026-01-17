@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.unvail.app.comm.ContextUtils;
 import com.unvail.app.comm.error.BusinessException;
+import com.unvail.app.comm.error.ErrorCode;
 import com.unvail.app.users.UnveilUser;
 import io.portone.sdk.server.payment.Payment;
 import lombok.RequiredArgsConstructor;
@@ -39,15 +40,17 @@ public class PortOneController {
         try {
             portOneService.ticketPucharse(param.getPaymentId(), PgTypeEnum.KAKAO);
             modelAndView.setViewName("redirect:/charge?success=ok");
+            throw new BusinessException(ErrorCode.ERROR_PG_TICKET);
         } catch (ExecutionException | JsonProcessingException | InterruptedException e) {
+            portOneService.cancelRequest(param.getPaymentId(), "결제 요청 처리 중 서버 오류[01]");
             modelAndView.setViewName("redirect:/charge?error=ok");
         } catch (BusinessException e){
+            portOneService.cancelRequest(param.getPaymentId(), "결제 요청 처리 중 서버 오류[02]");
             modelAndView.setViewName("redirect:/charge?error=ok&message=" + e.getErrorCode().getMessage());
         } catch (Exception e) {
+            portOneService.cancelRequest(param.getPaymentId(), "결제 요청 처리 중 서버 오류[03]");
             modelAndView.setViewName("redirect:/charge?error=ok&message=" + e.getMessage());
         }
-
-
 
         return modelAndView;
     }

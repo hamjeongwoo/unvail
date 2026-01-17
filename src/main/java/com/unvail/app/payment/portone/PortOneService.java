@@ -46,4 +46,8 @@ public class PortOneService {
             throw new BusinessException(ErrorCode.ERROR_PG_RES);
         }
     }
+
+    public void cancelRequest(String paymentId, String cancelReason){
+        portOneClient.cancelPayment(paymentId, cancelReason);
+    }
 }
