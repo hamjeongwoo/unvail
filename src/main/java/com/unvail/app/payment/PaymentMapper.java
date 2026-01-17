@@ -7,5 +7,5 @@ public interface PaymentMapper {
 
     int insertPayment(PaymentVo paymentVo);
 
-    PaymentVo selectByPaymentIdBySession(String paymentId);
+    PaymentVo selectByPaymentId(String paymentVo);
 }

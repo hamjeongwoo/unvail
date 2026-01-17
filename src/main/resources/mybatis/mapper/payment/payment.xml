@@ -49,8 +49,8 @@
                  )
     </insert>
 
-    <select id="selectByPaymentIdBySession"
-            parameterType="string"
+    <select id="selectByPaymentId"
+            parameterType="com.unvail.app.payment.PaymentVo"
             resultType="com.unvail.app.payment.PaymentVo">
         SELECT
             id
@@ -73,8 +73,7 @@
             , receipt_url
             , pg_response
         FROM payments
-        WHERE id = #{paymentId}
-        and email = #{sessionId}
+        WHERE id = #{value}
     </select>
 
 </mapper>
