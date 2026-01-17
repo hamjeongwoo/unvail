@@ -33,25 +33,11 @@ public class PortOneController {
     public ModelAndView paymentComplete(PayRequestDto param, @PathVariable String provider) {
         log.debug("provider= {}", provider);
 
-        ModelAndView modelAndView = new ModelAndView();
-
-        if(param.getCode() != null){
+        ModelAndView modelAndView = new ModelAndView("/charge");
+        modelAndView.addObject("isCallback", "OK");
+        if(param.getCode() != null) {
             modelAndView.setViewName("redirect:/charge?error=ok&message=" + param.getMessage());
             return modelAndView;
-        }
-
-        try {
-            portOneService.ticketPucharse(param.getPaymentId(), PgTypeEnum.KAKAO);
-            modelAndView.setViewName("redirect:/charge?success=ok");
-        } catch (ExecutionException | JsonProcessingException | InterruptedException e) {
-            portOneService.cancelRequest(param.getPaymentId(), "결제 요청 처리 중 서버 오류[01]");
-            modelAndView.setViewName("redirect:/charge?error=ok");
-        } catch (BusinessException e){
-            portOneService.cancelRequest(param.getPaymentId(), "결제 요청 처리 중 서버 오류[02]");
-            modelAndView.setViewName("redirect:/charge?error=ok&message=" + URLEncoder.encode(e.getErrorCode().getMessage(), StandardCharsets.UTF_8));
-        } catch (Exception e) {
-            portOneService.cancelRequest(param.getPaymentId(), "결제 요청 처리 중 서버 오류[03]");
-            modelAndView.setViewName("redirect:/charge?error=ok&message=" + e.getMessage());
         }
 
         return modelAndView;
@@ -59,14 +45,21 @@ public class PortOneController {
 
     @PostMapping("/{provider}/complete/webhook")
     public ResponseEntity<Void> paymentCompleteWebhook(
-            @RequestBody String rawBody,
-            @RequestHeader Map<String, String> headers
-    ) {
-        log.debug("raw webhook body = {}", rawBody);
+            @RequestBody PortOnePaymentWebhookRequest requestDto
+            , @PathVariable String provider) {
+        log.debug("PortOnePaymentWebhookRequest = {}", requestDto);
 
-        // 1. 시그니처 검증
-        // 2. JSON 파싱
-        // 3. 비즈니스 처리
+        if("Paid".equals(requestDto.getStatus())){
+            try {
+                portOneService.ticketPucharse(requestDto.getPaymentId(), PgTypeEnum.from(provider));
+            } catch (ExecutionException | JsonProcessingException | InterruptedException e) {
+                portOneService.cancelRequest(requestDto.getPaymentId(), "결제 요청 처리 중 서버 오류[01]");
+            } catch (BusinessException e){
+                portOneService.cancelRequest(requestDto.getPaymentId(), "결제 요청 처리 중 서버 오류[02]");
+            } catch (Exception e) {
+                portOneService.cancelRequest(requestDto.getPaymentId(), "결제 요청 처리 중 서버 오류[03]");
+            }
+        }
 
         return ResponseEntity.ok().build();
     }

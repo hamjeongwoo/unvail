@@ -14,10 +14,19 @@ document.addEventListener('DOMContentLoaded', function() {
     chargeState.selectedTicket = document.getElementsByClassName('package-item--selected')[0]
     const urlParams = new URLSearchParams(window.location.search);
     const error = urlParams.get('error');
-    const success = urlParams.get('success');
     const message = urlParams.get('message');
-    if(error === 'ok') showChargeErrorModal(message)
-    if(success === 'ok') showChargeSuccessModal();
+
+    if(window.isCallback === 'ok') {
+        if(error === 'ok'){
+            showChargeErrorModal(message)
+        } else{
+            window.scrollTo(0, document.body.scrollHeight);
+            chargeBtnChargeState(true);
+            //showChargeSuccessModal();
+        }
+
+    }
+
 });
 
 // 패키지 선택

@@ -47,6 +47,7 @@ public class ViewCommController {
     @GetMapping("/charge")
     public String charge(Model model) {
         viewCommService.postLoginHandler(model);
+        model.addAttribute("isCallback", "");
         return "auth/charge";
     }
 }
