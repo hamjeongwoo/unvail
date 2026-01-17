@@ -46,13 +46,13 @@ public class PortOneController {
             try {
                 portOneService.ticketPucharse(requestDto.getPaymentId(), PgTypeEnum.from(provider));
             } catch (ExecutionException | JsonProcessingException | InterruptedException e) {
-                e.printStackTrace();
+                log.error(e.getMessage());
                 portOneService.cancelRequest(requestDto.getPaymentId(), "결제 요청 처리 중 서버 오류[01]");
             } catch (BusinessException e){
-                e.printStackTrace();
+                log.error(e.getMessage());
                 portOneService.cancelRequest(requestDto.getPaymentId(), "결제 요청 처리 중 서버 오류[02]");
             } catch (Exception e) {
-                e.printStackTrace();
+                log.error(e.getMessage());
                 portOneService.cancelRequest(requestDto.getPaymentId(), "결제 요청 처리 중 서버 오류[03]");
             }
         }
