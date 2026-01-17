@@ -20,7 +20,7 @@ public class PortOneClient {
         return paymentClient.getPayment(paymentId).get();
     }
 
-    public void cancelPayment(String paymentId, String cancelRaeson) throws ExecutionException, InterruptedException {
+    public void cancelPayment(String paymentId, String cancelRaeson) {
         log.debug("======취소요청 start, paymentId={}, cancelReson={}", paymentId, cancelRaeson);
         PaymentClient paymentClient = new PaymentClient(portOneConfig.getKakaoSecKey(), portOneConfig.getApiUrl(), portOneConfig.getStoreId());
         paymentClient.cancelPayment(
@@ -33,7 +33,7 @@ public class PortOneClient {
                 , null
                 , null
                 , null
-        ).get();
+        );
         log.debug("======취소요청 end");
     }
 }
