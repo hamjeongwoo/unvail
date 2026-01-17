@@ -32,6 +32,7 @@ public class SecurityConfig {
         http.authorizeHttpRequests(authorize -> authorize
                 .requestMatchers("/images/**", "/css/**", "/js/**", "/favicon.ico", "/.well-known/appspecific/com.chrome.devtools.json").permitAll()
                 .requestMatchers("/", "/main", "/pages/**", "/error/**").permitAll()
+                .requestMatchers("/payment/**").permitAll()
                 .requestMatchers("/login/**", "/oauth2/**").permitAll()
                 .requestMatchers("/api/**").hasRole("USER")
                 .anyRequest().authenticated());
