@@ -121,7 +121,7 @@ function chargeBtnChargeState(trueFalse) {
 }
 
 function pucharseChecker(){
-    _ac.get('/api/payment', {pamentId: chargeState.callbackPaymetnId})
+    _ac.get('/api/payment', {paymentId: chargeState.callbackPaymetnId})
         .then(response => {
             if(response.data){
                 chargeBtnChargeState(false);
