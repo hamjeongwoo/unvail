@@ -6,6 +6,7 @@ import com.google.api.client.json.Json;
 import com.unvail.app.comm.ContextUtils;
 import com.unvail.app.comm.error.BusinessException;
 import com.unvail.app.comm.error.ErrorCode;
+import com.unvail.app.controller.ViewCommService;
 import com.unvail.app.users.UnveilUser;
 import io.portone.sdk.server.payment.Payment;
 import io.portone.sdk.server.payment.PaymentWebhookRequest;
@@ -13,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -27,10 +29,12 @@ import java.util.concurrent.ExecutionException;
 @Controller
 public class PortOneController {
 
+    private final ViewCommService viewCommService;
     private final PortOneService portOneService;
 
     @GetMapping("/{provider}/complete")
-    public ModelAndView paymentComplete(PayRequestDto param, @PathVariable String provider) {
+    public ModelAndView paymentComplete(PayRequestDto param, @PathVariable String provider, Model model) {
+        viewCommService.postLoginHandler(model);
         log.debug("provider= {}", provider);
 
         ModelAndView modelAndView = new ModelAndView("auth/charge");
