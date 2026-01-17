@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.concurrent.ExecutionException;
 
 @Slf4j
@@ -28,12 +30,12 @@ public class PortOneClient {
                 , null
                 , null
                 , null
-                , cancelRaeson
+                , URLEncoder.encode(cancelRaeson, StandardCharsets.UTF_8)
                 , null
                 , null
                 , null
                 , null
-        );
+        ).join();
         log.debug("======취소요청 end");
     }
 }
