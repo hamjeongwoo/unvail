@@ -1,6 +1,7 @@
 package com.unvail.app.payment.portone;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.unvail.app.comm.CommUtils;
 import com.unvail.app.comm.error.BusinessException;
 import com.unvail.app.controller.ViewCommService;
 import lombok.RequiredArgsConstructor;
@@ -52,7 +53,8 @@ public class PortOneController {
                 log.error(e.getMessage());
                 portOneService.cancelRequest(requestDto.getPaymentId(), "결제 요청 처리 중 서버 오류[02]");
             } catch (Exception e) {
-                log.error(e.getMessage());
+                log.error(CommUtils.getStackTraceAsString(e));
+                e.printStackTrace();
                 portOneService.cancelRequest(requestDto.getPaymentId(), "결제 요청 처리 중 서버 오류[03]");
             }
         }
