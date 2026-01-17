@@ -218,6 +218,54 @@ input {
     line-height: 1.6;
 }
 
+.landing-hero__highlight {
+    display: inline-block;
+    background: linear-gradient(135deg, rgba(245, 211, 108, 0.15), rgba(111, 92, 255, 0.15));
+    border: 2px solid #f5d36c;
+    border-radius: 16px;
+    padding: 20px 24px;
+    margin-top: 8px;
+    position: relative;
+    overflow: hidden;
+}
+
+.landing-hero__highlight::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(245, 211, 108, 0.1), transparent);
+    animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+}
+
+.landing-hero__highlight-icon {
+    font-size: 24px;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.landing-hero__highlight-text {
+    font-size: 15px;
+    color: #f5d36c;
+    line-height: 1.5;
+    font-weight: 500;
+    margin: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.landing-hero__highlight-text strong {
+    color: #ffa06c;
+    font-weight: 700;
+}
+
 .landing-features {
     padding: 0 20px;
     display: grid;
