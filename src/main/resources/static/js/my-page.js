@@ -38,7 +38,7 @@ function showChargeHistory() {
                 '<div class="history-item__body">' +
                     '<div class="history-item__title">이용권 구매</div>' +
                     '<div class="history-item__detail">' +
-                        '<span>' + item.point + 'P (+' + (item.point > 100 ? Math.floor(item.point * 0.1) : 0) + 'P 보너스)</span>' +
+                        '<span>사주 2회 · 타로 3회</span>' +
                         '<span class="history-item__method">' + item.method + '</span>' +
                     '</div>' +
                 '</div>' +
@@ -88,10 +88,10 @@ function showUnveilHistory() {
                 '</div>' +
                 '<div class="history-item__body">' +
                     '<div class="history-item__title">' + icon + ' ' + item.type + ' - ' + item.subType + '</div>' +
-                '</div>' +
+                '</div>'/* +
                 '<div class="history-item__footer">' +
                     '<span class="history-item__cost">-' + item.cost + 'P</span>' +
-                '</div>';
+                '</div>'*/;
             listContainer.appendChild(historyItem);
         });
     }

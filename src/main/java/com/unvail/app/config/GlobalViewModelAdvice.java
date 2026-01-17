@@ -1,6 +1,7 @@
 package com.unvail.app.config;
 
 import com.unvail.app.oauth.CustomOAuth2User;
+import com.unvail.app.payment.portone.PortOneProperties;
 import com.unvail.app.users.UnveilUser;
 import com.unvail.app.users.UserService;
 import lombok.RequiredArgsConstructor;
@@ -17,11 +18,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class GlobalViewModelAdvice {
 
-    @Value("${portone.store-id}")
-    private String storeId;
-
-    @Value("${portone.kakao.channel-id}")
-    private String channelId;
+    private final PortOneProperties portOneProperties;
 
     private final UserService userService;
 
@@ -51,7 +48,10 @@ public class GlobalViewModelAdvice {
             model.addAttribute("curPoint", 0);
         }
 
-        model.addAttribute("storeId", storeId);
-        model.addAttribute("channelId", channelId);
+        model.addAttribute("storeId", portOneProperties.getStoreId());
+        model.addAttribute("kakao-channelId", portOneProperties.getKakao().getChannelId());
+        model.addAttribute("toss-channelId", portOneProperties.getToss().getChannelId());
+        model.addAttribute("naver-channelId", portOneProperties.getNaver().getChannelId());
+
     }
 }

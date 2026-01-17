@@ -78,3 +78,7 @@ portone:
     sec-key: test_sk_d26DlbXAaV0xQbpa7y1VqY50Q9RB
     client-key: test_ck_lpP2YxJ4K877JAdv7KX8RGZwXLOb
     channel-id: channel-key-f5e7613a-aef9-441b-8156-cd3d24c2ac0e
+  naver:
+    sec-key:
+    client-key:
+    channel-id:

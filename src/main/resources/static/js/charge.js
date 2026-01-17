@@ -138,9 +138,20 @@ function pucharseChecker(){
 }
 
 function requestPayment(provider) {
+    if(!currentInfo.email){
+        showModal({
+            title: '결제 불가',
+            message: '로그인이 필요 합니다.',
+            type: 'error',
+            confirmText: '확인',
+            showCancel: false,
+            onConfirm: goToLogin
+        })
+        throw 'must not be session'
+    }
     PortOne.requestPayment({
         storeId: currentInfo.storeId,
-        channelKey: currentInfo.channelId,
+        channelKey: getChannelId(provider),
         paymentId: `payment-unveil-${crypto.randomUUID()}`,
         orderName: chargeState.selectedTicket.dataset.prodNm,
         totalAmount: chargeState.selectedTicket.dataset.amount,
@@ -150,6 +161,25 @@ function requestPayment(provider) {
         customData: `${chargeState.selectedTicket.dataset.ticketId}#,#${currentInfo.email}`,
         noticeUrls: [`${location.protocol}//${location.host}/payment/${chargeState.selectedPayment}/complete/webhook`],
     });
+}
+
+function getChannelId(provider) {
+    if(chargeState.selectedPayment === 'kakao'){
+        return window.currentInfo.kakaoChannelId;
+    }else if(chargeState.selectedPayment === 'toss'){
+        return window.currentInfo.tossChannelId;
+    }else if(chargeState.selectedPayment === 'naver'){
+        return window.currentInfo.naverChannelId;
+    }else {
+        showModal({
+            title: '결재사 수단 선택 오류',
+            message: `${provider} 확인 되지 않는 결제 수단 입니다.`,
+            type: 'error',
+            confirmText: '확인',
+            showCancel: false,
+        })
+        throw 'not found provider';
+    }
 }
 
 function getPayMethod(){

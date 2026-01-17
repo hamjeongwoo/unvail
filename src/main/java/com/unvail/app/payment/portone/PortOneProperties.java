@@ -15,6 +15,7 @@ public class PortOneProperties {
 
     private Kakao kakao;
     private Toss toss;
+    private Naver naver;
 
     @Getter
     @Setter
@@ -26,6 +27,14 @@ public class PortOneProperties {
     @Getter
     @Setter
     public static class Toss {
+        private String secKey;
+        private String clientKey;
+        private String channelId;
+    }
+
+    @Getter
+    @Setter
+    public static class Naver {
         private String secKey;
         private String clientKey;
         private String channelId;
