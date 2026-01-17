@@ -39,8 +39,8 @@ public class PortOneController {
 
         try {
             portOneService.ticketPucharse(param.getPaymentId(), PgTypeEnum.KAKAO);
-            modelAndView.setViewName("redirect:/charge?success=ok");
             throw new BusinessException(ErrorCode.ERROR_PG_TICKET);
+            //modelAndView.setViewName("redirect:/charge?success=ok");
         } catch (ExecutionException | JsonProcessingException | InterruptedException e) {
             portOneService.cancelRequest(param.getPaymentId(), "결제 요청 처리 중 서버 오류[01]");
             modelAndView.setViewName("redirect:/charge?error=ok");
