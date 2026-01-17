@@ -29,6 +29,8 @@ public class PaymentService {
                     .build();
         }
 
+        log.debug("recognized.getCustomData() = {}", recognized.getCustomData());
+
         PaymentStatus status = PaymentUtils.mapStatus(payment);
 
         PaymentVo.PaymentVoBuilder builder = PaymentVo.builder()

@@ -780,7 +780,7 @@ input {
     overflow: hidden;
 }
 
-.menu__card:last-child {
+.menu__card:nth-child(odd):last-child {
     grid-column: 1 / -1;
 }
 

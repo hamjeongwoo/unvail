@@ -112,6 +112,7 @@ function requestPayment(provider) {
         currency: "CURRENCY_KRW",
         payMethod: getPayMethod(),
         redirectUrl: `${location.protocol}//${location.host}/payment/${chargeState.selectedPayment}/complete`,
+        customData: chargeState.selectedTicket.dataset.ticketId,
     });
 }
 
