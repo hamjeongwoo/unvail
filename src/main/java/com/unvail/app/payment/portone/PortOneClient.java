@@ -27,7 +27,7 @@ public class PortOneClient {
             case PgTypeEnum.KAKAO -> new PaymentClient(portOneConfig.getKakao().getSecKey(), portOneConfig.getApiUrl(), portOneConfig.getStoreId());
             case NAVER -> null;
             case TOSS -> null;
-            default -> throw new BusinessException(ErrorCode.ERROR_PG_NOT_PROVIDER);
+            default -> throw new BusinessException(ErrorCode.ERROR_PG_NOT_CONF);
         };
     }
 

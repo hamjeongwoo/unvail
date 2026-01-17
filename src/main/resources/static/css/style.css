@@ -1694,7 +1694,7 @@ input {
     }
 }
 
-/* ==================== 충전 페이지 ==================== */
+/* ==================== 이용권 구매 페이지 ==================== */
 .charge {
     max-width: 430px;
     margin: 0 auto;
@@ -1733,7 +1733,7 @@ input {
     font-size: 28px;
 }
 
-/* 충전 패키지 섹션 */
+/* 이용권 구매 패키지 섹션 */
 .charge-packages {
     margin-bottom: 32px;
 }
@@ -1952,7 +1952,7 @@ input {
     color: white;
 }
 
-/* 충전 액션 버튼 */
+/* 이용권 구매 액션 버튼 */
 .charge-actions {
     margin-top: 32px;
 }

@@ -9,12 +9,8 @@ document.addEventListener('DOMContentLoaded', function() {
 function initMyPage() {
 }
 
-// 메인으로 이동
-function goToMain() {
-    window.location.href = 'main.html';
-}
 
-// 충전 이력 모달 열기
+// 이용권 이력 모달 열기
 function showChargeHistory() {
     var modal = document.getElementById('chargeHistoryModal');
     var listContainer = document.getElementById('chargeHistoryList');
@@ -29,7 +25,7 @@ function showChargeHistory() {
     // 이력 렌더링
     listContainer.innerHTML = '';
     if (chargeHistory.length === 0) {
-        listContainer.innerHTML = '<div class="history-empty">충전 이력이 없습니다.</div>';
+        listContainer.innerHTML = '<div class="history-empty">이용권 구매 이력이 없습니다.</div>';
     } else {
         chargeHistory.forEach(function(item) {
             var historyItem = document.createElement('div');
@@ -40,7 +36,7 @@ function showChargeHistory() {
                     '<span class="history-item__badge history-item__badge--complete">완료</span>' +
                 '</div>' +
                 '<div class="history-item__body">' +
-                    '<div class="history-item__title">포인트 충전</div>' +
+                    '<div class="history-item__title">이용권 구매</div>' +
                     '<div class="history-item__detail">' +
                         '<span>' + item.point + 'P (+' + (item.point > 100 ? Math.floor(item.point * 0.1) : 0) + 'P 보너스)</span>' +
                         '<span class="history-item__method">' + item.method + '</span>' +
@@ -57,7 +53,7 @@ function showChargeHistory() {
     document.body.style.overflow = 'hidden';
 }
 
-// 충전 이력 모달 닫기
+// 이용권 이력 모달 닫기
 function closeChargeHistory() {
     var modal = document.getElementById('chargeHistoryModal');
     modal.classList.remove('history-modal--active');

@@ -22,6 +22,20 @@
             </div>
 
             <div class="form__group">
+                <label class="form__label">양력/음력 <span class="required">*</span></label>
+                <div class="form__radio-group">
+                    <label class="radio-label">
+                        <input type="radio" name="calendar" value="solar" checked>
+                        <span>양력</span>
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="calendar" value="lunar">
+                        <span>음력</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="form__group">
                 <label class="form__label">출생 시간 (선택)</label>
                 <input type="time" class="form__input" id="sajuBirthTime">
             </div>
@@ -46,7 +60,7 @@
             </div>
 
             <button type="submit" class="btn btn--primary btn--large" id="sajuSubmitBtn">
-                사주 보기 (30 포인트)
+                이용권 횟수 차감
             </button>
         </form>
     </section>

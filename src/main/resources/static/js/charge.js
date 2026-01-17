@@ -1,4 +1,4 @@
-// 충전 페이지 상태
+// 이용권 구매 페이지 상태
 const chargeState = {
     selectedTicket: null,
     selectedPayment: null,
@@ -40,7 +40,7 @@ function selectPackage(el) {
     el.classList.add('package-item--selected');
     chargeState.selectedTicket = el
 
-    // 충전 버튼 활성화 여부 확인
+    // 이용권 구매 버튼 활성화 여부 확인
     checkChargeButton();
 }
 
@@ -59,11 +59,11 @@ function selectPayment(method) {
         chargeState.selectedPayment = method;
     }
 
-    // 충전 버튼 활성화 여부 확인
+    // 이용권 구매 버튼 활성화 여부 확인
     checkChargeButton();
 }
 
-// 충전 버튼 활성화 여부 확인
+// 이용권 구매 버튼 활성화 여부 확인
 function checkChargeButton() {
     var chargeBtn = document.getElementById('chargeBtn');
     var agreeRefund = document.getElementById('agreeRefund');
@@ -80,7 +80,7 @@ function checkChargeButton() {
     }
 }
 
-// 충전 처리
+// 이용권 구매 처리
 function processCharge() {
     if (!chargeState.selectedTicket || !chargeState.selectedPayment) {
         return;

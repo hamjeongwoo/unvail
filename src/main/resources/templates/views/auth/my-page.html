@@ -15,13 +15,13 @@
             
             <!-- 포인트 카드 -->
             <div class="point-card">
-                <div class="point-card__label">보유 포인트</div>
+                <div class="point-card__label">보유 이용권</div>
                 <div class="point-card__amount">
-                    <span class="point-icon">✦</span>
-                    <span id="myPagePoint">{{curPoint}}</span>
+                    <span class="point-icon">🎫</span>
+                    <span id="myPageTicket">0</span>
                 </div>
                 <button class="point-card__charge-btn" onclick="goToPage('/charge')">
-                    충전하기 →
+                    이용권 구매하기 →
                 </button>
             </div>
         </section>
@@ -31,8 +31,8 @@
             <h3 class="section-title">이용 내역</h3>
             <div class="menu-list">
                 <button class="menu-list__item" onclick="showChargeHistory()">
-                    <span class="menu-list__icon">💎</span>
-                    <span class="menu-list__text">충전 이력</span>
+                    <span class="menu-list__icon">🎫</span>
+                    <span class="menu-list__text">이용권 구매 이력</span>
                     <span class="menu-list__arrow">→</span>
                 </button>
                 <button class="menu-list__item" onclick="showUnveilHistory()">
@@ -66,12 +66,12 @@
         </section>
     </main>
 
-    <!-- 충전 이력 모달 -->
+    <!-- 이용권 이력 모달 -->
     <div id="chargeHistoryModal" class="history-modal">
         <div class="history-modal__backdrop" onclick="closeChargeHistory()"></div>
         <div class="history-modal__container">
             <div class="history-modal__header">
-                <h3 class="history-modal__title">충전 이력</h3>
+                <h3 class="history-modal__title">이용권 구매 이력</h3>
                 <button class="history-modal__close" onclick="closeChargeHistory()">✕</button>
             </div>
             <div class="history-modal__body">
