@@ -14,9 +14,10 @@ document.addEventListener('DOMContentLoaded', function() {
     chargeState.selectedTicket = document.getElementsByClassName('package-item--selected')[0]
     const urlParams = new URLSearchParams(window.location.search);
     const error = urlParams.get('error');
+    const isCallback = urlParams.get('isCallback');
     const message = urlParams.get('message');
 
-    if(window.isCallback === 'ok') {
+    if(isCallback === 'ok') {
         if(error === 'ok'){
             showChargeErrorModal(message)
         } else{
