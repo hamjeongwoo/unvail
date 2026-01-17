@@ -3,7 +3,6 @@ package com.unvail.app.payment.portone;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.unvail.app.comm.CommUtils;
 import com.unvail.app.comm.error.BusinessException;
-import com.unvail.app.controller.ViewCommService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -19,16 +18,12 @@ import java.util.concurrent.ExecutionException;
 @Controller
 public class PortOneController {
 
-    private final ViewCommService viewCommService;
     private final PortOneService portOneService;
 
     @GetMapping("/{provider}/complete")
     public String paymentComplete(PayRequestDto param, @PathVariable String provider, Model model) {
-        viewCommService.postLoginHandler(model);
         log.debug("provider= {}", provider);
         model.addAttribute("isCallback", "OK");
-        model.addAttribute("error", "");
-        model.addAttribute("message", "");
         if(param.getCode() != null) {
             model.addAttribute("error", "OK");
             model.addAttribute("message", param.getMessage());

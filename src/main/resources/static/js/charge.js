@@ -1,25 +1,29 @@
 // 충전 페이지 상태
 const chargeState = {
     selectedTicket: null,
-    selectedPayment: null
+    selectedPayment: null,
+    callbackPaymetnId: null
 };
 
 // 페이지 로드 시 초기화
 document.addEventListener('DOMContentLoaded', function() {
     if(!window.currentInfo.isLoggedIn) goToLogin();
 
+    const searchParams = new URLSearchParams(window.location.search);
+    const paymentId = searchParams.get('paymentId');
+    chargeState.callbackPaymetnId = paymentId;
+
     initTermsCheckboxes();
     initSelectedStates();
 
     chargeState.selectedTicket = document.getElementsByClassName('package-item--selected')[0]
 
-    if(window.callbackInfo.isCallback === 'OK') {
+    if(window.callbackInfo.isCallback === 'OK' && paymentId) {
         if(window.callbackInfo.error === 'OK'){
             showChargeErrorModal(window.callbackInfo.message)
         } else{
             window.scrollTo(0, document.body.scrollHeight);
             chargeBtnChargeState(true);
-            //showChargeSuccessModal();
         }
     }
 
@@ -104,10 +108,30 @@ function processCharge() {
 function chargeBtnChargeState(trueFalse) {
     document.getElementById('chargeBtn').disabled = trueFalse;
     document.getElementById('chargeBtn').textContent = trueFalse ? '구매 중...' : '이용권 구매하기';
+    if(trueFalse){
+        Loading.show({
+            title: '결제 요청',
+            text: '결제요청을 처리 중 입니다...'
+        });
+        pucharseChecker();
+    }else{
+        Loading.hide();
+        showChargeSuccessModal()
+    }
+}
+
+function pucharseChecker(){
+    _ac.get('/api/payment', {pamentId: chargeState.callbackPaymetnId})
+        .then(response => {
+            if(response.data){
+                chargeBtnChargeState(false);
+            }else{
+                setTimeout(pucharseChecker, 1000)
+            }
+        })
 }
 
 function requestPayment(provider) {
-    chargeBtnChargeState(true);
     PortOne.requestPayment({
         storeId: currentInfo.storeId,
         channelKey: currentInfo.channelId,

@@ -19,7 +19,12 @@ public class PaymentService {
         return paymentMapper.insertPayment(vo);
     }
 
-    public static PaymentVo from(Payment payment) {
+    public PaymentVo selectByPaymentId(String paymentId){
+        return paymentMapper.selectByPaymentId(paymentId);
+    }
+
+
+    private static PaymentVo from(Payment payment) {
 
         if (!(payment instanceof Payment.Recognized recognized)) {
             return PaymentVo.builder()

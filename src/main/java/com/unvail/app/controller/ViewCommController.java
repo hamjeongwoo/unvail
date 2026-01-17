@@ -20,14 +20,14 @@ public class ViewCommController {
 
     @GetMapping({"/", "/main"})
     public String main(Model model) {
-        viewCommService.postLoginHandler(model);
+        
         return "main";
     }
 
     @GetMapping("/pages/**")
     public String commRoute(HttpServletRequest request
                                 , Model model){
-        viewCommService.postLoginHandler(model);
+        
         String uri = request.getRequestURI();
         String viewPath = uri.substring(7);
 
@@ -40,13 +40,13 @@ public class ViewCommController {
 
     @GetMapping("/mypage")
     public String mypage(Model model) {
-        viewCommService.postLoginHandler(model);
+        
         return "auth/my-page";
     }
 
     @GetMapping("/charge")
     public String charge(Model model) {
-        viewCommService.postLoginHandler(model);
+        
         model.addAttribute("isCallback", "");
         model.addAttribute("error", "");
         model.addAttribute("message", "");

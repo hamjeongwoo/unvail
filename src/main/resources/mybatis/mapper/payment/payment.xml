@@ -55,11 +55,12 @@
         SELECT
             id
             , email
+            , ticket_id
             , transaction_id
             , merchant_id
             , store_id
             , status
-            , payment_provide
+            , payment_provider
             , order_name
             , amount_total
             , amount_vat
@@ -72,7 +73,7 @@
             , receipt_url
             , pg_response
         FROM payments
-        WHERE payment_id = #{paymentId}
+        WHERE id = #{paymentId}
     </select>
 
 </mapper>
