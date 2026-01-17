@@ -1,13 +1,13 @@
 package com.unvail.app.payment.portone;
 
+import com.unvail.app.comm.error.BusinessException;
+import com.unvail.app.comm.error.ErrorCode;
 import io.portone.sdk.server.payment.Payment;
 import io.portone.sdk.server.payment.PaymentClient;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.util.concurrent.ExecutionException;
 
 @Slf4j
@@ -15,16 +15,25 @@ import java.util.concurrent.ExecutionException;
 @RequiredArgsConstructor
 public class PortOneClient {
 
-    private final PortOneConfig portOneConfig;
+    private final PortOneProperties portOneConfig;
 
-    public Payment getKakaoPayment(String paymentId) throws ExecutionException, InterruptedException {
-        PaymentClient paymentClient = new PaymentClient(portOneConfig.getKakaoSecKey(), portOneConfig.getApiUrl(), portOneConfig.getStoreId());
+    public Payment getCommPayment(String paymentId, PgTypeEnum pgType) throws ExecutionException, InterruptedException {
+        PaymentClient paymentClient = createPaymentClient(pgType);
         return paymentClient.getPayment(paymentId).get();
     }
 
-    public void cancelPayment(String paymentId, String cancelRaeson) {
+    private PaymentClient createPaymentClient(PgTypeEnum pgType){
+        return switch (pgType){
+            case PgTypeEnum.KAKAO -> new PaymentClient(portOneConfig.getKakao().getSecKey(), portOneConfig.getApiUrl(), portOneConfig.getStoreId());
+            case NAVER -> null;
+            case TOSS -> null;
+            default -> throw new BusinessException(ErrorCode.ERROR_PG_NOT_PROVIDER);
+        };
+    }
+
+    public void cancelPayment(String paymentId, String cancelRaeson, PgTypeEnum pgType) {
         log.debug("======취소요청 start, paymentId={}, cancelReson={}", paymentId, cancelRaeson);
-        PaymentClient paymentClient = new PaymentClient(portOneConfig.getKakaoSecKey(), portOneConfig.getApiUrl(), portOneConfig.getStoreId());
+        PaymentClient paymentClient = createPaymentClient(pgType);
         paymentClient.cancelPayment(
                 paymentId
                 , null

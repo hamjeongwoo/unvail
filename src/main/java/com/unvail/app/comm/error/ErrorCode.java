@@ -27,7 +27,8 @@ public enum ErrorCode {
 
     ERROR_PG_TICKET(HttpStatus.INTERNAL_SERVER_ERROR, "PG001", "결제 정보에 문제가 있어 결제 처리 되지 않았습니다."),
     ERROR_PG_RES(HttpStatus.INTERNAL_SERVER_ERROR, "PG002", "PG사에서 받은 데이터에 문제가 있어 처리 되지 않았습니다."),
-    ERROR_PG_RES_SAVE(HttpStatus.INTERNAL_SERVER_ERROR, "PG003", "PG사로 부터 전달받은 데이터를 저장 중 문제가 생겨 처리 되지 않았습니다.");
+    ERROR_PG_RES_SAVE(HttpStatus.INTERNAL_SERVER_ERROR, "PG003", "PG사로 부터 전달받은 데이터를 저장 중 문제가 생겨 처리 되지 않았습니다."),
+    ERROR_PG_NOT_PROVIDER(HttpStatus.INTERNAL_SERVER_ERROR, "PG004", "존재하지 프로바이더 입니다.");
 
 
     private final HttpStatus status;

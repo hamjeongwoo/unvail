@@ -1,7 +1,6 @@
 package com.unvail.app.payment.portone;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.unvail.app.comm.error.BusinessException;
 import com.unvail.app.comm.error.ErrorCode;
 import com.unvail.app.payment.PaymentService;
@@ -24,10 +23,7 @@ public class PortOneService {
 
     public void ticketPucharse(String paymentId, PgTypeEnum pgtype) throws ExecutionException, InterruptedException, JsonProcessingException {
         log.debug("ticketPucharse = {} pgtype = {}", paymentId, pgtype);
-        Payment payment = null;
-        if(PgTypeEnum.KAKAO.equals(pgtype)){
-            payment = portOneClient.getKakaoPayment(paymentId);
-        }
+        Payment payment = portOneClient.getCommPayment(paymentId, pgtype);
 
 //        if(log.isDebugEnabled()){
 //            log.debug(objectMapper.writeValueAsString(payment));
@@ -47,7 +43,7 @@ public class PortOneService {
         }
     }
 
-    public void cancelRequest(String paymentId, String cancelReason){
-        portOneClient.cancelPayment(paymentId, cancelReason);
+    public void cancelRequest(String paymentId, String cancelReason, PgTypeEnum pgtype) {
+        portOneClient.cancelPayment(paymentId, cancelReason, pgtype);
     }
 }
