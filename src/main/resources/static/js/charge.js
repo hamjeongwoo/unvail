@@ -113,6 +113,7 @@ function requestPayment(provider) {
         payMethod: getPayMethod(),
         redirectUrl: `${location.protocol}//${location.host}/payment/${chargeState.selectedPayment}/complete`,
         customData: chargeState.selectedTicket.dataset.ticketId,
+        noticeUrls: `${location.protocol}//${location.host}/payment/${chargeState.selectedPayment}/complete/webhook`,
     });
 }
 
