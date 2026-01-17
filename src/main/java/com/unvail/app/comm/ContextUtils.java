@@ -15,6 +15,7 @@ public class ContextUtils {
 
     public static Optional<UnveilUser> getUnveilUser(){
         return getAuthentication()
+                .filter(auth -> auth.getPrincipal() instanceof CustomOAuth2User)
                 .map(auth -> (CustomOAuth2User) auth.getPrincipal())
                 .map(CustomOAuth2User::getUnveilUser);
     }
