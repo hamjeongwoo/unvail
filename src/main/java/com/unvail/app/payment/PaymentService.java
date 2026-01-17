@@ -31,7 +31,7 @@ public class PaymentService {
 
         PaymentVo.PaymentVoBuilder builder = PaymentVo.builder()
                 .paymentId(recognized.getId())
-                .ticketId(recognized.getCustomData())
+                .ticketId(recognized.getCustomData().replace("\"", ""))
                 .transactionId(recognized.getTransactionId())
                 .merchantId(recognized.getMerchantId())
                 .storeId(recognized.getStoreId())
