@@ -117,7 +117,7 @@ function requestPayment(provider) {
         currency: "CURRENCY_KRW",
         payMethod: getPayMethod(),
         redirectUrl: `${location.protocol}//${location.host}/payment/${chargeState.selectedPayment}/complete`,
-        customData: `chargeState.selectedTicket.dataset.ticketId#,#${currentInfo.email}`,
+        customData: `${chargeState.selectedTicket.dataset.ticketId}#,#${currentInfo.email}`,
         noticeUrls: [`${location.protocol}//${location.host}/payment/${chargeState.selectedPayment}/complete/webhook`],
     });
 }
